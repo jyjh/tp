@@ -281,6 +281,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new player               | keep track of the team players                                         |
 | `* * *`  | user                                       | delete a player                | remove players who have left the team                                  |
 | `* * *`  | user                                       | edit a player's details        | update their stats, IGN, or contact information without removing other details |
+| * * *  | user                                       | list all players               | view all players in the team                                           |
+| * * *  | user                                       | find a player by name          | locate details of players without having to go through the entire list |
+| * * *  | user with many players in the address book | sort players by stats          | identify top performers easily                                         |
+| * * *  | user                                       | view player availability status| know who is available for a practice match                             |
 
 *{More to be added}*
 
@@ -288,7 +292,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `DraftDeck` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Delete a player**
+**Use case: UC01 - Add a player**
+
+**Guarantees**
+
+* The new player is added to DraftDeck with the specified details only if the given details are valid.
+* The new player is not added to DraftDeck if the given details are invalid.
+
+**MSS**
+
+1.  User requests to add a player with specific details.
+2.  DraftDeck adds the player to the roster.
+3.  DraftDeck displays a success message and the details of the newly added player.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. DraftDeck detects missing or invalid command format.
+
+    * 1a1. DraftDeck displays an error message showing the correct command usage.
+
+    Use case ends.
+
+* 1b. DraftDeck detects an invalid parameter value.
+
+    * 1b1. DraftDeck displays an error message specific to the invalid field.
+
+    Use case ends.
+
+**Use case: UC02 - Delete a player**
 
 **MSS**
 
