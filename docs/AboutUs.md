@@ -9,41 +9,37 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Dwayne Ho
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/oyawned.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/oyawned)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Eugene Tan Jun Yu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xaze96.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/xaze96)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Li Yi Cheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/failurelyc.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/failurelyc)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Lim Jia Xian Ryan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/icypetal.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/icypetal)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -52,8 +48,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://jyjh.github.io/)]
+[[github](http://github.com/jyjh)]
 
 * Role: Developer
 * Responsibilities: UI
+

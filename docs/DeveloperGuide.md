@@ -262,13 +262,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of players and their player details, statistics, roles, and availability
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage team operations and analyze player data (statistics, roles, availability) faster and more efficiently than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -278,26 +278,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | add a new player               | keep track of the team players                                         |
+| `* * *`  | user                                       | delete a player                | remove players who have left the team                                  |
+| `* * *`  | user                                       | edit a player's details        | update their stats, IGN, or contact information without removing other details |
+| `* * *`  | user                                       | list all players               | view all players in the team                                           |
+| `* * *`  | user                                       | find a player by name          | locate details of players without having to go through the entire list |
+| `* * *`  | user with many players in the address book | sort players by stats          | identify top performers easily                                         |
+| `* * *`  | user                                       | view player availability status| know who is available for a practice match                             |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `DraftDeck` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a player**
+
+**Guarantees**
+
+* The new player is added to DraftDeck with the specified details only if the given details are valid.
+* The new player is not added to DraftDeck if the given details are invalid.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add a player with specific details.
+2.  DraftDeck adds the player to the roster.
+3.  DraftDeck displays a success message and the details of the newly added player.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. DraftDeck detects missing or invalid command format.
+
+    * 1a1. DraftDeck displays an error message showing the correct command usage.
+
+    Use case ends.
+
+* 1b. DraftDeck detects an invalid parameter value.
+
+    * 1b1. DraftDeck displays an error message specific to the invalid field.
+
+    Use case ends.
+
+**Use case: UC02 - Delete a player**
+
+**MSS**
+
+1.  User requests to list players.
+2.  DraftDeck shows a list of players.
+3.  User requests to delete a specific player in the list.
+4.  DraftDeck deletes the player.
 
     Use case ends.
 
@@ -305,13 +336,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. DraftDeck shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 *{More to be added}*
 
@@ -325,8 +356,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **IGN**: In-Game Name, a player's username in the game
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
