@@ -59,4 +59,12 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    /**
+     * Returns the tag name of this Tag without square braces.
+     * @return
+     */
+    public String getTagName() {
+        return tagName;
+    }
+
 }
