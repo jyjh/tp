@@ -81,6 +81,7 @@ public class StatsCommand extends Command {
                 personToEdit.getPhone(),
                 personToEdit.getEmail(),
                 personToEdit.getAddress(),
+                personToEdit.getRole(),
                 personToEdit.getTags(),
                 updatedStats
         );
