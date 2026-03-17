@@ -9,6 +9,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.statistics.Statistics;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,11 +22,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ROLE = "MID";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Role role;
     private Set<Tag> tags;
     private Statistics statistics;
 
@@ -37,6 +40,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        role = new Role(DEFAULT_ROLE);
         tags = new HashSet<>();
         statistics = Statistics.createDefault();
     }
@@ -49,6 +53,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        role = personToCopy.getRole();
         tags = new HashSet<>(personToCopy.getTags());
         statistics = personToCopy.getStatistics();
     }
@@ -100,9 +105,17 @@ public class PersonBuilder {
         this.statistics = statistics;
         return this;
     }
+    
+    /**
+     * Sets the {@code Role} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRole(String role) {
+        this.role = new Role(role);
+        return this;
+    }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, statistics);
+        return new Person(name, phone, email, address, role, tags, statistics);
     }
 
 }
