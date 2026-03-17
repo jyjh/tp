@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.InGameName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
@@ -95,6 +96,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String ign} into an {@code InGameName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ign} is invalid.
+     */
+    public static InGameName parseIgn(String ign) throws ParseException {
+        requireNonNull(ign);
+        String trimmedIgn = ign.trim();
+        if (!InGameName.isValidIgn(trimmedIgn)) {
+            throw new ParseException(InGameName.MESSAGE_CONSTRAINTS);
+        }
+        return new InGameName(trimmedIgn);
     }
 
     /**

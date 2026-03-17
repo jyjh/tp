@@ -25,6 +25,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Role role;
+    private final InGameName ign;
     private final Set<Tag> tags = new HashSet<>();
     private final Statistics statistics;
 
@@ -32,13 +33,14 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Role role,
-        Set<Tag> tags, Statistics statistics) {
-        requireAllNonNull(name, phone, email, address, role, tags, statistics);
+        InGameName ign, Set<Tag> tags, Statistics statistics) {
+        requireAllNonNull(name, phone, email, address, role, ign, tags, statistics);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.role = role;
+        this.ign = ign;
         this.tags.addAll(tags);
         this.statistics = statistics;
     }
@@ -61,6 +63,10 @@ public class Person {
 
     public Role getRole() {
         return role;
+    }
+
+    public InGameName getIgn() {
+        return ign;
     }
 
     /**
@@ -109,6 +115,7 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && role.equals(otherPerson.role)
+                && ign.equals(otherPerson.ign)
                 && tags.equals(otherPerson.tags)
                 && statistics.equals(otherPerson.statistics);
     }
@@ -116,7 +123,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, role, tags, statistics);
+        return Objects.hash(name, phone, email, address, role, ign, tags, statistics);
     }
 
     @Override
