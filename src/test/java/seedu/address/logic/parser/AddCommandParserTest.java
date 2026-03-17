@@ -236,7 +236,8 @@ public class AddCommandParserTest {
 
         // invalid ign
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_IGN_DESC + ROLE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, InGameName.MESSAGE_CONSTRAINTS);
+                + INVALID_IGN_DESC + ROLE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, 
+                InGameName.MESSAGE_CONSTRAINTS);
 
         // invalid role
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
