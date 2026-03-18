@@ -149,7 +149,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidDeaths_throwsIllegalValueException() {
         JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics("0", INVALID_DEATHS);
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-            VALID_ROLE, VALID_TAGS, invalidStats);
+            VALID_IGN, VALID_ROLE, VALID_TAGS, invalidStats);
         String expectedMessage = seedu.address.model.person.statistics.Deaths.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
