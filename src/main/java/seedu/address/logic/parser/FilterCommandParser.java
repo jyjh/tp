@@ -13,6 +13,8 @@ import seedu.address.model.person.TagsContainsKeywordsPredicate;
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
+    public FilterCommandParser() {}
+
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
      * and returns a FilterCommand object for execution.

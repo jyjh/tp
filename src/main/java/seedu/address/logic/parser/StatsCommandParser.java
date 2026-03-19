@@ -15,6 +15,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class StatsCommandParser implements Parser<StatsCommand> {
 
+    public StatsCommandParser() {}
+
     /**
      * Parses the given {@code String} of arguments in the context of the StatsCommand
      * and returns a StatsCommand object for execution.

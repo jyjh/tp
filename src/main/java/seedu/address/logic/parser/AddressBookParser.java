@@ -3,23 +3,16 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DraftCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.CommandRegistry;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,45 +47,41 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
-        switch (commandWord) {
-
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case FilterCommand.COMMAND_WORD:
-            return new FilterCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        case StatsCommand.COMMAND_WORD:
-            return new StatsCommandParser().parse(arguments);
-
-        case DraftCommand.COMMAND_WORD:
-            return new DraftCommandParser().parse(arguments);
-
-        default:
-            logger.finer("This user input caused a ParseException: " + userInput);
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        for (Pair<Class<? extends Command>, Optional<Class<? extends Parser<?>>>>
+            commandPair : CommandRegistry.COMMAND_CLASSES) {
+            try {
+                if (commandWord.equals((String) commandPair.getKey()
+                    .getDeclaredField("COMMAND_WORD").get(null))) {
+                    return commandPair.getValue()
+                    .map(x -> {
+                        try {
+                            return (Command) (x.getConstructor().newInstance().parse(arguments));
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        } catch (Exception e) {
+                            logger.severe(e.toString());
+                            return null;
+                        }
+                    })
+                    .orElseGet(() -> {
+                        try {
+                            return commandPair.getKey().getConstructor().newInstance();
+                        } catch (Exception e) {
+                            return null;
+                        }
+                    });
+                }
+            } catch (RuntimeException e) {
+                if (e.getCause() instanceof ParseException) {
+                    logger.finer("This user input caused a ParseException: " + userInput);
+                    throw (ParseException) e.getCause();
+                }
+                logger.severe("Exception encountered in AddressBookParser." + e.toString());
+            } catch (Exception e) {
+                logger.severe("Exception encountered in AddressBookParser." + e.toString());
+            }
         }
+        logger.finer("This user input caused a ParseException: " + userInput);
+        throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
     }
-
 }
