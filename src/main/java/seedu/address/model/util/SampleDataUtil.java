@@ -1,11 +1,16 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.MatchRecord;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMatchRecord;
+import seedu.address.model.match.Match;
+import seedu.address.model.match.Result;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InGameName;
@@ -56,12 +61,28 @@ public class SampleDataUtil {
         };
     }
 
+    public static Match[] getSampleMatches() {
+        return new Match[] {
+            new Match(LocalDateTime.of(2025, 1, 1, 13, 0), new Result("WIN")),
+            new Match(LocalDateTime.of(2025, 2, 2, 14, 0), new Result("LOSE")),
+            new Match(LocalDateTime.of(2025, 3, 3, 15, 0), new Result("DRAW"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyMatchRecord getSampleMatchRecord() {
+        MatchRecord sample = new MatchRecord();
+        for (Match sampleMatch : getSampleMatches()) {
+            sample.addMatch(sampleMatch);
+        }
+        return sample;
     }
 
     /**

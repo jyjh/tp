@@ -21,7 +21,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMatchRecord;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.match.Match;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -155,6 +157,41 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getMatchRecordFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMatchRecordFilePath(Path matchRecordFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMatchRecord(ReadOnlyMatchRecord matchRecord) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyMatchRecord getMatchRecord() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMatch(Match match) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMatch(Match target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMatch(Match match) {
             throw new AssertionError("This method should not be called.");
         }
     }

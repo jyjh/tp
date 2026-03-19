@@ -16,15 +16,19 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.MatchRecord;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMatchRecord;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonMatchRecordStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.MatchRecordStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -58,7 +62,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        MatchRecordStorage matchRecordStorage = new JsonMatchRecordStorage(userPrefs.getMatchRecordFilePath());
+        storage = new StorageManager(addressBookStorage, matchRecordStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -76,21 +81,26 @@ public class MainApp extends Application {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyMatchRecord> matchRecordOptional;
         ReadOnlyAddressBook initialData;
+        ReadOnlyMatchRecord initialMatchRecord;
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            matchRecordOptional = storage.readMatchRecord();
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Creating a new data file " + storage.getAddressBookFilePath()
                         + " populated with a sample AddressBook.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialMatchRecord = matchRecordOptional.orElseGet(SampleDataUtil::getSampleMatchRecord);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
+                    + " Will be starting with an empty AddressBook and Match Record.");
             initialData = new AddressBook();
+            initialMatchRecord = new MatchRecord();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, initialMatchRecord, userPrefs);
     }
 
     private void initLogging(Config config) {

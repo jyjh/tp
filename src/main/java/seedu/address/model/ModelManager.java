@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.match.Match;
 import seedu.address.model.person.Person;
 
 /**
@@ -21,6 +22,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final MatchRecord matchRecord;
     private final FilteredList<Person> filteredPersons;
 
     /**
@@ -33,6 +35,24 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.matchRecord = new MatchRecord();
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook, matchRecord and userPrefs.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook,
+                        ReadOnlyMatchRecord matchRecord, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, matchRecord, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook
+                + " and match record " + matchRecord
+                + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.matchRecord = new MatchRecord(matchRecord);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -126,6 +146,43 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public Path getMatchRecordFilePath() {
+        return userPrefs.getMatchRecordFilePath();
+    }
+
+    @Override
+    public void setMatchRecordFilePath(Path matchRecordFilePath) {
+        requireNonNull(matchRecordFilePath);
+        userPrefs.setMatchRecordFilePath(matchRecordFilePath);
+    }
+
+    @Override
+    public void setMatchRecord(ReadOnlyMatchRecord matchRecord) {
+        this.matchRecord.resetData(matchRecord);
+    }
+
+    @Override
+    public ReadOnlyMatchRecord getMatchRecord() {
+        return matchRecord;
+    }
+
+    @Override
+    public boolean hasMatch(Match match) {
+        requireNonNull(match);
+        return matchRecord.hasMatch(match);
+    }
+
+    @Override
+    public void deleteMatch(Match target) {
+        matchRecord.removeMatch(target);
+    }
+
+    @Override
+    public void addMatch(Match match) {
+        matchRecord.addMatch(match);
     }
 
     @Override

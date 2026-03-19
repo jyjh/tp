@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.match.Match;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,39 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns the user prefs' match record file path.
+     */
+    Path getMatchRecordFilePath();
+
+    /**
+     * Sets the user prefs' match record file path.
+     */
+    void setMatchRecordFilePath(Path matchRecordFilePath);
+
+    /**
+     * Replaces match record data with the data in {@code matchRecord}.
+     */
+    void setMatchRecord(ReadOnlyMatchRecord matchRecord);
+
+    /** Returns the MatchRecord */
+    ReadOnlyMatchRecord getMatchRecord();
+
+    /**
+     * Returns true if a match equal to {@code match} exists in the address book.
+     */
+    boolean hasMatch(Match match);
+
+    /**
+     * Deletes the given match.
+     * The match must exist in the match records.
+     */
+    void deleteMatch(Match target);
+
+    /**
+     * Adds the given match.
+     */
+    void addMatch(Match match);
+
 }

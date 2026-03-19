@@ -1,0 +1,25 @@
+{
+  "_comment": "MatchRecord save file which contains valid matches",
+  "matches" : [ {
+    "date" : "2024-12-01T10:00:00",
+    "result" : "WIN"
+  }, {
+    "date" : "2024-12-02T10:00:00",
+    "result" : "WIN"
+  }, {
+    "date" : "2024-12-03T10:00:00",
+    "result" : "LOSE"
+  }, {
+    "date" : "2024-12-04T10:00:00",
+    "result" : "LOSE"
+  }, {
+    "date" : "2024-12-05T10:00:00",
+    "result" : "LOSE"
+  }, {
+    "date" : "2024-12-06T10:00:00",
+    "result" : "WIN"
+  }, {
+    "date" : "2024-12-07T10:00:00",
+    "result" : "DRAW"
+  } ]
+}

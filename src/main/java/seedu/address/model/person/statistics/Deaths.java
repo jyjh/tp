@@ -24,11 +24,24 @@ public class Deaths {
         value = Integer.parseInt(deaths);
     }
 
+    private Deaths(int deaths) {
+        value = deaths;
+    }
+
     /**
      * Returns true if a given string is a valid deaths count.
      */
     public static boolean isValidDeaths(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a new Deaths containing the sum of this Deaths and the other Deaths.
+     * @param other the other Deaths
+     * @return a new Deaths containing the sum
+     */
+    public Deaths add(Deaths other) {
+        return new Deaths(this.value + other.value);
     }
 
     @Override

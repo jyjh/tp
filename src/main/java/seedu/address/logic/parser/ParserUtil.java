@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.match.Result;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InGameName;
@@ -201,4 +202,20 @@ public class ParserUtil {
         }
         return new Deaths(trimmedDeaths);
     }
+
+    /**
+     * Parses a {@code String result} into a {@code Result}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code result} is invalid.
+     */
+    public static Result parseResult(String result) throws ParseException {
+        requireNonNull(result);
+        String trimmedResult = result.trim().toUpperCase();
+        if (!Result.isValidResult(trimmedResult)) {
+            throw new ParseException(Result.MESSAGE_CONSTRAINTS);
+        }
+        return new Result(trimmedResult);
+    }
+
 }

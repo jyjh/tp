@@ -24,11 +24,24 @@ public class Kills {
         value = Integer.parseInt(kills);
     }
 
+    private Kills(int kills) {
+        value = kills;
+    }
+
     /**
      * Returns true if a given string is a valid kills count.
      */
     public static boolean isValidKills(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a new Kills containing the sum of this Kills and the other Kills.
+     * @param other the other kills
+     * @return a new Kills containing the sum
+     */
+    public Kills add(Kills other) {
+        return new Kills(this.value + other.value);
     }
 
     @Override

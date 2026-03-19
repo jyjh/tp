@@ -16,5 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_KILLS = new Prefix("k/");
     public static final Prefix PREFIX_DEATHS = new Prefix("d/");
+    public static final Prefix PREFIX_RESULT = new Prefix("w/");
 
 }

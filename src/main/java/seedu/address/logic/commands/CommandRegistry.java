@@ -13,6 +13,7 @@ import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.FilterCommandParser;
 import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ResultCommandParser;
 import seedu.address.logic.parser.StatsCommandParser;
 
 /**
@@ -49,7 +50,10 @@ public class CommandRegistry {
         new Pair<Class<? extends Command>, Optional<Class<? extends Parser<?>>>>(
             ListCommand.class, Optional.empty()),
         new Pair<Class<? extends Command>, Optional<Class<? extends Parser<?>>>>(
-            StatsCommand.class, Optional.of(StatsCommandParser.class))
+            StatsCommand.class, Optional.of(StatsCommandParser.class)),
+        new Pair<Class<? extends Command>, Optional<Class<? extends Parser<?>>>>(
+            ResultCommand.class, Optional.of(ResultCommandParser.class)
+        )
     );
 
     private static final Logger logger = LogsCenter.getLogger(CommandRegistry.class);
