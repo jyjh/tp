@@ -7,6 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "ign" : "AliceP99",
     "role" : "TOP",
+    "rank" : "GOLD",
     "tags" : [ "friends" ],
     "statistics" : { "kills" : "0", "deaths" : "0" }
   }, {
@@ -16,6 +17,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "ign" : "BensonM88",
     "role" : "JUNGLE",
+    "rank" : "GOLD",
     "tags" : [ "owesMoney", "friends" ],
     "statistics" : { "kills" : "0", "deaths" : "0" }
   }, {
@@ -25,6 +27,7 @@
     "address" : "wall street",
     "ign" : "CarlK77",
     "role" : "MID",
+    "rank" : "GOLD",
     "tags" : [ ],
     "statistics" : { "kills" : "0", "deaths" : "0" }
   }, {
@@ -34,6 +37,7 @@
     "address" : "10th street",
     "ign" : "DanielM66",
     "role" : "BOT",
+    "rank" : "GOLD",
     "tags" : [ "friends" ],
     "statistics" : { "kills" : "0", "deaths" : "0" }
   }, {
@@ -43,6 +47,7 @@
     "address" : "michegan ave",
     "ign" : "ElleM55",
     "role" : "SUPPORT",
+    "rank" : "GOLD",
     "tags" : [ ],
     "statistics" : { "kills" : "0", "deaths" : "0" }
   }, {
@@ -52,6 +57,7 @@
     "address" : "little tokyo",
     "ign" : "FionaK44",
     "role" : "TOP",
+    "rank" : "GOLD",
     "tags" : [ ],
     "statistics" : { "kills" : "0", "deaths" : "0" }
   }, {
@@ -61,6 +67,7 @@
     "address" : "4th street",
     "ign" : "GeorgeB33",
     "role" : "JUNGLE",
+    "rank" : "GOLD",
     "tags" : [ ],
     "statistics" : { "kills" : "0", "deaths" : "0" }
   } ]
