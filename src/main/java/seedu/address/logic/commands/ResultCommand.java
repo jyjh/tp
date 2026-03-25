@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSISTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEATHS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KILLS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESULT;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -17,8 +21,14 @@ public class ResultCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a match to the Match Record. "
             + "Parameters: "
-            + PREFIX_RESULT + "RESULT (must be one of: WIN, LOSE, DRAW)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_RESULT + "WIN";
+            + PREFIX_RESULT + "RESULT (must be one of: WIN, LOSE, DRAW) "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_KILLS + "KILLS "
+            + PREFIX_DEATHS + "DEATHS "
+            + PREFIX_ASSISTS + "ASSISTS\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_RESULT + "WIN "
+            + PREFIX_NAME + "Harry " + PREFIX_KILLS + "20 " + PREFIX_DEATHS + "10 " + PREFIX_ASSISTS + "30 "
+            + PREFIX_NAME + "Harried " + PREFIX_KILLS + "0 " + PREFIX_DEATHS + "500 " + PREFIX_ASSISTS + "0 ";
 
     public static final String MESSAGE_SUCCESS = "New match added: %1$s";
 
