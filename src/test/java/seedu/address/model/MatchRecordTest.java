@@ -10,7 +10,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.match.Match;
-import seedu.address.model.match.Result;
+import seedu.address.testutil.TypicalMatches;
 
 public class MatchRecordTest {
 
@@ -29,9 +29,9 @@ public class MatchRecordTest {
     @Test
     public void resetData_withValidReadOnlyMatchRecord_replacesData() {
         MatchRecord newData = new MatchRecord();
-        newData.addMatch(new Match(new Result(Result.WinType.WIN)));
-        newData.addMatch(new Match(new Result(Result.WinType.LOSE)));
-        matchRecord.addMatch(new Match(new Result(Result.WinType.DRAW)));
+        newData.addMatch(TypicalMatches.WINNING_MATCH_4);
+        newData.addMatch(TypicalMatches.LOSING_MATCH_3);
+        matchRecord.addMatch(TypicalMatches.DRAWING_MATCH_2);
         matchRecord.resetData(newData);
         assertEquals(newData, matchRecord);
     }
@@ -43,14 +43,14 @@ public class MatchRecordTest {
 
     @Test
     public void hasMatch_matchNotInMatchRecord_returnsFalse() {
-        Match match = new Match(new Result(Result.WinType.WIN));
+        Match match = TypicalMatches.WINNING_MATCH_4;
         assertFalse(matchRecord.hasMatch(match));
     }
 
     @Test
     public void hasMatch_matchInMatchRecord_returnsTrue() {
-        Match match = new Match(new Result(Result.WinType.WIN));
-        Match same = new Match(match.getDate(), new Result(Result.WinType.WIN));
+        Match match = TypicalMatches.WINNING_MATCH_4;
+        Match same = new Match(match.getDate(), match.getResult(), match.getPlayers());
         matchRecord.addMatch(match);
         assertTrue(matchRecord.hasMatch(match));
         assertTrue(matchRecord.hasMatch(same));
@@ -63,8 +63,9 @@ public class MatchRecordTest {
 
     @Test
     public void toStringMethod() {
-        Match match = new Match(new Result(Result.WinType.WIN));
-        matchRecord.addMatch(match);
+        matchRecord.addMatch(TypicalMatches.WINNING_MATCH_4);
+        matchRecord.addMatch(TypicalMatches.LOSING_MATCH_3);
+        matchRecord.addMatch(TypicalMatches.DRAWING_MATCH_2);
         String expectedString = MatchRecord.class.getCanonicalName()
                 + "{matches=" + matchRecord.getMatchList() + "}";
         assertEquals(expectedString, matchRecord.toString());

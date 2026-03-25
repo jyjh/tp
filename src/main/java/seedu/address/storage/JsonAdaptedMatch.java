@@ -29,7 +29,7 @@ public class JsonAdaptedMatch {
     public JsonAdaptedMatch(
             @JsonProperty("date") String date,
             @JsonProperty("result") String result,
-            @JsonProperty("list") List<JsonAdaptedPlayerInMatch> players
+            @JsonProperty("players") List<JsonAdaptedPlayerInMatch> players
     ) {
         this.result = result;
         this.date = date;
@@ -70,7 +70,7 @@ public class JsonAdaptedMatch {
         final Result modelResult = new Result(result);
 
         if (players == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Player"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Players"));
         }
         final List<PlayerInMatch> modelPlayers = new ArrayList<>();
         for (JsonAdaptedPlayerInMatch player : players) {

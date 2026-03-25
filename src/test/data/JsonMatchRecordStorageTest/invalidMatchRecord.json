@@ -1,10 +1,57 @@
 {
-  "_comment": "MatchRecord save file which contains only invalid matches",
   "matches" : [ {
-    "date" : "2024-13-01T10:00:00",
-    "result" : "WIN"
+    "date" : "2025-02-29T13:00",
+    "result" : "WIN",
+    "players" : [ {
+      "name" : "Alex Yeoh",
+      "statistics" : {
+        "kills" : "9",
+        "deaths" : "1",
+        "assists" : "19"
+      }
+    }, {
+      "name" : "Bernice Yu",
+      "statistics" : {
+        "kills" : "1",
+        "deaths" : "1",
+        "assists" : "9"
+      }
+    } ]
   }, {
-    "date" : "2024-12-04T10:00:00",
-    "result" : "INVALID"
+    "date" : "2025-02-02T14:00",
+    "result" : "NOT A RESULT",
+    "players" : [ {
+      "name" : "Charlotte Oliveiro",
+      "statistics" : {
+        "kills" : "2",
+        "deaths" : "6",
+        "assists" : "1"
+      }
+    }, {
+      "name" : "David Li",
+      "statistics" : {
+        "kills" : "9",
+        "deaths" : "8",
+        "assists" : "3"
+      }
+    }, {
+      "name" : "Irfan Ibrahim",
+      "statistics" : {
+        "kills" : "5",
+        "deaths" : "8",
+        "assists" : "15"
+      }
+    } ]
+  }, {
+    "date" : "2025-03-03T15:00",
+    "result" : "DRAW",
+    "players" : [ {
+      "name" : "Roy Balakrishnan",
+      "statistics" : {
+        "kills" : "-5",
+        "deaths" : "-5",
+        "assists" : "-7"
+      }
+    } ]
   } ]
 }
