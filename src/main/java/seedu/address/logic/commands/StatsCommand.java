@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSISTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEATHS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KILLS;
 
@@ -13,6 +14,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.statistics.Assists;
 import seedu.address.model.person.statistics.Deaths;
 import seedu.address.model.person.statistics.Kills;
 import seedu.address.model.person.statistics.Statistics;
@@ -28,8 +30,10 @@ public class StatsCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_KILLS + "KILLS] "
-            + "[" + PREFIX_DEATHS + "DEATHS]\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_KILLS + "50 " + PREFIX_DEATHS + "10";
+            + "[" + PREFIX_DEATHS + "DEATHS] "
+            + "[" + PREFIX_ASSISTS + "ASSISTS]\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_KILLS + "50 " + PREFIX_DEATHS + "10 "
+            + PREFIX_ASSISTS + "20";
 
     public static final String MESSAGE_STATS_SUCCESS = "Updated Statistics for Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one statistics field to update must be provided.";
@@ -38,7 +42,8 @@ public class StatsCommand extends Command {
     private final EditStatsDescriptor editStatsDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to update stats
+     * @param index               of the person in the filtered person list to
+     *                            update stats
      * @param editStatsDescriptor details to update the statistics with
      */
     public StatsCommand(Index index, EditStatsDescriptor editStatsDescriptor) {
@@ -78,6 +83,7 @@ public class StatsCommand extends Command {
         Statistics updatedStats = new Statistics.Builder()
                 .withKills(descriptor.getKills().orElse(currentStats.getKills()))
                 .withDeaths(descriptor.getDeaths().orElse(currentStats.getDeaths()))
+                .withAssists(descriptor.getAssists().orElse(currentStats.getAssists()))
                 .build();
 
         return new Person(
@@ -88,8 +94,7 @@ public class StatsCommand extends Command {
                 personToEdit.getIgn(),
                 personToEdit.getRank(),
                 personToEdit.getTags(),
-                updatedStats
-        );
+                updatedStats);
     }
 
     @Override
@@ -110,13 +115,16 @@ public class StatsCommand extends Command {
 
     /**
      * Stores the details to update the person's statistics with.
-     * Each non-empty field value will replace the corresponding field value of the person.
+     * Each non-empty field value will replace the corresponding field value of the
+     * person.
      */
     public static class EditStatsDescriptor {
         private Kills kills;
         private Deaths deaths;
+        private Assists assists;
 
-        public EditStatsDescriptor() {}
+        public EditStatsDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -124,13 +132,14 @@ public class StatsCommand extends Command {
         public EditStatsDescriptor(EditStatsDescriptor toCopy) {
             setKills(toCopy.kills);
             setDeaths(toCopy.deaths);
+            setAssists(toCopy.assists);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(kills, deaths);
+            return CollectionUtil.isAnyNonNull(kills, deaths, assists);
         }
 
         public void setKills(Kills kills) {
@@ -149,6 +158,14 @@ public class StatsCommand extends Command {
             return Optional.ofNullable(deaths);
         }
 
+        public void setAssists(Assists assists) {
+            this.assists = assists;
+        }
+
+        public Optional<Assists> getAssists() {
+            return Optional.ofNullable(assists);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -161,7 +178,8 @@ public class StatsCommand extends Command {
 
             EditStatsDescriptor otherDescriptor = (EditStatsDescriptor) other;
             return java.util.Objects.equals(kills, otherDescriptor.kills)
-                    && java.util.Objects.equals(deaths, otherDescriptor.deaths);
+                    && java.util.Objects.equals(deaths, otherDescriptor.deaths)
+                    && java.util.Objects.equals(assists, otherDescriptor.assists);
         }
     }
 }

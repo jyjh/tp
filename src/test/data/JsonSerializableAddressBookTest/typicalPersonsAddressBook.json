@@ -9,7 +9,7 @@
     "role" : "TOP",
     "rank" : "GOLD",
     "tags" : [ "friends" ],
-    "statistics" : { "kills" : "0", "deaths" : "0" }
+    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -19,7 +19,7 @@
     "role" : "JUNGLE",
     "rank" : "GOLD",
     "tags" : [ "owesMoney", "friends" ],
-    "statistics" : { "kills" : "0", "deaths" : "0" }
+    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -29,7 +29,7 @@
     "role" : "MID",
     "rank" : "GOLD",
     "tags" : [ ],
-    "statistics" : { "kills" : "0", "deaths" : "0" }
+    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -39,7 +39,7 @@
     "role" : "BOT",
     "rank" : "GOLD",
     "tags" : [ "friends" ],
-    "statistics" : { "kills" : "0", "deaths" : "0" }
+    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -49,7 +49,7 @@
     "role" : "SUPPORT",
     "rank" : "GOLD",
     "tags" : [ ],
-    "statistics" : { "kills" : "0", "deaths" : "0" }
+    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -59,7 +59,7 @@
     "role" : "TOP",
     "rank" : "GOLD",
     "tags" : [ ],
-    "statistics" : { "kills" : "0", "deaths" : "0" }
+    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -69,6 +69,6 @@
     "role" : "JUNGLE",
     "rank" : "GOLD",
     "tags" : [ ],
-    "statistics" : { "kills" : "0", "deaths" : "0" }
+    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
   } ]
 }

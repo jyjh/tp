@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.StatsCommand.EditStatsDescriptor;
+import seedu.address.model.person.statistics.Assists;
 import seedu.address.model.person.statistics.Deaths;
 import seedu.address.model.person.statistics.Kills;
 import seedu.address.model.person.statistics.Statistics;
@@ -27,6 +28,7 @@ public class EditStatsDescriptorBuilder {
         descriptor = new EditStatsDescriptor();
         descriptor.setKills(statistics.getKills());
         descriptor.setDeaths(statistics.getDeaths());
+        descriptor.setAssists(statistics.getAssists());
     }
 
     /**
@@ -42,6 +44,14 @@ public class EditStatsDescriptorBuilder {
      */
     public EditStatsDescriptorBuilder withDeaths(String deaths) {
         descriptor.setDeaths(new Deaths(deaths));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Assists} of the {@code EditStatsDescriptor} that we are building.
+     */
+    public EditStatsDescriptorBuilder withAssists(String assists) {
+        descriptor.setAssists(new Assists(assists));
         return this;
     }
 

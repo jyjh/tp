@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rank;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.statistics.Assists;
 import seedu.address.model.person.statistics.Deaths;
 import seedu.address.model.person.statistics.Kills;
 import seedu.address.model.tag.Tag;
@@ -201,6 +202,21 @@ public class ParserUtil {
             throw new ParseException(Deaths.MESSAGE_CONSTRAINTS);
         }
         return new Deaths(trimmedDeaths);
+    }
+
+    /**
+     * Parses a {@code String assists} into an {@code Assists}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code assists} is invalid.
+     */
+    public static Assists parseAssists(String assists) throws ParseException {
+        requireNonNull(assists);
+        String trimmedAssists = assists.trim();
+        if (!Assists.isValidAssists(trimmedAssists)) {
+            throw new ParseException(Assists.MESSAGE_CONSTRAINTS);
+        }
+        return new Assists(trimmedAssists);
     }
 
     /**

@@ -138,7 +138,7 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidKills_throwsIllegalValueException() {
-        JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics(INVALID_KILLS, "0");
+        JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics(INVALID_KILLS, "0", "0");
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
             VALID_IGN, VALID_ROLE, VALID_RANK, VALID_TAGS, invalidStats);
         String expectedMessage = Kills.MESSAGE_CONSTRAINTS;
@@ -147,7 +147,7 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidDeaths_throwsIllegalValueException() {
-        JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics("0", INVALID_DEATHS);
+        JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics("0", INVALID_DEATHS, "0");
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
             VALID_IGN, VALID_ROLE, VALID_RANK, VALID_TAGS, invalidStats);
         String expectedMessage = seedu.address.model.person.statistics.Deaths.MESSAGE_CONSTRAINTS;

@@ -8,7 +8,7 @@
     "role": "TOP",
     "rank": "GOLD",
     "tags": [ "friends" ],
-    "statistics": { "kills": "0", "deaths": "0" }
+    "statistics": { "kills": "0", "deaths": "0", "assists": "0" }
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -17,6 +17,6 @@
     "ign": "AliceBB88",
     "role": "TOP",
     "rank": "GOLD",
-    "statistics": { "kills": "0", "deaths": "0" }
+    "statistics": { "kills": "0", "deaths": "0", "assists": "0" }
   } ]
 }
