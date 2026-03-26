@@ -20,22 +20,28 @@ public class TypicalMatches {
             TypicalPersons.GEORGE, TypicalPersons.HOON, TypicalPersons.IDA
     );
 
-    public static final List<PlayerInMatch> FOUR_PLAYERS = PERSONS.subList(0, 4).stream()
+    public static final List<Person> FOUR_PERSONS = PERSONS.subList(0, 4);
+    public static final List<Person> THREE_PERSONS = PERSONS.subList(4, 7);
+    public static final List<Person> TWO_PERSONS = PERSONS.subList(7, 9);
+    public static final List<Person> ONE_PERSON = PERSONS.subList(0, 1);
+
+
+    public static final List<PlayerInMatch> FOUR_PLAYERS = FOUR_PERSONS.stream()
             .map(person ->
                     new PlayerInMatch(person.getName(),
                             Statistics.createRandom(10, 10, 20)))
             .toList();
-    public static final List<PlayerInMatch> THREE_PLAYERS = PERSONS.subList(4, 7).stream()
+    public static final List<PlayerInMatch> THREE_PLAYERS = THREE_PERSONS.stream()
             .map(person ->
                     new PlayerInMatch(person.getName(),
                             Statistics.createRandom(10, 10, 20)))
             .toList();
-    public static final List<PlayerInMatch> TWO_PLAYERS = PERSONS.subList(7, 9).stream()
+    public static final List<PlayerInMatch> TWO_PLAYERS = TWO_PERSONS.stream()
             .map(person ->
                     new PlayerInMatch(person.getName(),
                             Statistics.createRandom(10, 10, 20)))
             .toList();
-    public static final List<PlayerInMatch> ONE_PLAYER = PERSONS.subList(0, 1).stream()
+    public static final List<PlayerInMatch> ONE_PLAYER = ONE_PERSON.stream()
             .map(person ->
                     new PlayerInMatch(person.getName(),
                             Statistics.createRandom(10, 10, 20)))

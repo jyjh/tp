@@ -41,6 +41,19 @@ public class Statistics {
     }
 
     /**
+     * Returns a new Statistics containing the sum of this Statistics and the other Statistics.
+     * @param other the other Statistics
+     * @return a new Statistics containing the sum
+     */
+    public Statistics add(Statistics other) {
+        Kills kills = this.kills.add(other.kills);
+        Deaths deaths = this.deaths.add(other.deaths);
+        Assists assists = this.assists.add(other.assists);
+
+        return new Statistics(kills, deaths, assists);
+    }
+
+    /**
      * Returns the KDA of the player as a double.
      * Calculated as (Kills + Assists) / Deaths.
      * If Deaths is 0, returns Kills + Assists.

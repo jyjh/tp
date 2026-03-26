@@ -182,6 +182,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addMatch(Match match) {
+        addressBook.addStatistics(match.getPlayers());
         matchRecord.addMatch(match);
     }
 

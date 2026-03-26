@@ -14,9 +14,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.match.Match;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalMatches;
 
 public class UniquePersonListTest {
 
@@ -106,6 +108,48 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    }
+
+    @Test
+    public void addStatistics_allPlayersExist_success() {
+        TypicalMatches.PERSONS.forEach(uniquePersonList::add);
+        Match match = TypicalMatches.DRAWING_MATCH_2;
+        uniquePersonList.addStatistics(match.getPlayers());
+
+        UniquePersonList expected = new UniquePersonList();
+        TypicalMatches.PERSONS.forEach(expected::add);
+        List<Person> persons = TypicalMatches.TWO_PERSONS;
+        List<Person> editedPersons = List.of(
+                persons.get(0).addStatistics(match.getPlayers().get(0).getStatistics()),
+                persons.get(1).addStatistics(match.getPlayers().get(1).getStatistics()));
+        expected.setPerson(persons.get(0), editedPersons.get(0));
+        expected.setPerson(persons.get(1), editedPersons.get(1));
+
+        assertEquals(expected, uniquePersonList);
+
+    }
+
+    @Test
+    public void addStatistics_onePlayerDoesNotExist_listUnchanged() {
+        TypicalMatches.FOUR_PERSONS.forEach(uniquePersonList::add);
+        Match match = TypicalMatches.DRAWING_MATCH_2;
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.addStatistics(match.getPlayers()));
+
+        UniquePersonList expected = new UniquePersonList();
+        TypicalMatches.FOUR_PERSONS.forEach(expected::add);
+
+        assertEquals(expected, uniquePersonList);
+    }
+
+    @Test
+    public void addStatistics_nullPlayer_throwsNullPointerException() {
+        TypicalMatches.FOUR_PERSONS.forEach(uniquePersonList::add);
+        assertThrows(NullPointerException.class, () -> uniquePersonList.addStatistics(null));
+
+        UniquePersonList expected = new UniquePersonList();
+        TypicalMatches.FOUR_PERSONS.forEach(expected::add);
+
+        assertEquals(expected, uniquePersonList);
     }
 
     @Test

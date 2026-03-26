@@ -3,13 +3,17 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.match.PlayerInMatch;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.statistics.Statistics;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -66,6 +70,37 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.set(index, editedPerson);
+    }
+
+    /**
+     * Find the persons with the name of the players provided and add the statistics to those persons.
+     * If one person cannot be found in the list, no other person's statistics will be updated.
+     * @param players The list of players
+     */
+    public void addStatistics(List<PlayerInMatch> players) {
+        requireNonNull(players);
+        List<Person> targetPersons = new ArrayList<>();
+        List<Person> editedPersons = new ArrayList<>();
+        for (PlayerInMatch player : players) {
+            Name name = player.getName(); // Every person has a unique name
+            Optional<Person> found = internalList.stream().filter(p -> p.getName().equals(name)).findFirst();
+            if (found.isEmpty()) {
+                throw new PersonNotFoundException();
+            }
+
+            Person person = found.get();
+            Statistics statistics = player.getStatistics();
+            Person editedPerson = person.addStatistics(statistics);
+            targetPersons.add(person);
+            editedPersons.add(editedPerson);
+        }
+
+        assert targetPersons.size() == editedPersons.size();
+
+        for (int i = 0; i < targetPersons.size(); i++) {
+            setPerson(targetPersons.get(i), editedPersons.get(i));
+        }
+
     }
 
     /**

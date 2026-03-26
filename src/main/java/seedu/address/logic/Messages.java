@@ -19,8 +19,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
-    public static final String MESSAGE_FIELD_QUANTITY_MISMATCH =
-            "The number of values provided for each field do not match!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -58,7 +56,9 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(match.getDate())
                 .append("; Result: ")
-                .append(match.getResult());
+                .append(match.getResult())
+                .append(";\nPlayers: ")
+                .append(match.getPlayers());
         return builder.toString();
     }
 

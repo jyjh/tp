@@ -25,6 +25,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_KILLS_SET_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESULT_WIN;
+import static seedu.address.logic.commands.ResultCommand.MESSAGE_FIELD_QUANTITY_MISMATCH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESULT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -104,19 +105,19 @@ public class ResultCommandParserTest {
         // Two players but only one statistic
         String twoPlayersOneStatistic = PREAMBLE_WHITESPACE + RESULT_DESC_WIN + NAME_DESC_AMY + NAME_DESC_BOB
                 + KILLS_DESC_SET_1 + DEATHS_DESC_SET_1 + ASSISTS_DESC_SET_1 + DATE_DESC;
-        assertParseFailure(parser, twoPlayersOneStatistic, Messages.MESSAGE_FIELD_QUANTITY_MISMATCH);
+        assertParseFailure(parser, twoPlayersOneStatistic, MESSAGE_FIELD_QUANTITY_MISMATCH);
 
         // One player but two statistic
         String onePlayerTwoStatistics = PREAMBLE_WHITESPACE + RESULT_DESC_WIN + NAME_DESC_BOB
                 + KILLS_DESC_SET_1 + KILLS_DESC_SET_2 + DEATHS_DESC_SET_1 + DEATHS_DESC_SET_2
                 + ASSISTS_DESC_SET_1 + ASSISTS_DESC_SET_2 + DATE_DESC;
-        assertParseFailure(parser, onePlayerTwoStatistics, Messages.MESSAGE_FIELD_QUANTITY_MISMATCH);
+        assertParseFailure(parser, onePlayerTwoStatistics, MESSAGE_FIELD_QUANTITY_MISMATCH);
 
         // Two players but only one statistic and one partial statistic
         String twoPlayerPartialStatistics = PREAMBLE_WHITESPACE + RESULT_DESC_WIN + NAME_DESC_AMY + NAME_DESC_BOB
                 + KILLS_DESC_SET_1 + KILLS_DESC_SET_2 + DEATHS_DESC_SET_1 + DEATHS_DESC_SET_2
                 + ASSISTS_DESC_SET_1 + DATE_DESC;
-        assertParseFailure(parser, twoPlayerPartialStatistics, Messages.MESSAGE_FIELD_QUANTITY_MISMATCH);
+        assertParseFailure(parser, twoPlayerPartialStatistics, MESSAGE_FIELD_QUANTITY_MISMATCH);
     }
 
     @Test
