@@ -6,9 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.DraftCommand.MESSAGE_INVALID_IGN_NOT_FOUND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.List;
@@ -27,7 +33,14 @@ public class DraftCommandTest {
 
     @Test
     public void constructor_nullIndices_throwsNullPointerException() {
-        seedu.address.testutil.Assert.assertThrows(NullPointerException.class, () -> new DraftCommand(null));
+        seedu.address.testutil.Assert.assertThrows(NullPointerException.class, () ->
+                new DraftCommand(null, List.of()));
+    }
+
+    @Test
+    public void constructor_nullIgns_throwsNullPointerException() {
+        seedu.address.testutil.Assert.assertThrows(NullPointerException.class, () ->
+                new DraftCommand(List.of(), null));
     }
 
     @Test
@@ -37,7 +50,7 @@ public class DraftCommandTest {
                 INDEX_SECOND_PERSON,
                 INDEX_THIRD_PERSON,
                 Index.fromOneBased(4),
-                Index.fromOneBased(5)));
+                Index.fromOneBased(5)), List.of());
 
         String expectedValidation = "\u2713 Draft Valid!\n"
                 + "Composition: TOP (1) | BOT (1) | MID (1) | SUPPORT (1) | JUNGLE (1)";
@@ -54,7 +67,7 @@ public class DraftCommandTest {
                 Index.fromOneBased(6),
                 INDEX_THIRD_PERSON,
                 Index.fromOneBased(4),
-                Index.fromOneBased(5)));
+                Index.fromOneBased(5)), List.of());
 
         String expectedValidation = "\u2717 Invalid Draft Composition\n"
                 + "Composition: TOP (2) | BOT (1) | MID (1) | SUPPORT (1) | JUNGLE (0)\n"
@@ -68,21 +81,59 @@ public class DraftCommandTest {
     @Test
     public void execute_invalidPersonIndex_failure() {
         Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DraftCommand draftCommand = new DraftCommand(List.of(INDEX_FIRST_PERSON, outOfBoundsIndex));
+        DraftCommand draftCommand = new DraftCommand(List.of(INDEX_FIRST_PERSON, outOfBoundsIndex), List.of());
 
         assertCommandFailure(draftCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
+    public void execute_invalidIgn_failure() {
+        String invalidIgn = "InvalidName";
+        DraftCommand draftCommand = new DraftCommand(List.of(), List.of(invalidIgn));
+
+        assertCommandFailure(draftCommand, model, String.format(MESSAGE_INVALID_IGN_NOT_FOUND, invalidIgn));
+    }
+
+    @Test
+    public void execute_validDraftWithIgn_success() {
+        DraftCommand draftCommand = new DraftCommand(List.of(),
+                List.of(ALICE.getIgn().value, BENSON.getIgn().value, CARL.getIgn().value,
+                        DANIEL.getIgn().value, ELLE.getIgn().value));
+
+        String expectedValidation = "\u2713 Draft Valid!\n"
+                + "Composition: TOP (1) | BOT (1) | MID (1) | SUPPORT (1) | JUNGLE (1)";
+        String expectedMessage = String.format(DraftCommand.MESSAGE_SUCCESS, expectedValidation);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        assertCommandSuccess(draftCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_hybridArguments_success() {
+        // Mix of indices and IGNs
+        DraftCommand draftCommand = new DraftCommand(List.of(INDEX_FIRST_PERSON, INDEX_THIRD_PERSON),
+                List.of(BENSON.getIgn().value, DANIEL.getIgn().value, ELLE.getIgn().value));
+
+        String expectedValidation = "\u2713 Draft Valid!\n"
+                + "Composition: TOP (1) | BOT (1) | MID (1) | SUPPORT (1) | JUNGLE (1)";
+        String expectedMessage = String.format(DraftCommand.MESSAGE_SUCCESS, expectedValidation);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        assertCommandSuccess(draftCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void equals() {
-        DraftCommand draftFirstCommand = new DraftCommand(List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON));
-        DraftCommand draftSecondCommand = new DraftCommand(List.of(INDEX_SECOND_PERSON, INDEX_THIRD_PERSON));
+        DraftCommand draftFirstCommand = new DraftCommand(List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON), List.of());
+        DraftCommand draftSecondCommand = new DraftCommand(List.of(INDEX_SECOND_PERSON, INDEX_THIRD_PERSON), List.of());
 
         // same object -> returns true
         assertTrue(draftFirstCommand.equals(draftFirstCommand));
 
         // same values -> returns true
-        DraftCommand draftFirstCommandCopy = new DraftCommand(List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON));
+        DraftCommand draftFirstCommandCopy = new DraftCommand(
+                List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON),
+                List.of());
         assertTrue(draftFirstCommand.equals(draftFirstCommandCopy));
 
         // different types -> returns false
@@ -91,15 +142,40 @@ public class DraftCommandTest {
         // null -> returns false
         assertFalse(draftFirstCommand.equals(null));
 
-        // different indices -> returns false
+        // different arguments -> returns false
         assertFalse(draftFirstCommand.equals(draftSecondCommand));
+
+        // hybrid commands with same values -> returns true
+        DraftCommand draftHybrid1 = new DraftCommand(List.of(INDEX_FIRST_PERSON), List.of(BENSON.getIgn().value));
+        DraftCommand draftHybrid2 = new DraftCommand(List.of(INDEX_FIRST_PERSON), List.of(BENSON.getIgn().value));
+        assertTrue(draftHybrid1.equals(draftHybrid2));
+
+        // indices-only vs IGNs-only -> returns false
+        DraftCommand draftWithIndicesOnly = new DraftCommand(
+                List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON),
+                List.of());
+        DraftCommand draftWithIgnsOnly = new DraftCommand(
+                List.of(),
+                List.of(ALICE.getIgn().value, BENSON.getIgn().value));
+        assertFalse(draftWithIndicesOnly.equals(draftWithIgnsOnly));
+
+        // indices-only vs hybrid -> returns false
+        assertFalse(draftWithIndicesOnly.equals(draftHybrid1));
     }
 
     @Test
     public void toStringMethod() {
+        // test with indices only
         List<Index> indices = List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
-        DraftCommand draftCommand = new DraftCommand(indices);
-        String expected = DraftCommand.class.getCanonicalName() + "{indices=" + indices + "}";
+        DraftCommand draftCommand = new DraftCommand(indices, List.of());
+        String expected = DraftCommand.class.getCanonicalName() + "{indices=" + indices + ", igns=[]}";
+        assertEquals(expected, draftCommand.toString());
+
+        // test with hybrid (indices and IGNs)
+        indices = List.of(INDEX_FIRST_PERSON);
+        List<String> igns = List.of(BENSON.getIgn().value, CARL.getIgn().value);
+        draftCommand = new DraftCommand(indices, igns);
+        expected = DraftCommand.class.getCanonicalName() + "{indices=" + indices + ", igns=" + igns + "}";
         assertEquals(expected, draftCommand.toString());
     }
 }
