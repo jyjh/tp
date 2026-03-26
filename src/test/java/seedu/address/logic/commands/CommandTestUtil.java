@@ -49,8 +49,8 @@ public class CommandTestUtil {
     public static final String VALID_ROLE_BOB = "SUPPORT";
     public static final String VALID_IGN_AMY = "AmyBee88";
     public static final String VALID_IGN_BOB = "BobChoo99";
-    public static final String VALID_RANK_AMY = "GOLD";
-    public static final String VALID_RANK_BOB = "SILVER";
+    public static final String VALID_RANK_AMY = "GOLD I";
+    public static final String VALID_RANK_BOB = "SILVER I";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_KILLS_SET_1 = "20";
