@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.STATS_DESC_SET_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSISTS_SET_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSISTS_SET_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEATHS_SET_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEATHS_SET_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_KILLS_SET_1;
@@ -36,6 +38,7 @@ public class StatsCommandTest {
         EditStatsDescriptor descriptor = new EditStatsDescriptorBuilder()
                 .withKills(VALID_KILLS_SET_1)
                 .withDeaths(VALID_DEATHS_SET_1)
+                .withAssists(VALID_ASSISTS_SET_1)
                 .build();
         StatsCommand statsCommand = new StatsCommand(INDEX_FIRST_PERSON, descriptor);
 
@@ -70,6 +73,7 @@ public class StatsCommandTest {
         EditStatsDescriptor descriptor = new EditStatsDescriptorBuilder()
                 .withKills(VALID_KILLS_SET_1)
                 .withDeaths(VALID_DEATHS_SET_1)
+                .withAssists(VALID_ASSISTS_SET_1)
                 .build();
         StatsCommand statsCommand = new StatsCommand(outOfBoundIndex, descriptor);
 
@@ -81,6 +85,7 @@ public class StatsCommandTest {
         final EditStatsDescriptor descriptor = new EditStatsDescriptorBuilder()
                 .withKills(VALID_KILLS_SET_1)
                 .withDeaths(VALID_DEATHS_SET_1)
+                .withAssists(VALID_ASSISTS_SET_1)
                 .build();
 
         // same values -> returns true
@@ -88,6 +93,7 @@ public class StatsCommandTest {
             new EditStatsDescriptorBuilder()
                 .withKills(VALID_KILLS_SET_1)
                 .withDeaths(VALID_DEATHS_SET_1)
+                .withAssists(VALID_ASSISTS_SET_1)
                 .build();
         org.junit.jupiter.api.Assertions.assertTrue(descriptor.equals(descriptorWithSameValues));
 
@@ -105,6 +111,7 @@ public class StatsCommandTest {
             new EditStatsDescriptorBuilder()
                 .withKills(VALID_KILLS_SET_2)
                 .withDeaths(VALID_DEATHS_SET_1)
+                .withAssists(VALID_ASSISTS_SET_1)
                 .build();
         org.junit.jupiter.api.Assertions.assertFalse(descriptor.equals(descriptorWithDifferentValues));
 
@@ -112,8 +119,17 @@ public class StatsCommandTest {
             new EditStatsDescriptorBuilder()
                 .withKills(VALID_KILLS_SET_1)
                 .withDeaths(VALID_DEATHS_SET_2)
+                .withAssists(VALID_ASSISTS_SET_1)
                 .build();
         org.junit.jupiter.api.Assertions.assertFalse(descriptor.equals(descriptorWithDifferentDeaths));
+
+        EditStatsDescriptor descriptorWithDifferentAssists =
+            new EditStatsDescriptorBuilder()
+                .withKills(VALID_KILLS_SET_1)
+                .withDeaths(VALID_DEATHS_SET_1)
+                .withAssists(VALID_ASSISTS_SET_2)
+                .build();
+        org.junit.jupiter.api.Assertions.assertFalse(descriptor.equals(descriptorWithDifferentAssists));
     }
 
     @Test
@@ -126,6 +142,10 @@ public class StatsCommandTest {
 
         descriptor = new EditStatsDescriptor();
         descriptor.setDeaths(new seedu.address.model.person.statistics.Deaths(VALID_DEATHS_SET_1));
+        org.junit.jupiter.api.Assertions.assertTrue(descriptor.isAnyFieldEdited());
+
+        descriptor = new EditStatsDescriptor();
+        descriptor.setAssists(new seedu.address.model.person.statistics.Assists(VALID_ASSISTS_SET_1));
         org.junit.jupiter.api.Assertions.assertTrue(descriptor.isAnyFieldEdited());
     }
 }

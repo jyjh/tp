@@ -44,7 +44,13 @@
             <Label fx:id="player1DeathsIndicator" />
          </HBox>
 
-         <Label text="K/D Ratio:" styleClass="field-label" />
+         <Label text="Assists:" styleClass="field-label" />
+         <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="player1Assists" styleClass="field-value" />
+            <Label fx:id="player1AssistsIndicator" />
+         </HBox>
+
+         <Label text="KDA Ratio:" styleClass="field-label" />
          <HBox spacing="5" alignment="CENTER_LEFT">
             <Label fx:id="player1KdRatio" styleClass="field-value" />
             <Label fx:id="player1KdIndicator" />
@@ -83,7 +89,13 @@
             <Label fx:id="player2DeathsIndicator" />
          </HBox>
 
-         <Label text="K/D Ratio:" styleClass="field-label" />
+         <Label text="Assists:" styleClass="field-label" />
+         <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label fx:id="player2Assists" styleClass="field-value" />
+            <Label fx:id="player2AssistsIndicator" />
+         </HBox>
+
+         <Label text="KDA Ratio:" styleClass="field-label" />
          <HBox spacing="5" alignment="CENTER_LEFT">
             <Label fx:id="player2KdRatio" styleClass="field-value" />
             <Label fx:id="player2KdIndicator" />

@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.statistics.Assists;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -139,6 +140,30 @@ public class ParserUtilTest {
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    }
+
+    @Test
+    public void parseAssists_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAssists(null));
+    }
+
+    @Test
+    public void parseAssists_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssists("-5"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssists("abc"));
+    }
+
+    @Test
+    public void parseAssists_validValueWithoutWhitespace_returnsAssists() throws Exception {
+        Assists expectedAssists = new Assists("5");
+        assertEquals(expectedAssists, ParserUtil.parseAssists("5"));
+    }
+
+    @Test
+    public void parseAssists_validValueWithWhitespace_returnsTrimmedAssists() throws Exception {
+        String assistsWithWhitespace = WHITESPACE + "5" + WHITESPACE;
+        Assists expectedAssists = new Assists("5");
+        assertEquals(expectedAssists, ParserUtil.parseAssists(assistsWithWhitespace));
     }
 
     @Test

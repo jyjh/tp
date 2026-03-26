@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSISTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEATHS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KILLS;
 
@@ -24,7 +25,7 @@ public class StatsCommandParser implements Parser<StatsCommand> {
      */
     public StatsCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_KILLS, PREFIX_DEATHS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_KILLS, PREFIX_DEATHS, PREFIX_ASSISTS);
 
         Index index;
         try {
@@ -33,7 +34,7 @@ public class StatsCommandParser implements Parser<StatsCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_KILLS, PREFIX_DEATHS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_KILLS, PREFIX_DEATHS, PREFIX_ASSISTS);
 
         EditStatsDescriptor editStatsDescriptor = new EditStatsDescriptor();
 
@@ -43,6 +44,10 @@ public class StatsCommandParser implements Parser<StatsCommand> {
 
         if (argMultimap.getValue(PREFIX_DEATHS).isPresent()) {
             editStatsDescriptor.setDeaths(ParserUtil.parseDeaths(argMultimap.getValue(PREFIX_DEATHS).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_ASSISTS).isPresent()) {
+            editStatsDescriptor.setAssists(ParserUtil.parseAssists(argMultimap.getValue(PREFIX_ASSISTS).get()));
         }
 
         if (!editStatsDescriptor.isAnyFieldEdited()) {

@@ -32,6 +32,10 @@ public class ComparePanel extends UiPart<HBox> {
     @FXML
     private Label player1DeathsIndicator;
     @FXML
+    private Label player1Assists;
+    @FXML
+    private Label player1AssistsIndicator;
+    @FXML
     private Label player1KdRatio;
     @FXML
     private Label player1KdIndicator;
@@ -50,6 +54,10 @@ public class ComparePanel extends UiPart<HBox> {
     private Label player2Deaths;
     @FXML
     private Label player2DeathsIndicator;
+    @FXML
+    private Label player2Assists;
+    @FXML
+    private Label player2AssistsIndicator;
     @FXML
     private Label player2KdRatio;
     @FXML
@@ -75,10 +83,9 @@ public class ComparePanel extends UiPart<HBox> {
         player1Rank.setText(player.getRank().toString());
         player1Kills.setText(player.getStatistics().getKills().toString());
         player1Deaths.setText(player.getStatistics().getDeaths().toString());
+        player1Assists.setText(player.getStatistics().getAssists().toString());
 
-        int kills = Integer.parseInt(player.getStatistics().getKills().toString());
-        int deaths = Integer.parseInt(player.getStatistics().getDeaths().toString());
-        double kdRatio = deaths == 0 ? kills : (double) kills / deaths;
+        double kdRatio = player.getStatistics().getKda();
         player1KdRatio.setText(String.format("%.2f", kdRatio));
     }
 
@@ -92,10 +99,9 @@ public class ComparePanel extends UiPart<HBox> {
         player2Rank.setText(player.getRank().toString());
         player2Kills.setText(player.getStatistics().getKills().toString());
         player2Deaths.setText(player.getStatistics().getDeaths().toString());
+        player2Assists.setText(player.getStatistics().getAssists().toString());
 
-        int kills = Integer.parseInt(player.getStatistics().getKills().toString());
-        int deaths = Integer.parseInt(player.getStatistics().getDeaths().toString());
-        double kdRatio = deaths == 0 ? kills : (double) kills / deaths;
+        double kdRatio = player.getStatistics().getKda();
         player2KdRatio.setText(String.format("%.2f", kdRatio));
     }
 
@@ -113,14 +119,14 @@ public class ComparePanel extends UiPart<HBox> {
         int deaths2 = Integer.parseInt(player2.getStatistics().getDeaths().toString());
         setIndicatorsReverse(player1DeathsIndicator, player2DeathsIndicator, deaths1, deaths2);
 
-        // Compare K/D Ratio
-        int killsP1 = Integer.parseInt(player1.getStatistics().getKills().toString());
-        int deathsP1 = Integer.parseInt(player1.getStatistics().getDeaths().toString());
-        int killsP2 = Integer.parseInt(player2.getStatistics().getKills().toString());
-        int deathsP2 = Integer.parseInt(player2.getStatistics().getDeaths().toString());
+        // Compare Assists
+        int assists1 = Integer.parseInt(player1.getStatistics().getAssists().toString());
+        int assists2 = Integer.parseInt(player2.getStatistics().getAssists().toString());
+        setIndicators(player1AssistsIndicator, player2AssistsIndicator, assists1, assists2);
 
-        double kd1 = deathsP1 == 0 ? killsP1 : (double) killsP1 / deathsP1;
-        double kd2 = deathsP2 == 0 ? killsP2 : (double) killsP2 / deathsP2;
+        // Compare KDA Ratio
+        double kd1 = player1.getStatistics().getKda();
+        double kd2 = player2.getStatistics().getKda();
         setIndicators(player1KdIndicator, player2KdIndicator, kd1, kd2);
     }
 

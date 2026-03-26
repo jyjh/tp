@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSISTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEATHS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IGN;
@@ -24,6 +25,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.statistics.Assists;
 import seedu.address.model.person.statistics.Deaths;
 import seedu.address.model.person.statistics.Kills;
 import seedu.address.model.person.statistics.Statistics;
@@ -55,6 +57,8 @@ public class CommandTestUtil {
     public static final String VALID_KILLS_SET_2 = "30";
     public static final String VALID_DEATHS_SET_1 = "10";
     public static final String VALID_DEATHS_SET_2 = "15";
+    public static final String VALID_ASSISTS_SET_1 = "5";
+    public static final String VALID_ASSISTS_SET_2 = "8";
     public static final Statistics VALID_STATS_SET_1;
     public static final Statistics VALID_STATS_SET_2;
 
@@ -78,6 +82,8 @@ public class CommandTestUtil {
     public static final String KILLS_DESC_SET_2 = " " + PREFIX_KILLS + VALID_KILLS_SET_2;
     public static final String DEATHS_DESC_SET_1 = " " + PREFIX_DEATHS + VALID_DEATHS_SET_1;
     public static final String DEATHS_DESC_SET_2 = " " + PREFIX_DEATHS + VALID_DEATHS_SET_2;
+    public static final String ASSISTS_DESC_SET_1 = " " + PREFIX_ASSISTS + VALID_ASSISTS_SET_1;
+    public static final String ASSISTS_DESC_SET_2 = " " + PREFIX_ASSISTS + VALID_ASSISTS_SET_2;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -89,6 +95,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_KILLS_DESC = " " + PREFIX_KILLS + "-1"; // Negative not allowed
     public static final String INVALID_DEATHS_DESC = " " + PREFIX_DEATHS + "-1"; // Negative not allowed
+    public static final String INVALID_ASSISTS_DESC = " " + PREFIX_ASSISTS + "-1"; // Negative not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -110,18 +117,22 @@ public class CommandTestUtil {
         VALID_STATS_SET_1 = new Statistics.Builder()
                 .withKills(new Kills(VALID_KILLS_SET_1))
                 .withDeaths(new Deaths(VALID_DEATHS_SET_1))
+                .withAssists(new Assists(VALID_ASSISTS_SET_1))
                 .build();
         VALID_STATS_SET_2 = new Statistics.Builder()
                 .withKills(new Kills(VALID_KILLS_SET_2))
                 .withDeaths(new Deaths(VALID_DEATHS_SET_2))
+                .withAssists(new Assists(VALID_ASSISTS_SET_2))
                 .build();
         STATS_DESC_SET_1 = new EditStatsDescriptorBuilder()
                 .withKills(VALID_KILLS_SET_1)
                 .withDeaths(VALID_DEATHS_SET_1)
+                .withAssists(VALID_ASSISTS_SET_1)
                 .build();
         STATS_DESC_SET_2 = new EditStatsDescriptorBuilder()
                 .withKills(VALID_KILLS_SET_2)
                 .withDeaths(VALID_DEATHS_SET_2)
+                .withAssists(VALID_ASSISTS_SET_2)
                 .build();
     }
 
