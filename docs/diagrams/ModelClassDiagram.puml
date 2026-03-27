@@ -19,6 +19,10 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Statistics
+Class Kills
+Class Deaths
+Class Assists
 
 Class I #FFFFFF
 }
@@ -42,6 +46,11 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "1" Statistics
+
+Statistics *--> "1" Kills
+Statistics *--> "1" Deaths
+Statistics *--> "1" Assists
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
