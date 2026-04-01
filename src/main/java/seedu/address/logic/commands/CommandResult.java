@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -29,24 +30,41 @@ public class CommandResult {
     /** Second person to compare. */
     private final Person person2;
 
+    /** Draft panel should be shown to the user. */
+    private final boolean showDraft;
+
+    /** Players to be displayed in the draft panel. */
+    private final List<Person> draftPlayers;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showCompare, Person person1, Person person2) {
+                         boolean showCompare, Person person1, Person person2,
+                         boolean showDraft, List<Person> draftPlayers) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showCompare = showCompare;
         this.person1 = person1;
         this.person2 = person2;
+        this.showDraft = showDraft;
+        this.draftPlayers = draftPlayers;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean showCompare, Person person1, Person person2) {
+        this(feedbackToUser, showHelp, exit, showCompare, person1, person2, false, null);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false, null, null);
+        this(feedbackToUser, showHelp, exit, false, null, null, false, null);
     }
 
     /**
@@ -54,7 +72,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, null, null);
+        this(feedbackToUser, false, false, false, null, null, false, null);
     }
 
     public String getFeedbackToUser() {
@@ -81,6 +99,14 @@ public class CommandResult {
         return person2;
     }
 
+    public boolean isShowDraft() {
+        return showDraft;
+    }
+
+    public List<Person> getDraftPlayers() {
+        return draftPlayers;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -98,12 +124,14 @@ public class CommandResult {
                 && exit == otherCommandResult.exit
                 && showCompare == otherCommandResult.showCompare
                 && Objects.equals(person1, otherCommandResult.person1)
-                && Objects.equals(person2, otherCommandResult.person2);
+                && Objects.equals(person2, otherCommandResult.person2)
+                && showDraft == otherCommandResult.showDraft
+                && Objects.equals(draftPlayers, otherCommandResult.draftPlayers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showCompare, person1, person2);
+        return Objects.hash(feedbackToUser, showHelp, exit, showCompare, person1, person2, showDraft, draftPlayers);
     }
 
     @Override
@@ -113,6 +141,7 @@ public class CommandResult {
                 .add("showHelp", showHelp)
                 .add("exit", exit)
                 .add("showCompare", showCompare)
+                .add("showDraft", showDraft)
                 .toString();
     }
 

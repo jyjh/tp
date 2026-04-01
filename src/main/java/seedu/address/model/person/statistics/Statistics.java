@@ -3,6 +3,7 @@ package seedu.address.model.person.statistics;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * Represents a Player's statistics in the address book.
@@ -37,6 +38,19 @@ public class Statistics {
 
     public Assists getAssists() {
         return assists;
+    }
+
+    /**
+     * Returns a new Statistics containing the sum of this Statistics and the other Statistics.
+     * @param other the other Statistics
+     * @return a new Statistics containing the sum
+     */
+    public Statistics add(Statistics other) {
+        Kills kills = this.kills.add(other.kills);
+        Deaths deaths = this.deaths.add(other.deaths);
+        Assists assists = this.assists.add(other.assists);
+
+        return new Statistics(kills, deaths, assists);
     }
 
     /**
@@ -104,6 +118,27 @@ public class Statistics {
      */
     public static Statistics createDefault() {
         return new Builder().build();
+    }
+
+    /**
+     * Creates a {@code Statistics} object with uniformly random values.
+     *
+     * @param maxKills The maximum value of kills
+     * @param maxDeaths The maximum value of deaths
+     * @param maxAssists The maximum value of assists
+     * @return A Statistics object with random values.
+     */
+    public static Statistics createRandom(int maxKills, int maxDeaths, int maxAssists) {
+        assert maxKills >= 0;
+        assert maxDeaths >= 0;
+        assert maxAssists >= 0;
+
+        Random r = new Random();
+        Kills kills = new Kills(String.valueOf(r.nextInt(maxKills)));
+        Deaths deaths = new Deaths(String.valueOf(r.nextInt(maxDeaths)));
+        Assists assists = new Assists(String.valueOf(r.nextInt(maxAssists)));
+
+        return new Builder().withKills(kills).withDeaths(deaths).withAssists(assists).build();
     }
 
     @Override

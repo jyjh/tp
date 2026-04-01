@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSISTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEATHS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IGN;
@@ -11,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_KILLS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RANK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESULT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -49,8 +51,8 @@ public class CommandTestUtil {
     public static final String VALID_ROLE_BOB = "SUPPORT";
     public static final String VALID_IGN_AMY = "AmyBee88";
     public static final String VALID_IGN_BOB = "BobChoo99";
-    public static final String VALID_RANK_AMY = "GOLD";
-    public static final String VALID_RANK_BOB = "SILVER";
+    public static final String VALID_RANK_AMY = "GOLD I";
+    public static final String VALID_RANK_BOB = "SILVER I";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_KILLS_SET_1 = "20";
@@ -61,6 +63,10 @@ public class CommandTestUtil {
     public static final String VALID_ASSISTS_SET_2 = "8";
     public static final Statistics VALID_STATS_SET_1;
     public static final Statistics VALID_STATS_SET_2;
+    public static final String VALID_RESULT_WIN = "WIN";
+    public static final String VALID_RESULT_LOSE = "LOSE";
+    public static final String VALID_RESULT_DRAW = "DRAW";
+    public static final String VALID_DATE = "2025-12-01T12:00:00";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -84,6 +90,10 @@ public class CommandTestUtil {
     public static final String DEATHS_DESC_SET_2 = " " + PREFIX_DEATHS + VALID_DEATHS_SET_2;
     public static final String ASSISTS_DESC_SET_1 = " " + PREFIX_ASSISTS + VALID_ASSISTS_SET_1;
     public static final String ASSISTS_DESC_SET_2 = " " + PREFIX_ASSISTS + VALID_ASSISTS_SET_2;
+    public static final String RESULT_DESC_WIN = " " + PREFIX_RESULT + VALID_RESULT_WIN;
+    public static final String RESULT_DESC_LOSE = " " + PREFIX_RESULT + VALID_RESULT_LOSE;
+    public static final String RESULT_DESC_DRAW = " " + PREFIX_RESULT + VALID_RESULT_DRAW;
+    public static final String DATE_DESC = " " + PREFIX_DATE + VALID_DATE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -96,6 +106,8 @@ public class CommandTestUtil {
     public static final String INVALID_KILLS_DESC = " " + PREFIX_KILLS + "-1"; // Negative not allowed
     public static final String INVALID_DEATHS_DESC = " " + PREFIX_DEATHS + "-1"; // Negative not allowed
     public static final String INVALID_ASSISTS_DESC = " " + PREFIX_ASSISTS + "-1"; // Negative not allowed
+    public static final String INVALID_RESULT_DESC = " " + PREFIX_RESULT + "INVALID";
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "INVALID";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -104,6 +116,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final StatsCommand.EditStatsDescriptor STATS_DESC_SET_1;
     public static final StatsCommand.EditStatsDescriptor STATS_DESC_SET_2;
+
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

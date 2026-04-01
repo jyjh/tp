@@ -41,18 +41,18 @@ public class CompareCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> addressBookList = model.getAddressBook().getPersonList();
 
-        if (targetIndex1.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex1.getZeroBased() >= addressBookList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        if (targetIndex2.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex2.getZeroBased() >= addressBookList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person person1 = lastShownList.get(targetIndex1.getZeroBased());
-        Person person2 = lastShownList.get(targetIndex2.getZeroBased());
+        Person person1 = addressBookList.get(targetIndex1.getZeroBased());
+        Person person2 = addressBookList.get(targetIndex2.getZeroBased());
 
         return new CommandResult(
                 String.format(MESSAGE_COMPARE_SUCCESS, Messages.format(person1), Messages.format(person2)),

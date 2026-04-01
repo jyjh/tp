@@ -285,6 +285,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find a player by name          | locate details of players without having to go through the entire list |
 | `* * *`  | user with many players in the address book | sort players by stats          | identify top performers easily                                         |
 | `* * *`  | user                                       | view player availability status| know who is available for a practice match                             |
+| `* * *`  | user                                       | add match results              | update the stats of the team players and keep track of past matches    |
 
 *{More to be added}*
 
@@ -421,6 +422,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case resumes at step 2.
 
+**Use case: UC06 - Input match results**
+
+**MSS**
+
+1. User requests to add in match results
+2. DraftDeck adds the match and updates the statistics of players involved.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The result is invalid.
+
+   * 1a1. DraftDeck displays an error message notifying the user that the result must be one of “win”, “lose”, “draw”
+
+    Use case resumes at step 1.
+
+* 1b. The number of players and the number of values for each of the statistics do not match.
+
+   * 1b1. DraftDeck displays an error message notifying the user that the number of each statistic must match the number of players.
+
+    Use case resumes at step 1.
+
+* 1c. At least one statistic is invalid.
+
+   * 1c1. DraftDeck displays an error message notifying the user that every statistic must be a non negative integer.
+
+    Use case resumes at step 1.
+
+* 1d. At least one player does not exist in DraftDeck.
+
+   * 1d1. DraftDeck displays an error message notifying the user every player must already exist in DraftDeck.
+
+    Use case resumes at step 1.
 
 *{More to be added}*
 

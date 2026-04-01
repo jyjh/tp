@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.MatchRecord;
 import seedu.address.model.ReadOnlyMatchRecord;
 import seedu.address.model.match.Match;
-import seedu.address.model.match.Result;
+import seedu.address.testutil.TypicalMatches;
 
 public class JsonMatchRecordStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonMatchRecordStorageTest");
@@ -64,9 +64,9 @@ public class JsonMatchRecordStorageTest {
         JsonMatchRecordStorage jsonMatchRecordStorage = new JsonMatchRecordStorage(filePath);
 
         MatchRecord matchRecord = new MatchRecord();
-        Match match = new Match(new Result(Result.WinType.DRAW));
-        matchRecord.addMatch(new Match(new Result(Result.WinType.WIN)));
-        matchRecord.addMatch(new Match(new Result(Result.WinType.LOSE)));
+        Match match = TypicalMatches.DRAWING_MATCH_4;
+        matchRecord.addMatch(TypicalMatches.LOSING_MATCH_3);
+        matchRecord.addMatch(TypicalMatches.WINNING_MATCH_2);
         matchRecord.addMatch(match);
 
         // Save in new file and read back
@@ -75,14 +75,14 @@ public class JsonMatchRecordStorageTest {
         assertEquals(matchRecord, readBack);
 
         // Modify data, overwrite exiting file, and read back
-        matchRecord.addMatch(new Match(new Result(Result.WinType.WIN)));
+        matchRecord.addMatch(TypicalMatches.WINNING_MATCH_3);
         matchRecord.removeMatch(match);
         jsonMatchRecordStorage.saveMatchRecord(matchRecord);
         readBack = jsonMatchRecordStorage.readMatchRecord().get();
         assertEquals(matchRecord, readBack);
 
         // Save and read without specifying file path
-        matchRecord.addMatch(new Match(new Result(Result.WinType.LOSE)));
+        matchRecord.addMatch(TypicalMatches.LOSING_MATCH_4);
         jsonMatchRecordStorage.saveMatchRecord(matchRecord); // file path not specified
         readBack = jsonMatchRecordStorage.readMatchRecord().get(); // file path not specified
         assertEquals(matchRecord, readBack);

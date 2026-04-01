@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ComparePanel comparePanel;
+    private DraftPanel draftPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -47,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane comparePanelPlaceholder;
+
+    @FXML
+    private StackPane draftPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getAddressBook());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -192,6 +196,28 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Shows the draft panel.
+     */
+    private void showDraftPanel() {
+        personListPanelPlaceholder.setVisible(false);
+        personListPanelPlaceholder.setManaged(false);
+        comparePanelPlaceholder.setVisible(false);
+        comparePanelPlaceholder.setManaged(false);
+        draftPanelPlaceholder.setVisible(true);
+        draftPanelPlaceholder.setManaged(true);
+    }
+
+    /**
+     * Hides the draft panel and shows the person list.
+     */
+    private void hideDraftPanel() {
+        draftPanelPlaceholder.setVisible(false);
+        draftPanelPlaceholder.setManaged(false);
+        personListPanelPlaceholder.setVisible(true);
+        personListPanelPlaceholder.setManaged(true);
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -216,9 +242,16 @@ public class MainWindow extends UiPart<Stage> {
                 comparePanel = new ComparePanel(commandResult.getPerson1(), commandResult.getPerson2());
                 comparePanelPlaceholder.getChildren().add(comparePanel.getRoot());
                 showComparePanel();
+            } else if (commandResult.isShowDraft()) {
+                // Show draft panel
+                draftPanelPlaceholder.getChildren().clear();
+                draftPanel = new DraftPanel(commandResult.getDraftPlayers());
+                draftPanelPlaceholder.getChildren().add(draftPanel.getRoot());
+                showDraftPanel();
             } else {
-                // Hide comparison panel and show person list
+                // Hide comparison and draft panels and show person list
                 hideComparePanel();
+                hideDraftPanel();
             }
 
             return commandResult;

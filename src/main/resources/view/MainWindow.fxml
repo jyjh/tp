@@ -52,6 +52,7 @@
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           <StackPane fx:id="comparePanelPlaceholder" VBox.vgrow="ALWAYS" visible="false" managed="false"/>
+          <StackPane fx:id="draftPanelPlaceholder" VBox.vgrow="ALWAYS" visible="false" managed="false"/>
         </VBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

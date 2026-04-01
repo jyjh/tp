@@ -56,7 +56,9 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(match.getDate())
                 .append("; Result: ")
-                .append(match.getResult());
+                .append(match.getResult())
+                .append(";\nPlayers: ")
+                .append(match.getPlayers());
         return builder.toString();
     }
 

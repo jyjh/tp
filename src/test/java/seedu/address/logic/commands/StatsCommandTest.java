@@ -33,7 +33,7 @@ public class StatsCommandTest {
 
     @Test
     public void execute_statisticsSpecifiedUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person firstPerson = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withStatistics(VALID_STATS_SET_1).build();
         EditStatsDescriptor descriptor = new EditStatsDescriptorBuilder()
                 .withKills(VALID_KILLS_SET_1)
@@ -69,7 +69,7 @@ public class StatsCommandTest {
     }
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 1);
         EditStatsDescriptor descriptor = new EditStatsDescriptorBuilder()
                 .withKills(VALID_KILLS_SET_1)
                 .withDeaths(VALID_DEATHS_SET_1)

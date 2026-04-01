@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="10">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+
+   <!-- TOP Player Panel -->
+   <VBox HBox.hgrow="ALWAYS" styleClass="panel-with-border" spacing="10">
+      <padding>
+         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+      </padding>
+
+      <Label fx:id="topName" styleClass="player-comparison-name">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+
+      <VBox spacing="8">
+         <Label text="Role:" styleClass="field-label" />
+         <Label fx:id="topRole" styleClass="field-value" />
+
+         <Label text="Rank:" styleClass="field-label" />
+         <Label fx:id="topRank" styleClass="field-value" />
+
+         <Label text="Kills:" styleClass="field-label" />
+         <Label fx:id="topKills" styleClass="field-value" />
+
+         <Label text="Deaths:" styleClass="field-label" />
+         <Label fx:id="topDeaths" styleClass="field-value" />
+
+         <Label text="Assists:" styleClass="field-label" />
+         <Label fx:id="topAssists" styleClass="field-value" />
+
+         <Label text="KDA Ratio:" styleClass="field-label" />
+         <Label fx:id="topKdRatio" styleClass="field-value" />
+      </VBox>
+   </VBox>
+
+   <!-- JUNGLE Player Panel -->
+   <VBox HBox.hgrow="ALWAYS" styleClass="panel-with-border" spacing="10">
+      <padding>
+         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+      </padding>
+
+      <Label fx:id="jungleName" styleClass="player-comparison-name">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+
+      <VBox spacing="8">
+         <Label text="Role:" styleClass="field-label" />
+         <Label fx:id="jungleRole" styleClass="field-value" />
+
+         <Label text="Rank:" styleClass="field-label" />
+         <Label fx:id="jungleRank" styleClass="field-value" />
+
+         <Label text="Kills:" styleClass="field-label" />
+         <Label fx:id="jungleKills" styleClass="field-value" />
+
+         <Label text="Deaths:" styleClass="field-label" />
+         <Label fx:id="jungleDeaths" styleClass="field-value" />
+
+         <Label text="Assists:" styleClass="field-label" />
+         <Label fx:id="jungleAssists" styleClass="field-value" />
+
+         <Label text="KDA Ratio:" styleClass="field-label" />
+         <Label fx:id="jungleKdRatio" styleClass="field-value" />
+      </VBox>
+   </VBox>
+
+   <!-- MID Player Panel -->
+   <VBox HBox.hgrow="ALWAYS" styleClass="panel-with-border" spacing="10">
+      <padding>
+         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+      </padding>
+
+      <Label fx:id="midName" styleClass="player-comparison-name">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+
+      <VBox spacing="8">
+         <Label text="Role:" styleClass="field-label" />
+         <Label fx:id="midRole" styleClass="field-value" />
+
+         <Label text="Rank:" styleClass="field-label" />
+         <Label fx:id="midRank" styleClass="field-value" />
+
+         <Label text="Kills:" styleClass="field-label" />
+         <Label fx:id="midKills" styleClass="field-value" />
+
+         <Label text="Deaths:" styleClass="field-label" />
+         <Label fx:id="midDeaths" styleClass="field-value" />
+
+         <Label text="Assists:" styleClass="field-label" />
+         <Label fx:id="midAssists" styleClass="field-value" />
+
+         <Label text="KDA Ratio:" styleClass="field-label" />
+         <Label fx:id="midKdRatio" styleClass="field-value" />
+      </VBox>
+   </VBox>
+
+   <!-- BOT Player Panel -->
+   <VBox HBox.hgrow="ALWAYS" styleClass="panel-with-border" spacing="10">
+      <padding>
+         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+      </padding>
+
+      <Label fx:id="botName" styleClass="player-comparison-name">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+
+      <VBox spacing="8">
+         <Label text="Role:" styleClass="field-label" />
+         <Label fx:id="botRole" styleClass="field-value" />
+
+         <Label text="Rank:" styleClass="field-label" />
+         <Label fx:id="botRank" styleClass="field-value" />
+
+         <Label text="Kills:" styleClass="field-label" />
+         <Label fx:id="botKills" styleClass="field-value" />
+
+         <Label text="Deaths:" styleClass="field-label" />
+         <Label fx:id="botDeaths" styleClass="field-value" />
+
+         <Label text="Assists:" styleClass="field-label" />
+         <Label fx:id="botAssists" styleClass="field-value" />
+
+         <Label text="KDA Ratio:" styleClass="field-label" />
+         <Label fx:id="botKdRatio" styleClass="field-value" />
+      </VBox>
+   </VBox>
+
+   <!-- SUPPORT Player Panel -->
+   <VBox HBox.hgrow="ALWAYS" styleClass="panel-with-border" spacing="10">
+      <padding>
+         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+      </padding>
+
+      <Label fx:id="supportName" styleClass="player-comparison-name">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+
+      <VBox spacing="8">
+         <Label text="Role:" styleClass="field-label" />
+         <Label fx:id="supportRole" styleClass="field-value" />
+
+         <Label text="Rank:" styleClass="field-label" />
+         <Label fx:id="supportRank" styleClass="field-value" />
+
+         <Label text="Kills:" styleClass="field-label" />
+         <Label fx:id="supportKills" styleClass="field-value" />
+
+         <Label text="Deaths:" styleClass="field-label" />
+         <Label fx:id="supportDeaths" styleClass="field-value" />
+
+         <Label text="Assists:" styleClass="field-label" />
+         <Label fx:id="supportAssists" styleClass="field-value" />
+
+         <Label text="KDA Ratio:" styleClass="field-label" />
+         <Label fx:id="supportKdRatio" styleClass="field-value" />
+      </VBox>
+   </VBox>
+
+</HBox>

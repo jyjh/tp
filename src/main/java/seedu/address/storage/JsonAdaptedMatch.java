@@ -1,11 +1,14 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.match.Match;
+import seedu.address.model.match.PlayerInMatch;
 import seedu.address.model.match.Result;
 
 /**
@@ -18,21 +21,28 @@ public class JsonAdaptedMatch {
 
     private final String date;
     private final String result;
+    private final List<JsonAdaptedPlayerInMatch> players;
 
     /**
      * Constructs a {@code JsonAdaptedMatch} with the given match details.
      */
-    public JsonAdaptedMatch(@JsonProperty("date") String date, @JsonProperty("result") String result) {
+    public JsonAdaptedMatch(
+            @JsonProperty("date") String date,
+            @JsonProperty("result") String result,
+            @JsonProperty("players") List<JsonAdaptedPlayerInMatch> players
+    ) {
         this.result = result;
         this.date = date;
+        this.players = players;
     }
 
     /**
-     * Converts a give {@code Match} into this class for Jackson use.
+     * Converts a given {@code Match} into this class for Jackson use.
      */
     public JsonAdaptedMatch(Match source) {
         date = source.getDate().toString();
         result = source.getResult().toString();
+        players = source.getPlayers().stream().map(JsonAdaptedPlayerInMatch::new).toList();
     }
 
     /**
@@ -59,7 +69,15 @@ public class JsonAdaptedMatch {
         }
         final Result modelResult = new Result(result);
 
-        return new Match(modelDate, modelResult);
+        if (players == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Players"));
+        }
+        final List<PlayerInMatch> modelPlayers = new ArrayList<>();
+        for (JsonAdaptedPlayerInMatch player : players) {
+            modelPlayers.add(player.toModelType());
+        }
+
+        return new Match(modelDate, modelResult, modelPlayers);
     }
 
 }

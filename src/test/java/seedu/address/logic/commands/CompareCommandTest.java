@@ -29,8 +29,8 @@ public class CompareCommandTest {
 
     @Test
     public void execute_validIndicesUnfilteredList_success() {
-        Person person1 = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person person2 = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person person1 = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person person2 = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         CompareCommand compareCommand = new CompareCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
 
         String expectedMessage = String.format(CompareCommand.MESSAGE_COMPARE_SUCCESS,
@@ -46,7 +46,7 @@ public class CompareCommandTest {
 
     @Test
     public void execute_invalidIndex1UnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 1);
         CompareCommand compareCommand = new CompareCommand(outOfBoundIndex, INDEX_FIRST_PERSON);
 
         assertCommandFailure(compareCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -54,7 +54,7 @@ public class CompareCommandTest {
 
     @Test
     public void execute_invalidIndex2UnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 1);
         CompareCommand compareCommand = new CompareCommand(INDEX_FIRST_PERSON, outOfBoundIndex);
 
         assertCommandFailure(compareCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -63,14 +63,11 @@ public class CompareCommandTest {
     @Test
     public void execute_validIndicesFilteredList_success() {
         // Filter to show only the first two people from the address book
-        Person firstPerson = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person secondPerson = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person person1 = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person person2 = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
         model.updateFilteredPersonList(person ->
-                person.equals(firstPerson) || person.equals(secondPerson));
-
-        Person person1 = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person person2 = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+                person.equals(person1) || person.equals(person2));
 
         CompareCommand compareCommand = new CompareCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
 
@@ -79,7 +76,7 @@ public class CompareCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList(person ->
-                person.equals(firstPerson) || person.equals(secondPerson));
+                person.equals(person1) || person.equals(person2));
 
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
                 false, false, true, person1, person2);
@@ -88,29 +85,28 @@ public class CompareCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex1FilteredList_throwsCommandException() {
+    public void execute_validIndexOutOfFilteredView_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        Index indexOutOfFilteredView = INDEX_SECOND_PERSON;
+        // ensures that indexOutOfFilteredView is still in bounds of address book list
+        assertTrue(indexOutOfFilteredView.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        CompareCommand compareCommand = new CompareCommand(outOfBoundIndex, INDEX_FIRST_PERSON);
+        Person person1 = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person person2 = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        assertCommandFailure(compareCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
+        CompareCommand compareCommand = new CompareCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
 
-    @Test
-    public void execute_invalidIndex2FilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        String expectedMessage = String.format(CompareCommand.MESSAGE_COMPARE_SUCCESS,
+                Messages.format(person1), Messages.format(person2));
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.updateFilteredPersonList(person -> person.equals(person2));
 
-        CompareCommand compareCommand = new CompareCommand(INDEX_FIRST_PERSON, outOfBoundIndex);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                false, false, true, person1, person2);
 
-        assertCommandFailure(compareCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandSuccess(compareCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
