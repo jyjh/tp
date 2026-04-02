@@ -41,9 +41,9 @@ import seedu.address.logic.commands.ResultCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.match.Match;
 import seedu.address.model.match.PlayerInMatch;
+import seedu.address.model.match.PlayersInMatch;
 import seedu.address.model.match.Result;
 import seedu.address.model.person.InGameName;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.statistics.Assists;
 import seedu.address.model.person.statistics.Deaths;
 import seedu.address.model.person.statistics.Kills;
@@ -57,27 +57,31 @@ public class ResultCommandParserTest {
     public void parse_allFieldsPresent_success() {
         Match expectedMatch = new Match(
                 date, new Result(VALID_RESULT_WIN),
-                List.of(
-                        new PlayerInMatch(new InGameName(VALID_IGN_AMY),
-                                new Statistics.Builder()
-                                        .withAssists(new Assists(VALID_ASSISTS_SET_1))
-                                        .withDeaths(new Deaths(VALID_DEATHS_SET_1))
-                                        .withKills(new Kills(VALID_KILLS_SET_1)).build())
+                new PlayersInMatch(
+                        List.of(
+                                new PlayerInMatch(new InGameName(VALID_IGN_AMY),
+                                        new Statistics.Builder()
+                                                .withAssists(new Assists(VALID_ASSISTS_SET_1))
+                                                .withDeaths(new Deaths(VALID_DEATHS_SET_1))
+                                                .withKills(new Kills(VALID_KILLS_SET_1)).build())
+                        )
                 ));
 
         Match expectedMatch2 = new Match(
                 date, new Result(VALID_RESULT_WIN),
-                List.of(
-                        new PlayerInMatch(new InGameName(VALID_IGN_AMY),
-                                new Statistics.Builder()
-                                        .withAssists(new Assists(VALID_ASSISTS_SET_1))
-                                        .withDeaths(new Deaths(VALID_DEATHS_SET_1))
-                                        .withKills(new Kills(VALID_KILLS_SET_1)).build()),
-                        new PlayerInMatch(new InGameName(VALID_IGN_BOB),
-                                new Statistics.Builder()
-                                        .withAssists(new Assists(VALID_ASSISTS_SET_2))
-                                        .withDeaths(new Deaths(VALID_DEATHS_SET_2))
-                                        .withKills(new Kills(VALID_KILLS_SET_2)).build())
+                new PlayersInMatch(
+                        List.of(
+                                new PlayerInMatch(new InGameName(VALID_IGN_AMY),
+                                        new Statistics.Builder()
+                                                .withAssists(new Assists(VALID_ASSISTS_SET_1))
+                                                .withDeaths(new Deaths(VALID_DEATHS_SET_1))
+                                                .withKills(new Kills(VALID_KILLS_SET_1)).build()),
+                                new PlayerInMatch(new InGameName(VALID_IGN_BOB),
+                                        new Statistics.Builder()
+                                                .withAssists(new Assists(VALID_ASSISTS_SET_2))
+                                                .withDeaths(new Deaths(VALID_DEATHS_SET_2))
+                                                .withKills(new Kills(VALID_KILLS_SET_2)).build())
+                        )
                 ));
 
         // Two players involved in the match
@@ -129,6 +133,16 @@ public class ResultCommandParserTest {
 
         assertParseFailure(parser, RESULT_DESC_LOSE + validExpectedMatchString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_RESULT));
+
+    }
+
+    @Test
+    public void parse_duplicateIgn_failure() {
+        String duplicateIgnString = PREAMBLE_WHITESPACE + RESULT_DESC_WIN + IGN_DESC_AMY + IGN_DESC_AMY
+                + KILLS_DESC_SET_1 + KILLS_DESC_SET_2 + DEATHS_DESC_SET_1 + DEATHS_DESC_SET_2
+                + ASSISTS_DESC_SET_1 + ASSISTS_DESC_SET_2 + DATE_DESC;
+
+        assertParseFailure(parser, duplicateIgnString, PlayersInMatch.MESSAGE_CONSTRAINTS);
 
     }
 

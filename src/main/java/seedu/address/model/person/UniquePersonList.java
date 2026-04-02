@@ -10,7 +10,9 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.match.Match;
 import seedu.address.model.match.PlayerInMatch;
+import seedu.address.model.match.PlayersInMatch;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.statistics.Statistics;
@@ -75,10 +77,11 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Find the persons with the ign of the players provided and add the statistics to those persons.
      * If one person cannot be found in the list, no other person's statistics will be updated.
-     * @param players The list of players
+     * @param match The match
      */
-    public void addStatistics(List<PlayerInMatch> players) {
-        requireNonNull(players);
+    public void addStatistics(Match match) {
+        requireNonNull(match);
+        PlayersInMatch players = match.getPlayers();
         List<Person> targetPersons = new ArrayList<>();
         List<Person> editedPersons = new ArrayList<>();
         for (PlayerInMatch player : players) {

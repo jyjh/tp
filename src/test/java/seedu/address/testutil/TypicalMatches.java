@@ -6,6 +6,7 @@ import java.util.List;
 import seedu.address.model.MatchRecord;
 import seedu.address.model.match.Match;
 import seedu.address.model.match.PlayerInMatch;
+import seedu.address.model.match.PlayersInMatch;
 import seedu.address.model.match.Result;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.statistics.Statistics;
@@ -26,26 +27,33 @@ public class TypicalMatches {
     public static final List<Person> ONE_PERSON = PERSONS.subList(0, 1);
 
 
-    public static final List<PlayerInMatch> FOUR_PLAYERS = FOUR_PERSONS.stream()
-            .map(person ->
-                    new PlayerInMatch(person.getIgn(),
-                            Statistics.createRandom(10, 10, 20)))
-            .toList();
-    public static final List<PlayerInMatch> THREE_PLAYERS = THREE_PERSONS.stream()
-            .map(person ->
-                    new PlayerInMatch(person.getIgn(),
-                            Statistics.createRandom(10, 10, 20)))
-            .toList();
-    public static final List<PlayerInMatch> TWO_PLAYERS = TWO_PERSONS.stream()
-            .map(person ->
-                    new PlayerInMatch(person.getIgn(),
-                            Statistics.createRandom(10, 10, 20)))
-            .toList();
-    public static final List<PlayerInMatch> ONE_PLAYER = ONE_PERSON.stream()
-            .map(person ->
-                    new PlayerInMatch(person.getIgn(),
-                            Statistics.createRandom(10, 10, 20)))
-            .toList();
+    public static final PlayersInMatch FOUR_PLAYERS = new PlayersInMatch(
+            FOUR_PERSONS.stream()
+                    .map(person ->
+                            new PlayerInMatch(person.getIgn(),
+                                    Statistics.createRandom(10, 10, 20)))
+                    .toList());
+    public static final PlayersInMatch THREE_PLAYERS = new PlayersInMatch(
+            THREE_PERSONS.stream()
+                    .map(person ->
+                            new PlayerInMatch(person.getIgn(),
+                                    Statistics.createRandom(10, 10, 20)))
+                    .toList()
+    );
+    public static final PlayersInMatch TWO_PLAYERS = new PlayersInMatch(
+            TWO_PERSONS.stream()
+                    .map(person ->
+                            new PlayerInMatch(person.getIgn(),
+                                    Statistics.createRandom(10, 10, 20)))
+                    .toList()
+    );
+    public static final PlayersInMatch ONE_PLAYER = new PlayersInMatch(
+            ONE_PERSON.stream()
+                    .map(person ->
+                            new PlayerInMatch(person.getIgn(),
+                                    Statistics.createRandom(10, 10, 20)))
+                    .toList()
+    );
 
     public static final LocalDateTime DATE_1 = LocalDateTime.of(2025, 12, 1, 12, 0);
     public static final LocalDateTime DATE_2 = LocalDateTime.of(2025, 11, 2, 14, 0);

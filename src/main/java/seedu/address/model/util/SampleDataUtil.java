@@ -12,6 +12,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMatchRecord;
 import seedu.address.model.match.Match;
 import seedu.address.model.match.PlayerInMatch;
+import seedu.address.model.match.PlayersInMatch;
 import seedu.address.model.match.Result;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InGameName;
@@ -76,9 +77,9 @@ public class SampleDataUtil {
         PlayerInMatch player6 = new PlayerInMatch(
                 new InGameName("Roy_Vortex"), Statistics.createRandom(10, 10, 20));
 
-        List<PlayerInMatch> players1 = List.of(player1, player2);
-        List<PlayerInMatch> players2 = List.of(player3, player4, player5);
-        List<PlayerInMatch> players3 = List.of(player6);
+        PlayersInMatch players1 = new PlayersInMatch(List.of(player1, player2));
+        PlayersInMatch players2 = new PlayersInMatch(List.of(player3, player4, player5));
+        PlayersInMatch players3 = new PlayersInMatch(List.of(player6));
 
         return new Match[] {
             new Match(

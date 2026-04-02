@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.match.PlayerInMatch;
+import seedu.address.model.match.Match;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -90,12 +90,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Find the persons with the name of the players provided and add the statistics to those persons.
      * If one person cannot be found in the address book, no other person's statistics will be updated.
-     * @param players The list of players
+     * @param match The match
      */
-    public void addStatistics(List<PlayerInMatch> players) {
-        requireNonNull(players);
+    public void addStatistics(Match match) {
+        requireNonNull(match);
 
-        persons.addStatistics(players);
+        persons.addStatistics(match);
     }
 
     /**

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.match.Match;
 import seedu.address.model.match.PlayerInMatch;
+import seedu.address.model.match.PlayersInMatch;
 import seedu.address.model.match.Result;
 
 /**
@@ -42,7 +43,7 @@ public class JsonAdaptedMatch {
     public JsonAdaptedMatch(Match source) {
         date = source.getDate().toString();
         result = source.getResult().toString();
-        players = source.getPlayers().stream().map(JsonAdaptedPlayerInMatch::new).toList();
+        players = source.getPlayers().asList().stream().map(JsonAdaptedPlayerInMatch::new).toList();
     }
 
     /**
@@ -77,7 +78,11 @@ public class JsonAdaptedMatch {
             modelPlayers.add(player.toModelType());
         }
 
-        return new Match(modelDate, modelResult, modelPlayers);
+        if (!PlayersInMatch.isValidPlayerList(modelPlayers)) {
+            throw new IllegalValueException(PlayersInMatch.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Match(modelDate, modelResult, new PlayersInMatch(modelPlayers));
     }
 
 }

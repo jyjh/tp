@@ -114,7 +114,7 @@ public class UniquePersonListTest {
     public void addStatistics_allPlayersExist_success() {
         TypicalMatches.PERSONS.forEach(uniquePersonList::add);
         Match match = TypicalMatches.DRAWING_MATCH_2;
-        uniquePersonList.addStatistics(match.getPlayers());
+        uniquePersonList.addStatistics(match);
 
         UniquePersonList expected = new UniquePersonList();
         TypicalMatches.PERSONS.forEach(expected::add);
@@ -133,7 +133,7 @@ public class UniquePersonListTest {
     public void addStatistics_onePlayerDoesNotExist_listUnchanged() {
         TypicalMatches.FOUR_PERSONS.forEach(uniquePersonList::add);
         Match match = TypicalMatches.DRAWING_MATCH_2;
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.addStatistics(match.getPlayers()));
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.addStatistics(match));
 
         UniquePersonList expected = new UniquePersonList();
         TypicalMatches.FOUR_PERSONS.forEach(expected::add);

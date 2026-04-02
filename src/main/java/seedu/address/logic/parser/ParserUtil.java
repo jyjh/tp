@@ -1,14 +1,19 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.ResultCommand.MESSAGE_FIELD_QUANTITY_MISMATCH;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.match.PlayerInMatch;
+import seedu.address.model.match.PlayersInMatch;
 import seedu.address.model.match.Result;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -20,6 +25,7 @@ import seedu.address.model.person.Role;
 import seedu.address.model.person.statistics.Assists;
 import seedu.address.model.person.statistics.Deaths;
 import seedu.address.model.person.statistics.Kills;
+import seedu.address.model.person.statistics.Statistics;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -232,6 +238,43 @@ public class ParserUtil {
             throw new ParseException(Result.MESSAGE_CONSTRAINTS);
         }
         return new Result(trimmedResult);
+    }
+
+    /**
+     * Parses {@code argIgn, argKills, argDeaths, argAssists} into a {@code PlayersInMatch}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code argIgn, argKills, argDeaths, argAssists} are invalid.
+     */
+    public static PlayersInMatch parsePlayers(List<String> argIgn, List<String> argKills,
+            List<String> argDeaths, List<String> argAssists) throws ParseException {
+        int noPlayers = argIgn.size();
+
+        if (noPlayers != argKills.size() || noPlayers != argDeaths.size()
+                || noPlayers != argAssists.size()) {
+            throw new ParseException(String.format(MESSAGE_FIELD_QUANTITY_MISMATCH));
+        }
+        List<PlayerInMatch> players = new ArrayList<>(noPlayers);
+        for (int i = 0; i < noPlayers; i++) {
+            InGameName ign = ParserUtil.parseIgn(argIgn.get(i));
+            Kills kills = ParserUtil.parseKills(argKills.get(i));
+            Deaths deaths = ParserUtil.parseDeaths(argDeaths.get(i));
+            Assists assists = ParserUtil.parseAssists(argAssists.get(i));
+
+            Statistics statistics = new Statistics.Builder()
+                    .withKills(kills)
+                    .withDeaths(deaths)
+                    .withAssists(assists)
+                    .build();
+            players.add(new PlayerInMatch(ign, statistics));
+        }
+
+        if (!PlayersInMatch.isValidPlayerList(players)) {
+            throw new ParseException(PlayersInMatch.MESSAGE_CONSTRAINTS);
+        }
+
+        return new PlayersInMatch(players);
+
     }
 
 }

@@ -22,7 +22,7 @@ public class JsonAdaptedMatchTest {
     private static final String VALID_DATE = modelMatch.getDate().toString();
     private static final String VALID_RESULT = modelMatch.getResult().toString();
     private static final List<JsonAdaptedPlayerInMatch> VALID_PLAYERS =
-            modelMatch.getPlayers().stream().map(JsonAdaptedPlayerInMatch::new).toList();
+            modelMatch.getPlayers().asList().stream().map(JsonAdaptedPlayerInMatch::new).toList();
 
     @Test
     public void toModelType_validMatchDetails_returnsMatch() throws Exception {
