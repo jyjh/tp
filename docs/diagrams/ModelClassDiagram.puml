@@ -19,6 +19,9 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Role
+Class IGN
+Class Rank
 Class Statistics
 Class Kills
 Class Deaths
@@ -46,6 +49,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "1" Role
+Person *--> "1" IGN
+Person *--> "1" Rank
 Person *--> "1" Statistics
 
 Statistics *--> "1" Kills
