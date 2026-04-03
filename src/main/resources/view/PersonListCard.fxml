@@ -16,7 +16,7 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" percentWidth="50" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" percentWidth="50" />
     </columnConstraints>
-    
+
     <!-- Left Column: Person Information -->
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
@@ -38,7 +38,7 @@
       <Label fx:id="rank" styleClass="cell_small_label" text="\$rank" />
       <Label fx:id="stats" styleClass="cell_small_label" text="\$stats" />
     </VBox>
-    
+
     <!-- Right Column: Entity Icons and Stats -->
     <VBox alignment="TOP_LEFT" spacing="5" GridPane.columnIndex="1">
       <padding>
