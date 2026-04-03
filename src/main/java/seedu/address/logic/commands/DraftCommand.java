@@ -90,7 +90,7 @@ public class DraftCommand extends Command {
 
     /**
      * Generates a user-friendly validation message for the selected players.
-     * Checks team size and role composition.
+     * Checks team size and role composition. Displays roles in order: TOP, JUNGLE, MID, BOT, SUPPORT.
      *
      * @param players the selected players
      * @return formatted validation message
@@ -107,10 +107,11 @@ public class DraftCommand extends Command {
             result += "✗ Invalid Draft Composition\n";
         }
 
-        // Composition summary on one line
+        // Composition summary on one line (in role order: TOP, JUNGLE, MID, BOT, SUPPORT)
         result += "Composition: ";
+        RoleType[] roleOrder = {RoleType.TOP, RoleType.JUNGLE, RoleType.MID, RoleType.BOT, RoleType.SUPPORT};
         boolean isFirst = true;
-        for (RoleType role : RoleType.values()) {
+        for (RoleType role : roleOrder) {
             if (!isFirst) {
                 result += " | ";
             }

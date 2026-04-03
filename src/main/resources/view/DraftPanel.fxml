@@ -12,7 +12,7 @@
    </padding>
 
    <!-- TOP Player Panel -->
-   <VBox HBox.hgrow="ALWAYS" styleClass="panel-with-border" spacing="10">
+   <VBox HBox.hgrow="ALWAYS" prefWidth="180" styleClass="panel-with-border" spacing="10">
       <padding>
          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
       </padding>
@@ -45,7 +45,7 @@
    </VBox>
 
    <!-- JUNGLE Player Panel -->
-   <VBox HBox.hgrow="ALWAYS" styleClass="panel-with-border" spacing="10">
+   <VBox HBox.hgrow="ALWAYS" prefWidth="180" styleClass="panel-with-border" spacing="10">
       <padding>
          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
       </padding>
@@ -78,7 +78,7 @@
    </VBox>
 
    <!-- MID Player Panel -->
-   <VBox HBox.hgrow="ALWAYS" styleClass="panel-with-border" spacing="10">
+   <VBox HBox.hgrow="ALWAYS" prefWidth="180" styleClass="panel-with-border" spacing="10">
       <padding>
          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
       </padding>
@@ -111,7 +111,7 @@
    </VBox>
 
    <!-- BOT Player Panel -->
-   <VBox HBox.hgrow="ALWAYS" styleClass="panel-with-border" spacing="10">
+   <VBox HBox.hgrow="ALWAYS" prefWidth="180" styleClass="panel-with-border" spacing="10">
       <padding>
          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
       </padding>
@@ -144,7 +144,7 @@
    </VBox>
 
    <!-- SUPPORT Player Panel -->
-   <VBox HBox.hgrow="ALWAYS" styleClass="panel-with-border" spacing="10">
+   <VBox HBox.hgrow="ALWAYS" prefWidth="180" styleClass="panel-with-border" spacing="10">
       <padding>
          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
       </padding>
