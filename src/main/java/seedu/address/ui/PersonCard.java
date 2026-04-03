@@ -79,7 +79,7 @@ public class PersonCard extends UiPart<Region> {
         this.entityButtonMap = new HashMap<>();
 
         id.setText(displayedIndex + ". ");
-        name.setText( person.getIgn().toString() + "(" + person.getName().fullName + ")");
+        name.setText(person.getIgn().toString() + "(" + person.getName().fullName + ")");
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
         role.setText("Role: " + person.getRole().toString());

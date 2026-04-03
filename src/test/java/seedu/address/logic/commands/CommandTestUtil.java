@@ -122,13 +122,13 @@ public class CommandTestUtil {
     public static final String INVALID_ASSISTS_DESC = " " + PREFIX_ASSISTS + "-1"; // Negative not allowed
     public static final String INVALID_RESULT_DESC = " " + PREFIX_RESULT + "INVALID";
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "INVALID";
+    public static final String INVALID_ENTITY_DESC = " " + PREFIX_ENTITY + "INVALID";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
-    public static final StatsCommand.EditStatsDescriptor STATS_DESC_SET_DEFAULT;
     public static final StatsCommand.EditStatsDescriptor STATS_DESC_SET_1;
     public static final StatsCommand.EditStatsDescriptor STATS_DESC_SET_2;
 
@@ -161,12 +161,6 @@ public class CommandTestUtil {
         VALID_ENTITY_STATISTIC_MAP = new EntityStatisticMap.Builder()
             .withEntity(VALID_ENTITY_1, VALID_STATS_SET_1)
             .build();
-        STATS_DESC_SET_DEFAULT = new EditStatsDescriptorBuilder()
-                .withEntity(Entity.createDefault())
-                .withKills(VALID_KILLS_SET_1)
-                .withDeaths(VALID_DEATHS_SET_1)
-                .withAssists(VALID_ASSISTS_SET_1)
-                .build();
         STATS_DESC_SET_1 = new EditStatsDescriptorBuilder()
                 .withEntity(VALID_ENTITY_1)
                 .withKills(VALID_KILLS_SET_1)

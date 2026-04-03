@@ -153,6 +153,7 @@ public class ResultCommandParserTest {
     @Test
     public void parse_duplicateIgn_failure() {
         String duplicateIgnString = PREAMBLE_WHITESPACE + RESULT_DESC_WIN + IGN_DESC_AMY + IGN_DESC_AMY
+                + ENTITY_DESC_1 + ENTITY_DESC_2
                 + KILLS_DESC_SET_1 + KILLS_DESC_SET_2 + DEATHS_DESC_SET_1 + DEATHS_DESC_SET_2
                 + ASSISTS_DESC_SET_1 + ASSISTS_DESC_SET_2 + DATE_DESC;
 
