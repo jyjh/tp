@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-  import seedu.address.model.person.Email;
-  import seedu.address.model.person.Name;
-  import seedu.address.model.person.Phone;
-  import seedu.address.model.person.Rank;
-  import seedu.address.model.person.Role;
-  import seedu.address.model.person.statistics.Kills;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Role;
+import seedu.address.model.person.statistics.Kills;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -39,7 +39,8 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final JsonAdaptedEntityStatisticMap VALID_STATS = new JsonAdaptedEntityStatisticMap(BENSON.getOverallEntityStatistics());
+    private static final JsonAdaptedEntityStatisticMap VALID_STATS =
+        new JsonAdaptedEntityStatisticMap(BENSON.getOverallEntityStatistics());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -138,8 +139,10 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidKills_throwsIllegalValueException() {
-        JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics(INVALID_KILLS, "0", "0");
-        JsonAdaptedEntityStatisticMap.EntityData entityData = new JsonAdaptedEntityStatisticMap.EntityData(invalidStats);
+        JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics(
+            INVALID_KILLS, "0", "0");
+        JsonAdaptedEntityStatisticMap.EntityData entityData =
+            new JsonAdaptedEntityStatisticMap.EntityData(invalidStats);
         java.util.Map<String, JsonAdaptedEntityStatisticMap.EntityData> statsMap = new java.util.HashMap<>();
         statsMap.put("default", entityData);
         JsonAdaptedEntityStatisticMap adaptedMap = new JsonAdaptedEntityStatisticMap(statsMap);
@@ -151,8 +154,10 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidDeaths_throwsIllegalValueException() {
-        JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics("0", INVALID_DEATHS, "0");
-        JsonAdaptedEntityStatisticMap.EntityData entityData = new JsonAdaptedEntityStatisticMap.EntityData(invalidStats);
+        JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics(
+            "0", INVALID_DEATHS, "0");
+        JsonAdaptedEntityStatisticMap.EntityData entityData =
+            new JsonAdaptedEntityStatisticMap.EntityData(invalidStats);
         java.util.Map<String, JsonAdaptedEntityStatisticMap.EntityData> statsMap = new java.util.HashMap<>();
         statsMap.put("default", entityData);
         JsonAdaptedEntityStatisticMap adaptedMap = new JsonAdaptedEntityStatisticMap(statsMap);

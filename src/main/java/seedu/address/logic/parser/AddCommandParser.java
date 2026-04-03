@@ -9,20 +9,20 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RANK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-  import java.util.Set;
-  import java.util.stream.Stream;
+import java.util.Set;
+import java.util.stream.Stream;
 
-  import seedu.address.logic.commands.AddCommand;
-  import seedu.address.logic.parser.exceptions.ParseException;
-  import seedu.address.model.entity.EntityStatisticMap;
-  import seedu.address.model.person.Email;
-  import seedu.address.model.person.InGameName;
-  import seedu.address.model.person.Name;
-  import seedu.address.model.person.Person;
-  import seedu.address.model.person.Phone;
-  import seedu.address.model.person.Rank;
-  import seedu.address.model.person.Role;
-  import seedu.address.model.tag.Tag;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entity.EntityStatisticMap;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.InGameName;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Role;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object

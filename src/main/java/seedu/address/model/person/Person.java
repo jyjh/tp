@@ -1,17 +1,17 @@
 package seedu.address.model.person;
 
-  import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-  import java.util.Collections;
-  import java.util.HashSet;
-  import java.util.Objects;
-  import java.util.Set;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
-  import seedu.address.commons.util.ToStringBuilder;
-  import seedu.address.model.entity.Entity;
-  import seedu.address.model.entity.EntityStatisticMap;
-  import seedu.address.model.person.statistics.Statistics;
-  import seedu.address.model.tag.Tag;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.EntityStatisticMap;
+import seedu.address.model.person.statistics.Statistics;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.

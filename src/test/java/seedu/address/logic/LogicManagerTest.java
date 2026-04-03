@@ -57,7 +57,8 @@ public class LogicManagerTest {
                 new JsonMatchRecordStorage(temporaryFolder.resolve("matchRecord.json"));
         JsonEntityStorage entityStorage =
                 new JsonEntityStorage(temporaryFolder.resolve("entity.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, matchRecordStorage, userPrefsStorage, entityStorage);
+        StorageManager storage = new StorageManager(
+            addressBookStorage, matchRecordStorage, userPrefsStorage, entityStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -173,8 +174,8 @@ public class LogicManagerTest {
                 new JsonMatchRecordStorage(temporaryFolder.resolve("matchRecord.json"));
         JsonEntityStorage entityStorage =
                 new JsonEntityStorage(temporaryFolder.resolve("entity.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, matchRecordStorage, userPrefsStorage, entityStorage);
-
+        StorageManager storage = new StorageManager(
+            addressBookStorage, matchRecordStorage, userPrefsStorage, entityStorage);
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command

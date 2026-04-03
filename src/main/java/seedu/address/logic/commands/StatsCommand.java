@@ -6,21 +6,21 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEATHS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KILLS;
 
-  import java.util.List;
-  import java.util.Optional;
+import java.util.List;
+import java.util.Optional;
 
-  import seedu.address.commons.core.index.Index;
-  import seedu.address.commons.util.CollectionUtil;
-  import seedu.address.logic.Messages;
-  import seedu.address.logic.commands.exceptions.CommandException;
-  import seedu.address.model.Model;
-  import seedu.address.model.entity.Entity;
-  import seedu.address.model.entity.EntityStatisticMap;
-  import seedu.address.model.person.Person;
-  import seedu.address.model.person.statistics.Assists;
-  import seedu.address.model.person.statistics.Deaths;
-  import seedu.address.model.person.statistics.Kills;
-  import seedu.address.model.person.statistics.Statistics;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.EntityStatisticMap;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.statistics.Assists;
+import seedu.address.model.person.statistics.Deaths;
+import seedu.address.model.person.statistics.Kills;
+import seedu.address.model.person.statistics.Statistics;
 
 /**
  * Updates the statistics of an existing person in the address book.
@@ -93,16 +93,14 @@ public class StatsCommand extends Command {
                 .withDeaths(descriptor.getDeaths().orElse(new Deaths("0")))
                 .withAssists(descriptor.getAssists().orElse(new Assists("0")))
                 .build()));
-        }
-        else {
+        } else {
             stats.addStatistics(descriptor.getEntity(),
                 new Statistics.Builder()
                 .withKills(descriptor.getKills().orElse(new Kills("0")))
                 .withDeaths(descriptor.getDeaths().orElse(new Deaths("0")))
                 .withAssists(descriptor.getAssists().orElse(new Assists("0")))
                 .build());
-        }       
-
+        }
         return new Person(
                 personToEdit.getName(),
                 personToEdit.getPhone(),
@@ -134,7 +132,6 @@ public class StatsCommand extends Command {
      * Stores the details to update the person's statistics with.
      * Each non-empty field value will replace the corresponding field value of the
      * person.
-     * 
      * Entity cannot be null.
      */
     public static class EditStatsDescriptor {

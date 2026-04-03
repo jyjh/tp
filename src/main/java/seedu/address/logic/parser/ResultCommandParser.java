@@ -68,12 +68,11 @@ public class ResultCommandParser implements Parser<ResultCommand> {
         for (int i = 0; i < noPlayers; i++) {
             Name name = ParserUtil.parseName(argNames.get(i));
             String entityName = argEntities.get(i);
-            
             // Validate that entity exists
             Entity entity = EntityReference.findByName(entityName)
                     .orElseThrow(() -> new ParseException(
                             String.format("Entity '%s' does not exist in the entity list.", entityName)));
-            
+
             Kills kills = ParserUtil.parseKills(argKills.get(i));
             Deaths deaths = ParserUtil.parseDeaths(argDeaths.get(i));
             Assists assists = ParserUtil.parseAssists(argAssists.get(i));

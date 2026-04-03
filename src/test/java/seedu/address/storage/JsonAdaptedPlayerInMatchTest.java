@@ -1,22 +1,21 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_REFERENCE;
 import static seedu.address.storage.JsonAdaptedPlayerInMatch.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.BeforeAll;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.entity.Entity;
 import seedu.address.model.match.PlayerInMatch;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.statistics.Deaths;
 import seedu.address.model.person.statistics.Kills;
 import seedu.address.model.person.statistics.Statistics;
 import seedu.address.testutil.TypicalMatches;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_REFERENCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_1;
 
 public class JsonAdaptedPlayerInMatchTest {
 
@@ -30,10 +29,10 @@ public class JsonAdaptedPlayerInMatchTest {
     private static final String VALID_NAME = modelPlayer.getName().toString();
     private static final JsonAdaptedStatistics VALID_STATISTICS =
             new JsonAdaptedStatistics(modelPlayer.getStatistics());
-    
+
     @BeforeAll
     public static void setupAll() {
-        VALID_ENTITY_REFERENCE.reload(); // Ensure the EntityReference is loaded with the typical entities before tests run
+        VALID_ENTITY_REFERENCE.reload(); // Ensure the EntityReference is loaded
     }
 
     @Test
@@ -44,14 +43,16 @@ public class JsonAdaptedPlayerInMatchTest {
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedPlayerInMatch player = new JsonAdaptedPlayerInMatch(INVALID_NAME, VALID_ENTITY_1.getName(), VALID_STATISTICS);
+        JsonAdaptedPlayerInMatch player = new JsonAdaptedPlayerInMatch(
+            INVALID_NAME, VALID_ENTITY_1.getName(), VALID_STATISTICS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, player::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedPlayerInMatch player = new JsonAdaptedPlayerInMatch(null, VALID_ENTITY_1.getName(), VALID_STATISTICS);
+        JsonAdaptedPlayerInMatch player = new JsonAdaptedPlayerInMatch(
+            null, VALID_ENTITY_1.getName(), VALID_STATISTICS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, player::toModelType);
     }
@@ -59,15 +60,18 @@ public class JsonAdaptedPlayerInMatchTest {
     @Test
     public void toModelType_invalidKills_throwsIllegalValueException() {
         JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics(INVALID_KILLS, "0", "0");
-        JsonAdaptedPlayerInMatch player = new JsonAdaptedPlayerInMatch(VALID_NAME, VALID_ENTITY_1.getName(), invalidStats);
+        JsonAdaptedPlayerInMatch player = new JsonAdaptedPlayerInMatch(
+            VALID_NAME, VALID_ENTITY_1.getName(), invalidStats);
         String expectedMessage = Kills.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, player::toModelType);
     }
 
     @Test
     public void toModelType_invalidDeaths_throwsIllegalValueException() {
-        JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics("0", INVALID_DEATHS, "0");
-        JsonAdaptedPlayerInMatch player = new JsonAdaptedPlayerInMatch(VALID_NAME, VALID_ENTITY_1.getName(), invalidStats);
+        JsonAdaptedStatistics invalidStats = new JsonAdaptedStatistics(
+            "0", INVALID_DEATHS, "0");
+        JsonAdaptedPlayerInMatch player = new JsonAdaptedPlayerInMatch(
+            VALID_NAME, VALID_ENTITY_1.getName(), invalidStats);
         String expectedMessage = Deaths.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, player::toModelType);
     }

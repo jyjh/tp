@@ -1,12 +1,10 @@
 package seedu.address.model.util;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.util.Pair;
-
-import java.nio.file.Path;
-
 import seedu.address.model.entity.Entity;
 
 /**

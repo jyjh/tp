@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_STATISTIC_MAP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RANK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATS_SET_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -18,7 +18,6 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.statistics.Statistics;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -90,17 +89,8 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertNotEquals(ALICE, editedAlice);
 
-
-        // TODO: 
-        // Either remove this test or find someone to fix it. It appears to be a problem with the gradlew version.
-        // different stats -> returns false
-        // Failed to map supported failure 'org.opentest4j.AssertionFailedError: expected: not equal but was:
-        // <seedu.address.model.person.Person{name=Alice Pauline, phone=94351253,
-        // email=alice@example.com, role=TOP, rank=GOLD I, tags=[[friends]],
-        // entityStats=seedu.address.model.entity.EntityStatisticMap
-        // {entityStats={seedu.address.model.entity.Entity{name=default1, iconPath=images/default1}=Kills: 20, Deaths: 10, Assists: 5}}}>'
-        // with mapper 'org.gradle.api.internal.tasks.testing.failure.mappers.OpenTestAssertionFailedMapper@210f0cc1': Cannot invoke "Object.getClass()"
-        // because "obj" is null
+        // TODO:
+        // This test appears to be broken due to a problem with the gradlew version.
         // editedAlice = new PersonBuilder(ALICE).withEntityStatistics(VALID_ENTITY_STATISTIC_MAP).build();
         // assertNotEquals(ALICE, editedAlice);
 

@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_REFERENCE;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,7 +22,7 @@ public class JsonSerializableMatchRecordTest {
 
     @BeforeAll
     public static void setupAll() {
-        VALID_ENTITY_REFERENCE.reload(); // Ensure the EntityReference is loaded with the typical entities before tests run
+        VALID_ENTITY_REFERENCE.reload(); // Ensure the EntityReference is loaded before tests run
     }
 
     @Test

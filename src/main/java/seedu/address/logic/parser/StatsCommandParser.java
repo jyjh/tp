@@ -27,7 +27,8 @@ public class StatsCommandParser implements Parser<StatsCommand> {
      */
     public StatsCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ENTITY, PREFIX_KILLS, PREFIX_DEATHS, PREFIX_ASSISTS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+            args, PREFIX_ENTITY, PREFIX_KILLS, PREFIX_DEATHS, PREFIX_ASSISTS);
 
         Index index;
         try {
@@ -40,8 +41,9 @@ public class StatsCommandParser implements Parser<StatsCommand> {
 
         EditStatsDescriptor editStatsDescriptor = new EditStatsDescriptor();
 
-        Entity targetEntity = ParserUtil.parseEntity(argMultimap.getValue(PREFIX_ENTITY).orElseThrow(
-                () -> new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE))));
+        Entity targetEntity = ParserUtil.parseEntity(argMultimap.getValue(PREFIX_ENTITY)
+            .orElseThrow(() -> new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE))));
         editStatsDescriptor.setEntity(targetEntity);
 
 

@@ -1,4 +1,4 @@
-  package seedu.address.model.entity;
+package seedu.address.model.entity;
 
 import static java.util.Objects.requireNonNull;
 
@@ -12,7 +12,6 @@ import seedu.address.model.person.statistics.Statistics;
 
 /**
  * Manages a mapping of Entity objects to their Statistics.
- * Encapsulates Map<Entity, Statistics> operations.
  */
 public class EntityStatisticMap {
 
@@ -81,7 +80,6 @@ public class EntityStatisticMap {
 
     /**
      * Returns the internal map for operations that need direct access.
-     * @return The internal Map<Entity, Statistics>
      */
     public Map<Entity, Statistics> getMap() {
         return entityStats;
@@ -89,7 +87,6 @@ public class EntityStatisticMap {
 
     /**
      * Returns an unmodifiable view of the internal map.
-     * @return Unmodifiable Map<Entity, Statistics>
      */
     public Map<Entity, Statistics> getUnmodifiableMap() {
         return Collections.unmodifiableMap(entityStats);
@@ -145,14 +142,26 @@ public class EntityStatisticMap {
                 .toString();
     }
 
+    /**
+     * Builder class for constructing EntityStatisticMap instances with a fluent interface.
+     */
     public static class Builder {
 
         private EntityStatisticMap map;
 
+        /**
+         * Initializes the builder with an empty EntityStatisticMap.
+         */
         public Builder() {
             map = new EntityStatisticMap();
         }
 
+        /**
+         * Adds an entity and its statistics to the map being built.
+         * @param entity
+         * @param stat
+         * @return
+         */
         public Builder withEntity(Entity entity, Statistics stat) {
             map.addStatistics(entity, stat);
             return this;

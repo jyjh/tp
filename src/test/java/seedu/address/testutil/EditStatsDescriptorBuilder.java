@@ -65,6 +65,10 @@ public class EditStatsDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Builds and returns the {@code EditStatsDescriptor} that we have been building.
+     * @return
+     */
     public EditStatsDescriptor build() {
         assert(descriptor.getEntity() != null);
         return descriptor;

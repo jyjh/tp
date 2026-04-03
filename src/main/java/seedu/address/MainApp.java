@@ -25,10 +25,10 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMatchRecord;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.model.util.SampleEntityUtil;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.EntityReference;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.SampleEntityUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.EntityStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -123,7 +123,6 @@ public class MainApp extends Application {
             Pair<List<Entity>, List<Path>> pair = SampleEntityUtil.getSampleEntities();
             initialEntityReference = new EntityReference(
                     pair.getKey(), pair.getValue());
-           
         } catch (IOException e) {
             logger.warning("Failed to save sample entity reference. Details: "
                     + StringUtil.getDetails(e));

@@ -54,6 +54,9 @@ public class JsonEntityStorage implements EntityStorage {
         }
     }
 
+    /**
+     * Saves the given {@link EntityReference} to the storage.
+     */
     public void saveEntityReference(EntityReference entityReference, Path filePath) throws IOException {
         requireNonNull(entityReference);
         requireNonNull(filePath);

@@ -16,8 +16,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -67,7 +67,8 @@ public class StatsCommandTest {
             .equals(new StatsCommand(INDEX_SECOND_PERSON, STATS_DESC_SET_1)));
 
         // different descriptor -> returns false
-        EditStatsDescriptor differentDescriptor = new EditStatsDescriptorBuilder().withEntity(VALID_ENTITY_1).withKills("999").build();
+        EditStatsDescriptor differentDescriptor = new EditStatsDescriptorBuilder()
+            .withEntity(VALID_ENTITY_1).withKills("999").build();
         Assertions.assertFalse(statsFirstCommand
             .equals(new StatsCommand(INDEX_FIRST_PERSON, differentDescriptor)));
     }
@@ -140,7 +141,7 @@ public class StatsCommandTest {
                 .withAssists(VALID_ASSISTS_SET_2)
                 .build();
         Assertions.assertFalse(descriptor.equals(descriptorWithDifferentAssists));
-        
+
         EditStatsDescriptor descriptorWithDifferentEntity =
             new EditStatsDescriptorBuilder()
                 .withEntity(VALID_ENTITY_2)
@@ -149,7 +150,6 @@ public class StatsCommandTest {
                 .withAssists(VALID_ASSISTS_SET_1)
                 .build();
         Assertions.assertFalse(descriptor.equals(descriptorWithDifferentEntity));
-    
     }
 
     @Test

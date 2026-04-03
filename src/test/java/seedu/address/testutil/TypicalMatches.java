@@ -1,13 +1,11 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_REFERENCE;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import seedu.address.model.MatchRecord;
-import seedu.address.model.entity.Entity;
 import seedu.address.model.match.Match;
 import seedu.address.model.match.PlayerInMatch;
 import seedu.address.model.match.Result;

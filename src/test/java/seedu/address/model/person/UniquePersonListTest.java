@@ -120,8 +120,12 @@ public class UniquePersonListTest {
         TypicalMatches.PERSONS.forEach(expected::add);
         List<Person> persons = TypicalMatches.TWO_PERSONS;
         List<Person> editedPersons = List.of(
-                persons.get(0).addEntityStatistics(match.getPlayers().get(0).getStatistics(), match.getPlayers().get(0).getEntity()),
-                persons.get(1).addEntityStatistics(match.getPlayers().get(1).getStatistics(), match.getPlayers().get(1).getEntity()));
+                persons.get(0).addEntityStatistics(
+                    match.getPlayers().get(0).getStatistics(),
+                    match.getPlayers().get(0).getEntity()),
+                persons.get(1).addEntityStatistics(
+                    match.getPlayers().get(1).getStatistics(),
+                    match.getPlayers().get(1).getEntity()));
         expected.setPerson(persons.get(0), editedPersons.get(0));
         expected.setPerson(persons.get(1), editedPersons.get(1));
 

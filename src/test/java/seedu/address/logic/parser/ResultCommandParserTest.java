@@ -24,7 +24,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEATHS_SET_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEATHS_SET_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_REFERENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_KILLS_SET_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_KILLS_SET_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -39,12 +38,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.EntityReference;
-import seedu.address.model.entity.EntityStatisticMap;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.ResultCommand;
@@ -94,17 +88,19 @@ public class ResultCommandParserTest {
                 ));
 
         // Two players involved in match
-        // Arguments in order: result, name_1, entity_1, name_2, entity_2, kills_1, kills_1, deaths_1, deaths_1, assists_1, assists_2
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + RESULT_DESC_WIN + NAME_DESC_AMY + ENTITY_DESC_1 
+        // Arguments in order: result, name_1, entity_1, name_2, entity_2,
+        // kills_1, kills_1, deaths_1, deaths_1, assists_1, assists_2
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + RESULT_DESC_WIN + NAME_DESC_AMY + ENTITY_DESC_1
                 + NAME_DESC_BOB + ENTITY_DESC_2
                 + KILLS_DESC_SET_1 + KILLS_DESC_SET_2 + DEATHS_DESC_SET_1 + DEATHS_DESC_SET_2
                 + ASSISTS_DESC_SET_1 + ASSISTS_DESC_SET_2 + DATE_DESC,
                 new ResultCommand(expectedMatch2));
 
         // Two players involved in match
-        // Arguments in order: result, name_1, entity_1, kills_1, deaths_1, assists_1, name_2, entity_2, kills_2, deaths_2, assists_2
+        // Arguments in order: result, name_1, entity_1, kills_1, deaths_1,
+        // assists_1, name_2, entity_2, kills_2, deaths_2, assists_2
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + RESULT_DESC_WIN + NAME_DESC_AMY + ENTITY_DESC_1
-                + KILLS_DESC_SET_1 + DEATHS_DESC_SET_1 + ASSISTS_DESC_SET_1 + NAME_DESC_BOB + ENTITY_DESC_2 
+                + KILLS_DESC_SET_1 + DEATHS_DESC_SET_1 + ASSISTS_DESC_SET_1 + NAME_DESC_BOB + ENTITY_DESC_2
                 + KILLS_DESC_SET_2 + DEATHS_DESC_SET_2 + ASSISTS_DESC_SET_2 + DATE_DESC,
                 new ResultCommand(expectedMatch2));
 
@@ -118,7 +114,7 @@ public class ResultCommandParserTest {
     public void parse_noNamesAndStatsDoNotMatch_failure() {
 
         // Two players but only one statistic
-        String twoPlayersOneStatistic = PREAMBLE_WHITESPACE + RESULT_DESC_WIN + NAME_DESC_AMY + ENTITY_DESC_1 
+        String twoPlayersOneStatistic = PREAMBLE_WHITESPACE + RESULT_DESC_WIN + NAME_DESC_AMY + ENTITY_DESC_1
                 + NAME_DESC_BOB + ENTITY_DESC_2
                 + KILLS_DESC_SET_1 + DEATHS_DESC_SET_1 + ASSISTS_DESC_SET_1 + DATE_DESC;
         assertParseFailure(parser, twoPlayersOneStatistic, MESSAGE_FIELD_QUANTITY_MISMATCH);
