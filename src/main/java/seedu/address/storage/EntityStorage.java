@@ -30,6 +30,8 @@ public interface EntityStorage {
      */
     Optional<EntityReference> readEntityReference(Path filePath) throws DataLoadingException;
 
+    void saveEntityReference(EntityReference entityReference) throws IOException;
+
     void saveEntityReference(EntityReference entityReference, Path filePath) throws IOException;
 
 }

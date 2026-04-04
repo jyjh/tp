@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_NAME_1;
@@ -46,5 +47,26 @@ public class EntityReferenceTest {
     
         assertTrue(EntityReference.findByName(VALID_ENTITY_NAME_1).isEmpty());
         assertTrue(EntityReference.findByName("INVALID_ENTITY").isEmpty());
+    }
+
+    @Test
+    public void equals() {
+        EntityReference entityReference = new EntityReference(
+            VALID_ENTITY_REFERENCE.getEntityPathPairs());
+
+        // same values -> returns true
+        assertTrue(entityReference.equals(VALID_ENTITY_REFERENCE));
+
+        // same object -> returns true
+        assertTrue(entityReference.equals(entityReference));
+
+        // null -> returns false
+        assertFalse(entityReference.equals(null));
+
+        // different types -> returns false
+        assertFalse(entityReference.equals(5.0f));
+
+        // different values -> returns false
+        assertFalse(entityReference.equals(new EntityReference(new ArrayList<>())));
     }
 }

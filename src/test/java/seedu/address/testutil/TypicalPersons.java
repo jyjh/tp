@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENTITY_REFERENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_IGN_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_IGN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -20,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.entity.EntityReference;
 import seedu.address.model.person.Person;
 
 /**
@@ -76,6 +78,10 @@ public class TypicalPersons {
             ab.addPerson(person);
         }
         return ab;
+    }
+
+    public static EntityReference getTypicalEntityReference() {
+        return VALID_ENTITY_REFERENCE;
     }
 
     public static List<Person> getTypicalPersons() {

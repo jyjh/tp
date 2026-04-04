@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalEntityReference;
 
 import java.nio.file.Path;
 
@@ -16,6 +17,7 @@ import seedu.address.model.MatchRecord;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMatchRecord;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.entity.EntityReference;
 
 public class StorageManagerTest {
 
@@ -62,6 +64,19 @@ public class StorageManagerTest {
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
+    }
+
+    @Test
+    public void entityReferenceReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonEntityStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonEntityStorageTest} class.
+         */
+        EntityReference original = getTypicalEntityReference();
+        storageManager.saveEntityReference(original);
+        EntityReference retrieved = storageManager.readEntityReference().get();
+        assertEquals(original, retrieved);
     }
 
     @Test

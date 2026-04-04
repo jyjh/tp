@@ -44,6 +44,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, MatchReco
     Optional<EntityReference> readEntityReference() throws DataLoadingException;
 
     @Override
+    void saveEntityReference(EntityReference entityReference) throws IOException;
+
+    @Override
     void saveEntityReference(EntityReference entityReference, Path filePath) throws IOException;
 
 }

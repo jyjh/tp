@@ -105,4 +105,17 @@ public class EntityReference {
     public String toString() {
         return entities.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof EntityReference)) {
+            return false;
+        }
+        EntityReference that = (EntityReference) obj;
+        return entities.equals(that.entities) &&
+            entityIconMap.equals(that.entityIconMap);
+    }
 }
