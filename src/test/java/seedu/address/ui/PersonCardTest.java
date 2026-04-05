@@ -13,7 +13,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import javafx.application.Platform;
 import javafx.scene.control.Button;
@@ -30,8 +31,9 @@ import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains tests for PersonCard, specifically testing the createEntityButton() functionality.
+ * These tests are disabled on Linux because they require JavaFX which needs a display server.
  */
-@EnabledIf("isGraphicsEnvironmentAvailable")
+@DisabledOnOs(OS.LINUX)
 public class PersonCardTest {
 
     private static final String TEST_IMAGE_NAME = "Ahri.png";
