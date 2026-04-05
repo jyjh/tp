@@ -49,6 +49,10 @@ public class PersonCardTest {
     @BeforeAll
     public static void initJavaFX() throws Exception {
         try {
+            System.setProperty("java.awt.headless", "true");
+            System.setProperty("testfx.headless", "true");
+            System.setProperty("prism.verbose", "true");
+            System.setProperty("prism.order", "sw");
             Platform.startup(() -> {});
         } catch (IllegalStateException e) {
             // JavaFX already initialized
