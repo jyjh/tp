@@ -39,7 +39,7 @@ public class ResultCommandParser implements Parser<ResultCommand> {
                     PREFIX_KILLS, PREFIX_DEATHS, PREFIX_ASSISTS);
         if (!arePrefixesPresent(argMultimap, PREFIX_RESULT, PREFIX_IGN, PREFIX_ENTITY, PREFIX_KILLS,
                 PREFIX_DEATHS, PREFIX_ASSISTS) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ResultCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ResultCommand.PARAMETERS));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_RESULT);

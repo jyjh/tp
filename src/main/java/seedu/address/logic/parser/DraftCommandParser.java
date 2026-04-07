@@ -28,7 +28,7 @@ public class DraftCommandParser implements Parser<DraftCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DraftCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DraftCommand.PARAMETERS));
         }
 
         String[] argStrings = trimmedArgs.split("\\s+");

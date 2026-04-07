@@ -22,8 +22,9 @@ public class ResultCommand extends Command {
 
     public static final String COMMAND_WORD = "result";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a match to the Match Record. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = "Adds a match to the Match Record.";
+
+    public static final String PARAMETERS = "Parameters: "
             + PREFIX_RESULT + "RESULT (must be one of: WIN, LOSE, DRAW) "
             + "[" + PREFIX_DATE + "yyyy-MM-dd] "
             + PREFIX_IGN + "IGN (must exist in the list) "
@@ -31,8 +32,9 @@ public class ResultCommand extends Command {
             + PREFIX_KILLS + "KILLS "
             + PREFIX_DEATHS + "DEATHS "
             + PREFIX_ASSISTS + "ASSISTS\n"
-            + "The number of names, entities, and statistics must match.\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_RESULT + "WIN "
+            + "The number of names, entities, and statistics must match.\n";
+
+    public static final String EXAMPLE = "Example: " + COMMAND_WORD + " " + PREFIX_RESULT + "WIN "
             + PREFIX_IGN + "IGN_1 " + PREFIX_ENTITY + "ENTITY1 "
             + PREFIX_KILLS + "20 " + PREFIX_DEATHS + "10 " + PREFIX_ASSISTS + "30 "
             + PREFIX_IGN + "IGN_2 " + PREFIX_ENTITY + "ENTITY2 "

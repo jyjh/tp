@@ -21,7 +21,7 @@ import seedu.address.logic.commands.DraftCommand;
 public class DraftCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DraftCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DraftCommand.PARAMETERS);
 
     private DraftCommandParser parser = new DraftCommandParser();
 

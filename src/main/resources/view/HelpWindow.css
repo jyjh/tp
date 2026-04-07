@@ -1,4 +1,4 @@
-#copyButton, #helpMessage {
+#copyButton, #urlLabel {
     -fx-text-fill: white;
 }
 
@@ -14,6 +14,55 @@
     -fx-background-color: darkgray;
 }
 
-#helpMessageContainer {
+#urlSection {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-border-width: 0 0 1 0;
+}
+
+#commandTable {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-border-width: 1;
+}
+
+#commandTable .column-header {
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#1d1d1d, 40%);
+    -fx-border-width: 0 0 1 0;
+}
+
+#commandTable .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+#commandTable .table-cell {
+    -fx-text-fill: white;
+    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 5px;
+    -fx-wrap-text: true;
+}
+
+#commandTable .table-row-cell {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-cell-size: -1;
+}
+
+#commandTable .table-row-cell:selected {
+    -fx-background-color: derive(#1d1d1d, 40%);
+}
+
+#commandTable .table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+#commandTable .table-row-cell:hover {
+    -fx-background-color: derive(#1d1d1d, 30%);
+}
+
+#mainContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }

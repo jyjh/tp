@@ -35,43 +35,43 @@ public class CompareCommandParserTest {
     public void parse_invalidArgCount_throwsParseException() {
         // Only one index provided
         assertParseFailure(parser, "1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
 
         // More than two indices provided
         assertParseFailure(parser, "1 2 3",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
 
         // No arguments provided
         assertParseFailure(parser, "",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
     }
 
     @Test
     public void parse_invalidIndex_throwsParseException() {
         // Non-numeric index
         assertParseFailure(parser, "a b",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
 
         // First index invalid, second valid
         assertParseFailure(parser, "a 2",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
 
         // First index valid, second invalid
         assertParseFailure(parser, "1 b",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
 
         // Negative indices
         assertParseFailure(parser, "-1 2",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
 
         assertParseFailure(parser, "1 -2",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
 
         // Zero indices
         assertParseFailure(parser, "0 2",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
 
         assertParseFailure(parser, "1 0",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
     }
 }

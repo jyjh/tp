@@ -163,7 +163,7 @@ public class ResultCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ResultCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ResultCommand.PARAMETERS);
 
         // missing result
         assertParseFailure(parser, PREAMBLE_WHITESPACE + IGN_DESC_AMY + ENTITY_DESC_1 + KILLS_DESC_SET_1

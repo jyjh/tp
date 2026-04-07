@@ -18,10 +18,12 @@ public class CompareCommand extends Command {
 
     public static final String COMMAND_WORD = "compare";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Compares two players identified by their index numbers in the displayed person list.\n"
-            + "Parameters: INDEX1 INDEX2 (must be two positive integers)\n"
-            + "Example: " + COMMAND_WORD + " 1 2";
+    public static final String MESSAGE_USAGE =
+            "Compares two players identified by their index numbers in the displayed person list.";
+
+    public static final String PARAMETERS = "Parameters: INDEX1 INDEX2 (must be two positive integers)\n";
+
+    public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_COMPARE_SUCCESS = "Comparing players:\n%1$s\n%2$s";
 

@@ -15,10 +15,12 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all persons whose tags match "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " mid top bot";
+    public static final String MESSAGE_USAGE = "Filters all persons whose tags match "
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.";
+
+    public static final String PARAMETERS = "Parameters: KEYWORD [MORE_KEYWORDS]...\n";
+
+    public static final String EXAMPLE = "Example: " + COMMAND_WORD + " mid top bot";
 
     private final TagsContainsKeywordsPredicate predicate;
 

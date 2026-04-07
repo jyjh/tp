@@ -28,15 +28,18 @@ import seedu.address.model.person.statistics.Statistics;
 public class StatsCommand extends Command {
     public static final String COMMAND_WORD = "stats";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the statistics of the person identified "
+    public static final String MESSAGE_USAGE = "Updates the statistics of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Existing values will be overwritten by the input values.";
+
+    public static final String PARAMETERS = "Parameters: INDEX (must be a positive integer) "
             + PREFIX_ENTITY + "ENTITY "
             + "[" + PREFIX_KILLS + "KILLS] "
             + "[" + PREFIX_DEATHS + "DEATHS] "
-            + "[" + PREFIX_ASSISTS + "ASSISTS]\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_KILLS + "50 " + PREFIX_DEATHS + "10 "
+            + "[" + PREFIX_ASSISTS + "ASSISTS]\n";
+
+    public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_KILLS + "50 " + PREFIX_DEATHS + "10 "
             + PREFIX_ASSISTS + "20";
 
     public static final String MESSAGE_STATS_SUCCESS = "Updated Statistics for Person: %1$s";

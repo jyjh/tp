@@ -9,6 +9,12 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
+    public static final String MESSAGE_USAGE = "Exits the program.";
+
+    public static final String PARAMETERS = "Parameters: None\n";
+
+    public static final String EXAMPLE = "Example: " + COMMAND_WORD;
+
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
     @Override

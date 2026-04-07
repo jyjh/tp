@@ -26,7 +26,7 @@ public class CompareCommandParser implements Parser<CompareCommand> {
             List<String> indexStrings = Arrays.asList(args.trim().split("\\s+"));
             if (indexStrings.size() != 2) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS));
             }
 
             Index index1 = ParserUtil.parseIndex(indexStrings.get(0));
@@ -34,7 +34,7 @@ public class CompareCommandParser implements Parser<CompareCommand> {
             return new CompareCommand(index1, index2);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CompareCommand.PARAMETERS), pe);
         }
     }
 

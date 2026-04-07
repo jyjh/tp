@@ -26,7 +26,7 @@ import seedu.address.model.person.statistics.Kills;
 public class StatsCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.PARAMETERS);
 
     private StatsCommandParser parser = new StatsCommandParser();
 

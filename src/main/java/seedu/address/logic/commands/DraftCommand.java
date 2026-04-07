@@ -24,9 +24,11 @@ public class DraftCommand extends Command {
 
     public static final String COMMAND_WORD = "draft";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Validates team composition using selected players. "
-            + "Parameters: (INDEX | i/IGNNAME) [(INDEX | i/IGNNAME)]...\n"
-            + "Example: " + COMMAND_WORD + " 1 2 i/CarlK77 4 i/ElleM55";
+    public static final String MESSAGE_USAGE = "Validates team composition using selected players.";
+
+    public static final String PARAMETERS = "Parameters: (INDEX | i/IGNNAME) [(INDEX | i/IGNNAME)]...\n";
+
+    public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1 2 i/CarlK77 4 i/ElleM55";
 
     public static final String MESSAGE_SUCCESS = "Draft validation complete: %1$s";
     public static final String MESSAGE_INVALID_IGN_NOT_FOUND = "Player with IGN '%1$s' not found";

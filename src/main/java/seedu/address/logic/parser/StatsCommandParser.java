@@ -34,7 +34,7 @@ public class StatsCommandParser implements Parser<StatsCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.PARAMETERS), pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ENTITY, PREFIX_KILLS, PREFIX_DEATHS, PREFIX_ASSISTS);
@@ -43,7 +43,7 @@ public class StatsCommandParser implements Parser<StatsCommand> {
 
         Entity targetEntity = ParserUtil.parseEntity(argMultimap.getValue(PREFIX_ENTITY)
             .orElseThrow(() -> new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE))));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.PARAMETERS))));
         editStatsDescriptor.setEntity(targetEntity);
 
 
