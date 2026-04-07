@@ -119,14 +119,16 @@ public class ComparePanel extends UiPart<VBox> {
         uniqueEntities.addAll(player1Stats.getUnmodifiableMap().keySet());
         uniqueEntities.addAll(player2Stats.getUnmodifiableMap().keySet());
 
-        // Convert to list for consistent ordering
+        // Convert to list and create sorted buttons
         List<Entity> entities = new ArrayList<>(uniqueEntities);
+        List<Button> entityButtons = EntityButtonFactory.createEntityButtons(entities);
 
-        for (Entity entity : entities) {
+        for (int i = 0; i < entities.size(); i++) {
+            Entity entity = entities.get(i);
+            Button entityButton = entityButtons.get(i);
+
             boolean player1HasStats = player1Stats.containsKey(entity);
             boolean player2HasStats = player2Stats.containsKey(entity);
-
-            Button entityButton = EntityButtonFactory.createEntityButton(entity);
 
             // Add click handler
             entityButton.setOnAction(event -> handleEntityButtonClick(entity, entityButton));

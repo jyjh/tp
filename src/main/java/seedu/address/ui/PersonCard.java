@@ -1,7 +1,9 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -92,12 +94,16 @@ public class PersonCard extends UiPart<Region> {
      * Populates the entity icons grid with buttons for each entity the person has stats for.
      */
     private void populateEntityIcons() {
-        person.getOverallEntityStatistics().getMap().keySet().forEach(entity -> {
-            Button entityButton = EntityButtonFactory.createEntityButton(entity);
+        List<Entity> entities = new ArrayList<>(person.getOverallEntityStatistics().getMap().keySet());
+        List<Button> entityButtons = EntityButtonFactory.createEntityButtons(entities);
+
+        for (int i = 0; i < entities.size(); i++) {
+            Entity entity = entities.get(i);
+            Button entityButton = entityButtons.get(i);
             entityButton.setOnAction(event -> selectEntity(entity));
             entityButtonMap.put(entity, entityButton);
             entityIconsGrid.getChildren().add(entityButton);
-        });
+        }
     }
 
     /**

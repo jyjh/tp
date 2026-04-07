@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -152,5 +153,99 @@ public class EntityButtonFactoryTest {
         assertNull(buttonWithFallback.getGraphic(), "Button with invalid path should not have a graphic");
         assertEquals("T", buttonWithFallback.getText(),
                 "Button with invalid path should display fallback character 'T'");
+    }
+
+    @Test
+    public void createEntityButtons_emptyList_returnsEmptyList() {
+        List<Entity> emptyList = new ArrayList<>();
+        List<Button> buttons = EntityButtonFactory.createEntityButtons(emptyList);
+
+        assertEquals(0, buttons.size(), "Empty entity list should return empty button list");
+    }
+
+    @Test
+    public void createEntityButtons_singleEntity_returnsSingleButton() {
+        List<Entity> singleEntityList = new ArrayList<>();
+        singleEntityList.add(entityWithValidImage);
+
+        List<Button> buttons = EntityButtonFactory.createEntityButtons(singleEntityList);
+
+        assertEquals(1, buttons.size(), "Single entity should return single button");
+        Button button = buttons.get(0);
+        assertNotNull(button.getGraphic(), "Button should have graphic");
+        assertTrue(button.getGraphic() instanceof ImageView,
+                "Button graphic should be ImageView");
+    }
+
+    @Test
+    public void createEntityButtons_unsortedList_returnsSortedList() {
+        // Create entities with names that would be out of order alphabetically
+        Entity entityZ = new Entity("Zed");
+        Entity entityA = new Entity("Ahri");
+        Entity entityM = new Entity("MissFortune");
+
+        List<Entity> unsortedEntities = new ArrayList<>();
+        unsortedEntities.add(entityZ);
+        unsortedEntities.add(entityA);
+        unsortedEntities.add(entityM);
+
+        // Set up EntityReference for the new entities
+        testEntityReference = new EntityReference(List.of(
+            new EntityPathPair(entityWithValidImage, Paths.get("src", "test",
+                "resources", "images", "Ahri.png")),
+            new EntityPathPair(entityWithInvalidPath, Paths.get("src", "test",
+                "resources", "images", "NonExistentImage.png")),
+            new EntityPathPair(entityWithEmptyName, Paths.get("src", "test",
+                "resources", "images", "InvalidForEmpty.png")),
+            new EntityPathPair(entityZ, Paths.get("src", "test", "resources", "images", "NonExistentImage.png")),
+            new EntityPathPair(entityA, Paths.get("src", "test", "resources", "images", "NonExistentImage.png")),
+            new EntityPathPair(entityM, Paths.get("src", "test", "resources", "images", "NonExistentImage.png"))
+        ));
+        testEntityReference.reload();
+
+        List<Button> buttons = EntityButtonFactory.createEntityButtons(unsortedEntities);
+
+        // Verify the output is sorted alphabetically by checking button text (fallback characters)
+        assertEquals(3, buttons.size(), "Should return 3 buttons");
+        assertEquals("A", buttons.get(0).getText(),
+                "First button should display 'A' for Ahri");
+        assertEquals("M", buttons.get(1).getText(),
+                "Second button should display 'M' for MissFortune");
+        assertEquals("Z", buttons.get(2).getText(),
+                "Third button should display 'Z' for Zed");
+    }
+
+    @Test
+    public void createEntityButtons_alreadySortedList_returnsCorrectlyOrderedButtons() {
+        // Create entities already in alphabetical order
+        Entity entityA = new Entity("Ahri");
+        Entity entityB = new Entity("Bard");
+
+        List<Entity> sortedEntities = new ArrayList<>();
+        sortedEntities.add(entityA);
+        sortedEntities.add(entityB);
+
+        // Set up EntityReference for the new entities
+        testEntityReference = new EntityReference(List.of(
+            new EntityPathPair(entityWithValidImage, Paths.get("src", "test",
+                "resources", "images", "Ahri.png")),
+            new EntityPathPair(entityWithInvalidPath, Paths.get("src", "test",
+                "resources", "images", "NonExistentImage.png")),
+            new EntityPathPair(entityWithEmptyName, Paths.get("src", "test",
+                "resources", "images", "InvalidForEmpty.png")),
+            new EntityPathPair(entityA, Paths.get("src", "test",
+                "resources", "images", "NonExistentImage.png")),
+            new EntityPathPair(entityB, Paths.get("src", "test", "resources",
+                "images", "NonExistentImage.png"))
+        ));
+        testEntityReference.reload();
+
+        List<Button> buttons = EntityButtonFactory.createEntityButtons(sortedEntities);
+
+        assertEquals(2, buttons.size(), "Should return 2 buttons");
+        assertEquals("A", buttons.get(0).getText(),
+                "First button should display 'A' for Ahri");
+        assertEquals("B", buttons.get(1).getText(),
+                "Second button should display 'B' for Bard");
     }
 }

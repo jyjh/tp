@@ -1,9 +1,13 @@
 package seedu.address.ui;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seedu.address.commons.core.LogsCenter;
@@ -52,6 +56,27 @@ public class EntityButtonFactory {
                 + " -fx-background-color: #4a90e2;");
         }
 
+        // Add tooltip to display full entity name on hover
+        Tooltip tooltip = new Tooltip(entity.getName());
+        Tooltip.install(button, tooltip);
+
         return button;
+    }
+
+    /**
+     * Creates a list of buttons for multiple entities, sorted alphabetically by entity name.
+     *
+     * @param entities the list of entities to create buttons for (unsorted)
+     * @return a sorted list of Buttons representing the entities
+     */
+    public static List<Button> createEntityButtons(List<Entity> entities) {
+        List<Entity> sortedEntities = new ArrayList<>(entities);
+        sortedEntities.sort(Comparator.comparing(Entity::getName));
+
+        List<Button> buttons = new ArrayList<>();
+        for (Entity entity : sortedEntities) {
+            buttons.add(createEntityButton(entity));
+        }
+        return buttons;
     }
 }
