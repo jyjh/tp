@@ -62,8 +62,8 @@ public class SampleEntityUtilTest {
             String pathString = pair.getPath().toString();
             assertTrue(pathString.startsWith("/images/") || pathString.startsWith("\\images\\"),
                 String.format("Image path should start with /images/ or \\images\\, but path is %s", pathString));
-            assertTrue(pathString.endsWith(".png"),
-                String.format("Image path should end with .png, but is %s", pathString));
+            assertTrue(pathString.endsWith(".jpg"),
+                String.format("Image path should end with .jpg, but is %s", pathString));
         }
     }
 
@@ -73,8 +73,8 @@ public class SampleEntityUtilTest {
         for (EntityPathPair pair : entities) {
             String pathString = pair.getPath().toString();
 
-            // Extract the filename (between /images/ and .png)
-            String filename = pathString.substring(pathString.indexOf("/") + 1, pathString.indexOf(".png"));
+            // Extract the filename (between /images/ and .jpg)
+            String filename = pathString.substring(pathString.indexOf("/") + 1, pathString.indexOf(".jpg"));
             String lowercaseFilename = filename.toLowerCase();
 
             assertEquals(lowercaseFilename, filename,

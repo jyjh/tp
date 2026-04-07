@@ -42,7 +42,10 @@ public class EntityButtonFactory {
 
         if (iconPath != null && iconPath.toFile().canRead()) {
             // Use image if available
-            Image image = new Image(iconPath.toUri().toString(), ICON_SIZE, ICON_SIZE, true, true);
+            // Convert relative paths to absolute paths for JavaFX Image constructor
+            Path imagePath = iconPath.isAbsolute() ? iconPath : iconPath.toAbsolutePath();
+            // Load image at 2x resolution for better quality scaling
+            Image image = new Image(imagePath.toUri().toString(), ICON_SIZE * 2, ICON_SIZE * 2, true, true);
             ImageView imageView = new ImageView(image);
             imageView.setFitWidth(ICON_SIZE);
             imageView.setFitHeight(ICON_SIZE);
