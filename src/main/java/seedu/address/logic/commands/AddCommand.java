@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_ROLE + "ROLE "
             + PREFIX_RANK + "RANK "
             + "[" + PREFIX_TAG + "TAG]...\n";
-    
+
     public static final String EXAMPLE = "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
