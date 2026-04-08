@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.CommandUtil;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,25 +19,29 @@ public class CompareCommand extends Command {
     public static final String COMMAND_WORD = "compare";
 
     public static final String MESSAGE_USAGE =
-            "Compares two players identified by their index numbers in the displayed person list.";
+            "Compares two players identified by their index numbers"
+            + " or in-game names (IGNs) in the displayed person list.";
 
-    public static final String PARAMETERS = "Parameters: INDEX1 INDEX2 (must be two positive integers)\n";
+    public static final String PARAMETERS =
+        "Parameters: INDEX1 INDEX2 or i/IGN1 i/IGN2 or combinations (must be two identifiers)\n";
 
-    public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1 2";
+    public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1 2\n" + COMMAND_WORD + " i/Player1 i/Player2\n"
+            + COMMAND_WORD + " 1 i/Player2";
 
     public static final String MESSAGE_COMPARE_SUCCESS = "Comparing players:\n%1$s\n%2$s";
+    public static final String MESSAGE_IGN_NOT_FOUND = "No person with IGN '%1$s' found.";
 
-    private final Index targetIndex1;
-    private final Index targetIndex2;
+    private final String targetIdentifier1;
+    private final String targetIdentifier2;
 
     /**
      * Creates a CompareCommand to compare two players.
-     * @param targetIndex1 the index of the first player
-     * @param targetIndex2 the index of the second player
+     * @param targetIdentifier1 the index or IGN of the first player
+     * @param targetIdentifier2 the index or IGN of the second player
      */
-    public CompareCommand(Index targetIndex1, Index targetIndex2) {
-        this.targetIndex1 = targetIndex1;
-        this.targetIndex2 = targetIndex2;
+    public CompareCommand(String targetIdentifier1, String targetIdentifier2) {
+        this.targetIdentifier1 = targetIdentifier1;
+        this.targetIdentifier2 = targetIdentifier2;
     }
 
     @Override
@@ -45,16 +49,8 @@ public class CompareCommand extends Command {
         requireNonNull(model);
         List<Person> addressBookList = model.getAddressBook().getPersonList();
 
-        if (targetIndex1.getZeroBased() >= addressBookList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        if (targetIndex2.getZeroBased() >= addressBookList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person person1 = addressBookList.get(targetIndex1.getZeroBased());
-        Person person2 = addressBookList.get(targetIndex2.getZeroBased());
+        Person person1 = CommandUtil.findPersonByIdentifier(addressBookList, targetIdentifier1);
+        Person person2 = CommandUtil.findPersonByIdentifier(addressBookList, targetIdentifier2);
 
         return new CommandResult(
                 String.format(MESSAGE_COMPARE_SUCCESS, Messages.format(person1), Messages.format(person2)),
@@ -74,15 +70,15 @@ public class CompareCommand extends Command {
         }
 
         CompareCommand otherCompareCommand = (CompareCommand) other;
-        return targetIndex1.equals(otherCompareCommand.targetIndex1)
-                && targetIndex2.equals(otherCompareCommand.targetIndex2);
+        return targetIdentifier1.equals(otherCompareCommand.targetIdentifier1)
+                && targetIdentifier2.equals(otherCompareCommand.targetIdentifier2);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex1", targetIndex1)
-                .add("targetIndex2", targetIndex2)
+                .add("targetIdentifier1", targetIdentifier1)
+                .add("targetIdentifier2", targetIdentifier2)
                 .toString();
     }
 }

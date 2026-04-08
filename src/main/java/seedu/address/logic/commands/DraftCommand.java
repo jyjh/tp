@@ -9,6 +9,7 @@ import java.util.Map;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.CommandUtil;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -71,17 +72,7 @@ public class DraftCommand extends Command {
 
         // Resolve IGNs
         for (String ign : igns) {
-            boolean found = false;
-            for (Person person : addressBookList) {
-                if (person.getIgn().value.equals(ign)) {
-                    selectedPlayers.add(person);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                throw new CommandException(String.format(MESSAGE_INVALID_IGN_NOT_FOUND, ign));
-            }
+            selectedPlayers.add(CommandUtil.findPersonByIdentifier(addressBookList, ign));
         }
 
         // Validate composition and generate result message

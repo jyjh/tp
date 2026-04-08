@@ -18,9 +18,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.CommandUtil;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -59,24 +59,29 @@ public class EditCommand extends Command {
     public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
-            + PREFIX_RANK + "PLATINUM";
+            + PREFIX_RANK + "PLATINUM\n"
+            + COMMAND_WORD + " 2 "
+            + PREFIX_IGN + "NewPlayerName";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_IGN_NOT_FOUND = "No person with IGN '%1$s' found.";
+    public static final String MESSAGE_INDEX_REQUIRED =
+            "Edit command requires an INDEX (not IGN) to identify the person to edit.";
 
-    private final Index index;
+    private final String targetIdentifier;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param targetIdentifier of the person in the filtered person list to edit (can be index or IGN)
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(String targetIdentifier, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(targetIdentifier);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.targetIdentifier = targetIdentifier;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -85,11 +90,8 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Person> addressBookList = model.getAddressBook().getPersonList();
 
-        if (index.getZeroBased() >= addressBookList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+        Person personToEdit = CommandUtil.findPersonByIdentifier(addressBookList, targetIdentifier);
 
-        Person personToEdit = addressBookList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -133,14 +135,14 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
+        return targetIdentifier.equals(otherEditCommand.targetIdentifier)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("targetIdentifier", targetIdentifier)
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
