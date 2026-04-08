@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+DraftDeck is a **desktop app for managing gaming teams and players, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, DraftDeck can get your team management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -17,7 +17,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your DraftDeck.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -26,13 +26,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all players.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com i/JohnD88 r/MID rank/GOLD I` : Adds a player named `John Doe` to the player list.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd indexed player.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all players.
 
    * `exit` : Exits the app.
 
@@ -75,40 +75,41 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a player to the player list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE e/EMAIL i/IGN r/ROLE rank/RANK [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A player can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com i/JohnD88 r/MID rank/GOLD`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com i/Betsycrowe r/BOT rank/PLATINUM p/1234567`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the player list.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in the player list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [addr/ADDRESS] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* You can remove all the person's tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 3 r/JUNGLE rank/DIAMOND I` Edits the role and rank of the 3rd person.
 
 ### Locating persons by name: `find`
 
@@ -128,21 +129,27 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating persons by name: `filter`
+### Filtering persons : `filter`
 
-Finds persons whose tags contain any of the given keywords.
+Finds persons whose tags, roles, or entities contain any of the given keywords.
 
-Format: `filter KEYWORD [MORE_KEYWORDS]`
+Format: `filter [t/KEYWORD [MORE_KEYWORDS]...] [r/KEYWORD [MORE_KEYWORDS]...] [ent/KEYWORD [MORE_KEYWORDS]...]`
 
-* The search is case-insensitive. e.g `friend` will match `Fans`
-* Only the tags are searched.
+* The search is case-insensitive. e.g `friend` will match `friend`, `Friend`, or `FRIEND`
+* You can filter by tags (`t/`), roles (`r/`), entities (`ent/`), or any combination of these.
+* Within each category (tags, roles, entities), persons matching at least one keyword will be returned (i.e. `OR` search).
+* Multiple categories are combined with `AND` logic - a person must match at least one keyword from each specified category.
 * Only full words will be matched e.g. `friend` will not match `friends`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `friends colleague` will return people who are tagged either `friends`, `colleague`, or both.
+
+Examples:
+* `filter t/friend` Returns people tagged with `friend`
+* `filter r/top r/jungle` Returns people with role `TOP` or `JUNGLE`
+* `filter ent/Ahri ent/Yasuo` Returns people who have statistics for entity `Ahri` or `Yasuo`
+* `filter t/pro r/bot ent/Jinx` Returns people who are tagged `pro`, have role `BOT`, AND have statistics for entity `Jinx`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the player list.
 
 Format: `delete INDEX`
 
@@ -151,21 +158,73 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the person indexed as `2` in the player list.
 
 ### Drafting a team : `draft`
 
 Tests if a specific team composition is valid.
 
-Format: `draft INDEX INDEX INDEX INDEX INDEX`
+Format: `draft (INDEX | i/IGN) [(INDEX | i/IGN)]…​`
+
+* Selects 5 players by their index numbers or in-game names (IGN).
+* A valid team requires exactly 5 players with one player per role (TOP, JUNGLE, MID, BOT, SUPPORT).
+* You can mix indices and IGNs in the same command.
+
+Examples:
+* `draft 1 2 3 4 5` Drafts players at indices 1-5.
+* `draft i/PlayerA i/PlayerB i/PlayerC i/PlayerD i/PlayerE` Drafts players by their IGNs.
+* `draft 1 2 i/CarlK77 4 i/ElleM55` Mixes indices and IGNs.
+
+Example output:
+![Sample output for valid composition](images/draftSuccess.png)
+
+### Comparing players : `compare`
+
+Compares two players identified by their index numbers.
+
+Format: `compare (INDEX1 | i/IGN1) (INDEX2 | i/IGN2)`
+
+* Displays details of both players side by side.
+* The indices refer to the index numbers shown in the displayed person list.
+* Both indices **must be positive integers** 1, 2, 3, …​
 
 Example:
- ![Sample output for valid composition](images/draftSuccess.png)
+* `compare 1 2` Compares the 1st and 2nd indexed players in the current list.
+* `compare i/AlexY42 2` Compares the player with the IGN AlexY42 and the 2nd indexed player in the current list.
+
+### Updating player statistics : `stats`
+
+Updates the statistics of a player for a specific entity.
+
+Format: `stats (INDEX | i/IGN) ent/ENTITY [k/KILLS] [d/DEATHS] [a/ASSISTS]`
+
+* Updates the person at the specified `INDEX`, or with the specified IGN. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* `ent/ENTITY` is required and specifies which entity/game the statistics are for.
+* At least one of the statistics fields (kills, deaths, assists) must be provided.
+* Existing statistics for the entity will be added to the new values.
+
+Examples:
+* `stats 1 ent/Ahri k/50 d/10 a/20` Adds 50 kills, 10 deaths, and 20 assists to player 1's Ahri statistics.
+* `stats 2 ent/Leona k/0 d/5 a/15` Adds 0 kills, 5 deaths, and 15 assists to player 2's Leona statistics.
+
+### Adding match results : `result`
+
+Adds a match result to the match record.
+
+Format: `result w/RESULT [date/yyyy-MM-dd] i/IGN ent/ENTITY k/KILLS d/DEATHS a/ASSISTS [(i/IGN ent/ENTITY k/KILLS d/DEATHS a/ASSISTS)]…​`
+
+* `w/RESULT` must be one of: WIN, LOSE, DRAW
+* `date/yyyy-MM-dd` is optional. If not provided, uses the current date.
+* Each player in the match must have their IGN, entity, kills, deaths, and assists specified.
+* The number of IGNs, entities, and statistics groups must match.
+
+Example:
+* `result w/WIN i/PlayerA ent/Ahri k/10 d/2 a/8 i/PlayerB ent/Leona k/1 d/1 a/12` Records a win where PlayerA played Ahri and PlayerB played Leona.
+* `result w/LOSE date/2026-04-08 i/PlayerC ent/Yasuo k/5 d/8 a/2` Records a loss on a specific date.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the player list.
 
 Format: `clear`
 
@@ -177,15 +236,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+DraftDeck data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+DraftDeck data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, DraftDeck will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the DraftDeck to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -197,7 +256,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DraftDeck home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -212,10 +271,15 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE e/EMAIL i/IGN r/ROLE rank/RANK [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com i/JamesH88 r/BOT rank/PLATINUM t/friend t/colleague`
 **Clear** | `clear`
+**Compare** | `compare INDEX1 INDEX2`<br> e.g., `compare 1 2`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Draft** | `draft (INDEX | i/IGN) [(INDEX | i/IGN)]…​`<br> e.g., `draft 1 2 i/CarlK77 4 i/ElleM55`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [addr/ADDRESS] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee r/JUNGLE rank/GOLD`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Filter** | `filter [t/KEYWORD [MORE_KEYWORDS]...] [r/KEYWORD [MORE_KEYWORDS]...] [ent/KEYWORD [MORE_KEYWORDS]...]`<br> e.g., `filter t/pro r/bot ent/Jinx`
 **List** | `list`
+**Result** | `result w/RESULT [date/yyyy-MM-dd] i/IGN ent/ENTITY k/KILLS d/DEATHS a/ASSISTS [(i/IGN ent/ENTITY k/KILLS d/DEATHS a/ASSISTS)]…​`<br> e.g., `result w/WIN i/PlayerA ent/Ahri k/10 d/2 a/8 i/PlayerB ent/Leona k/1 d/1 a=12`
+**Stats** | `stats INDEX ent/ENTITY [k/KILLS] [d/DEATHS] [a/ASSISTS]`<br> e.g., `stats 1 ent/Ahri k/50 d/10 a/20`
 **Help** | `help`
