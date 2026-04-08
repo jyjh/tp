@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * {@link #isValidDeaths(String)}
  */
 public class Deaths {
-    public static final String MESSAGE_CONSTRAINTS = 
+    public static final String MESSAGE_CONSTRAINTS =
         "Deaths should be a non-negative integer and must not exceed Integer.MAX_VALUE";
     public static final String VALIDATION_REGEX = "\\d+";
     public final Integer value;
@@ -45,7 +45,7 @@ public class Deaths {
 
     /**
      * Returns a new Deaths containing the sum of this Deaths and the other Deaths.
-     * 
+     *
      * @param other the other Deaths
      * @return a new Deaths containing the sum
      */
