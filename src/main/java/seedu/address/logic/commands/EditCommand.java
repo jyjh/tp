@@ -274,6 +274,7 @@ public class EditCommand extends Command {
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(role, otherEditPersonDescriptor.role)
                     && Objects.equals(rank, otherEditPersonDescriptor.rank)
+                    && Objects.equals(ign, otherEditPersonDescriptor.ign)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -286,6 +287,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("role", role)
                     .add("rank", rank)
+                    .add("ign", ign)
                     .add("tags", tags)
                     .toString();
         }
