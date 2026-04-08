@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Kills {
     public static final String MESSAGE_CONSTRAINTS =
-            "Kills should be a non-negative integer";
+            "Kills should be a non-negative integer and must not exceed Integer.MAX_VALUE";
     public static final String VALIDATION_REGEX = "\\d+";
     public final Integer value;
 
@@ -32,7 +32,15 @@ public class Kills {
      * Returns true if a given string is a valid kills count.
      */
     public static boolean isValidKills(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        try {
+            Integer.parseInt(test);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     /**
