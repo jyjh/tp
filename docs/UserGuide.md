@@ -259,7 +259,7 @@ i/PlayerD ent/Irelia k/2 d/19 a/4 i/PlayerE ent/Kayn k/6 d/3 a/8` Records a win 
 * `result W/WIN i/PlayerA i/PlayerB i/PlayerC i/PlayerD i/PlayerE ent/Ahri ent/Leona ent/Evelynn ent/Irelia ent/Kayn
 k/10 k/1 k/5 k/2 k/6 d/2 d/1 d/6 d/19 d/3 a/8 a/12 a/15 a/4 a/8` Records the exact same match as the above command.
 * `result w/LOSE date/2026-04-08 i/PlayerA ent/Ahri k/10 d/2 a/8 i/PlayerB ent/Leona k/1 d/1 a/12 i/PlayerC ent/Evelynn k/5 d/6 a/15
-i/PlayerD ent/Irelia k/2 d/19 a/4 i/PlayerE ent/Kayn k/6 d/3 a/8` Records a loss on a specific date.
+i/PlayerD ent/Irelia k/2 d/19 a/4 i/PlayerE ent/Kayn k/6 d/3 a/8` Records a loss on that took place on 8th April 2026.
 
 
 ### Saving the data
