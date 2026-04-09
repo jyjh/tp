@@ -198,24 +198,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | list all players               | view all players in the team                                           |
 | `* * *`  | user                                       | find a player by name          | locate details of players without having to go through the entire list |
 | `* * *`  | user                                       | add match results              | update the stats of the team players and keep track of past matches    |
-| `* * *`  | user                                       | clear all players              | remove all players from the roster to start fresh                      |
 | `* * *`  | user                                       | compare two players            | see side-by-side comparisons of their statistics and attributes       |
 | `* * *`  | user                                       | filter players by tags         | quickly find players with specific characteristics or categories        |
 | `* * *`  | user                                       | filter players by roles        | find players who play specific roles in the game                       |
 | `* * *`  | user                                       | filter players by entities     | find players who have statistics for specific characters/champions     |
 | `* * *`  | team manager                               | draft a team                   | validate team composition with proper role distribution                 |
 | `* * *`  | user                                       | update player statistics       | track and improve player performance over time                         |
-| `* * *`  | user                                       | exit the application           | safely close the app after finishing my work                          |
 | `* * *`  | user                                       | view detailed statistics       | see kill/death/assist data for specific entities                        |
-| `* * *`  | team manager                               | filter by multiple criteria    | find players who match several conditions simultaneously               |
-| `* * *`  | user                                       | view match history             | review past match results and player performance                       |
 | `* *`    | user                                       | view overall player statistics | see aggregated performance across all entities                         |
-| `* *`    | user                                       | filter by tags and roles      | find players who meet multiple classification requirements              |
+
+
+
+
+#### Yet to be implemented
+
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| `* * *`  | user                                       | view match history             | review past match results and player performance                       |
 | `* *`    | data analyst                               | track performance trends       | identify players who are improving or declining over time              |
 | `* *`    | team manager                               | identify best entity pickers   | know which players perform best on specific entities                   |
-| `*`      | user                                       | archive old match data         | maintain clean records by moving historical data to archives           |
 | `*`      | user                                       | import player data             | quickly populate the roster from external sources                       |
 | `*`      | user                                       | export player data             | share team information with other coaches or platforms                 |
+| `*`      | user                                       | archive old match data         | maintain clean records by moving historical data to archives           |
 
 ### Use cases
 
