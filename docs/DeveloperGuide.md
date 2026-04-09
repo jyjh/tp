@@ -579,7 +579,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -588,38 +587,218 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file (or use `java -jar draftdeck.jar`)<br>
+      Expected: Shows the GUI with sample player data. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Player management
 
-### Deleting a person
+1. Adding players
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: Use `clear` to start with an empty list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Test case: `add n/John Doe p/98765432 e/johnd@example.com i/JohnD88 r/MID rank/GOLD I`<br>
+      Expected: Player is added to the list with the specified details.
+
+   1. Test case: `add n/Betsy Crowe t/friend e/betsycrowe@example.com i/Betsycrowe r/BOT rank/PLATINUM p/1234567`<br>
+      Expected: Player is added with the phone field in a different position.
+
+   1. Test case: `add n/Test p/invalid e/test@test.com i/Test r/INVALID rank/INVALID`<br>
+      Expected: Error message indicating invalid role and/or rank.
+
+   1. Test case: `add n/Duplicate p/98765432 e/johnd@example.com i/JohnD88 r/MID rank/GOLD` (after adding John Doe)<br>
+      Expected: Error message indicating duplicate player.
+
+   1. Other incorrect add commands to try: `add` (missing required fields), `add n/Test p/123` (invalid phone format)<br>
+      Expected: Appropriate error messages.
+
+1. Deleting players
+
+   1. Prerequisites: List all players using the `list` command. Multiple players in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First player is deleted from the list. Details of the deleted player shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No player is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Test case: `delete 999` (number larger than list size)<br>
+      Expected: Error message indicating index is out of range.
 
-1. _{ more test cases …​ }_
+   1. Other incorrect delete commands to try: `delete`, `delete x`<br>
+      Expected: Appropriate error messages.
 
-### Saving data
+1. Editing players
+
+   1. Prerequisites: List all players using the `list` command.
+
+   1. Test case: `edit 1 p/91234567 e/johndoe@example.com`<br>
+      Expected: First player's phone and email are updated.
+
+   1. Test case: `edit 2 n/Betsy Crower t/`<br>
+      Expected: Second player's name is updated and all tags are cleared.
+
+   1. Test case: `edit 3` (no fields to edit)<br>
+      Expected: Error message indicating at least one field must be provided.
+
+   1. Other incorrect edit commands to try: `edit 0 n/Test`, `edit 999 n/Test`<br>
+      Expected: Appropriate error messages.
+
+1. Listing all players
+
+   1. Test case: `list`<br>
+      Expected: All players are displayed in the list.
+
+### Search and discovery
+
+1. Finding players by name
+
+   1. Prerequisites: Multiple players with different names in the list.
+
+   1. Test case: `find John`<br>
+      Expected: Players with names containing "John" are displayed (case-insensitive).
+
+   1. Test case: `find alex david`<br>
+      Expected: Players with names containing either "alex" or "david" are displayed.
+
+   1. Test case: `find NonExistentPlayer`<br>
+      Expected: Empty list is displayed.
+
+1. Filtering players
+
+   1. Prerequisites: Players with various tags, roles, and entities in the list.
+
+   1. Test case: `filter t/friend`<br>
+      Expected: Players tagged with "friend" are displayed.
+
+   1. Test case: `filter r/top r/jungle`<br>
+      Expected: Players with role "TOP" or "JUNGLE" are displayed.
+
+   1. Test case: `filter ent/Ahri ent/Yasuo`<br>
+      Expected: Players who have statistics for entity "Ahri" or "Yasuo" are displayed.
+
+   1. Test case: `filter t/pro r/bot ent/Jinx`<br>
+      Expected: Players who are tagged "pro", have role "BOT", AND have statistics for entity "Jinx".
+
+   1. Test case: `filter t/nonexistent`<br>
+      Expected: Empty list is displayed.
+
+### Sports and analytics
+
+1. Comparing players
+
+   1. Prerequisites: List all players using the `list` command.
+
+   1. Test case: `compare 1 2`<br>
+      Expected: Side-by-side comparison of players at indices 1 and 2 is displayed.
+
+   1. Test case: `compare i/AlexY42 2` (assuming AlexY42 exists)<br>
+      Expected: Side-by-side comparison of player with IGN "AlexY42" and player at index 2.
+
+   1. Test case: `compare 1 1`<br>
+      Expected: Error message indicating different players must be selected.
+
+   1. Test case: `compare 999 1` or `compare i/NonExistent 1`<br>
+      Expected: Error message indicating player not found.
+
+1. Drafting teams
+
+   1. Prerequisites: List all players using the `list` command with players in all roles.
+
+   1. Test case: `draft 1 2 3 4 5` (assuming indices 1-5 cover all roles: TOP, JUNGLE, MID, BOT, SUPPORT)<br>
+      Expected: Success message showing valid team composition with role assignments.
+
+   1. Test case: `draft i/PlayerA i/PlayerB i/PlayerC i/PlayerD i/PlayerE`<br>
+      Expected: Success message showing valid team composition (assuming 5 different players with valid roles).
+
+   1. Test case: `draft 1 2 3 4 4` (duplicate player)<br>
+      Expected: Error message indicating duplicate players.
+
+   1. Test case: `draft 1 2 3 4 6` (missing a role)<br>
+      Expected: Error message indicating invalid team composition with missing/duplicate roles.
+
+   1. Other incorrect draft commands to try: `draft 1 2 3 4`, `draft 1 2 3 4 5 6`<br>
+      Expected: Appropriate error messages.
+
+1. Updating player statistics
+
+   1. Prerequisites: List all players using the `list` command.
+
+   1. Test case: `stats 1 ent/Ahri k/50 d/10 a/20`<br>
+      Expected: Player 1's Ahri statistics are updated with the specified values.
+
+   1. Test case: `stats 1 ent/Ahri k/10` (adding to existing stats)<br>
+      Expected: Player 1's Ahri kills are increased by 10 (cumulative).
+
+   1. Test case: `stats 1` (no entity or stats provided)<br>
+      Expected: Error message indicating entity and at least one stat field must be provided.
+
+   1. Test case: `stats 999 ent/Ahri k/10`<br>
+      Expected: Error message indicating player not found.
+
+1. Adding match results
+
+   1. Prerequisites: Multiple players exist in the list.
+
+   1. Test case: `result w/WIN i/PlayerA ent/Ahri s/10-2-8 i/PlayerB ent/Leona s/1-1-12 i/PlayerC ent/Evelynn s/5-6-15 i/PlayerD ent/Irelia s/2-19-4 i/PlayerE ent/Kayn s/6-3-8`<br>
+      Expected: Match is recorded with WIN result and all player statistics are updated.
+
+   1. Test case: `result w/LOSE i/PlayerA ent/Ahri s/10-2-8 date/2025-12-31` (only 1 player)<br>
+      Expected: Error message indicating exactly 5 players are required.
+
+   1. Test case: `result w/INVALID i/PlayerA ent/Ahri s/10-2-8 ...`<br>
+      Expected: Error message indicating result must be WIN, LOSE, or DRAW.
+
+   1. Test case: `result w/WIN i/NonExistent ent/Ahri s/10-2-8 ...`<br>
+      Expected: Error message indicating player not found.
+
+### Data persistence
+
+1. Automatic saving
+
+   1. Add a new player using `add` command. Close the application. Re-launch.<br>
+      Expected: The newly added player is still present.
+
+   1. Delete a player using `delete` command. Close the application. Re-launch.<br>
+      Expected: The deleted player is not present.
+
+   1. Edit a player using `edit` command. Close the application. Re-launch.<br>
+      Expected: The edited player's details are preserved.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Close the application. Delete or rename the `data/addressbook.json` file. Re-launch.<br>
+      Expected: Application starts with an empty player list or creates a new data file.
 
-1. _{ more test cases …​ }_
+   1. Close the application. Corrupt the `data/addressbook.json` file (e.g., add invalid JSON). Re-launch.<br>
+      Expected: Application starts with an empty player list and a new valid data file is created.
+
+### Error handling
+
+1. Invalid command formats
+
+   1. Test case: `invalidcommand`<br>
+      Expected: Error message indicating unknown command.
+
+   1. Test case: `add` (missing required parameters)<br>
+      Expected: Error message showing correct command usage.
+
+   1. Test case: `list extra parameters`<br>
+      Expected: Command executes (extra parameters are ignored).
+
+1. Invalid parameter values
+
+   1. Test case: `add n/12345 p/98765432 e/test@test.com i/Test r/MID rank/GOLD` (name contains only numbers)<br>
+      Expected: Player is added (name validation allows alphanumeric characters).
+
+   1. Test case: `add n/Test p/abc e/test@test.com i/Test r/MID rank/GOLD` (invalid phone format)<br>
+      Expected: Error message indicating invalid phone format.
+
+   1. Test case: `add n/Test p/98765432 e/invalidemail i/Test r/MID rank/GOLD` (invalid email format)<br>
+      Expected: Error message indicating invalid email format.
