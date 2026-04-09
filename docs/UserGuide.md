@@ -307,6 +307,7 @@ Action | Format, Examples
 * **Entity**: An umbrella term for a character that the player plays in the game. In League of Legends, this refers to a 'Champion'. In other games, this may refer to an 'Agent', 'Operator', 'Hero', or whatever term that particular game uses.
 
 
-### Walkthrough
-
-{% include Walkthrough.md %}
+# Walkthrough
+<div data-toc-skip>
+  {% include Walkthrough.md %}
+</div>
