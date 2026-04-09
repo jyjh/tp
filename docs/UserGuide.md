@@ -220,6 +220,7 @@ Format: `draft (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (
 * A valid team requires exactly 5 players with one player per role (TOP, JUNGLE, MID, BOT, SUPPORT).
 * You can mix indices and IGNs in the same command.
 * The `i/` prefix can optionally be omitted for non-numeric IGNs (e.g., `PlayerA` instead of `i/PlayerA`).
+* All 5 players must be different.
 
 Examples:
 * `draft 1 2 3 4 5` Drafts players at indices 1-5.
@@ -312,7 +313,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Compare** | `compare INDEX1 INDEX2`<br> e.g., `compare 1 2`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Draft** | `draft (INDEX | i/IGN) [(INDEX | i/IGN)]…​`<br> e.g., `draft 1 2 i/CarlK77 4 i/ElleM55`
+**Draft** | `draft (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN)`<br> e.g., `draft 1 2 i/CarlK77 4 i/ElleM55`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee r/JUNGLE rank/GOLD`
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
