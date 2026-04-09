@@ -23,37 +23,41 @@ public class TypicalMatches {
             TypicalPersons.GEORGE, TypicalPersons.HOON, TypicalPersons.IDA
     );
 
-    public static final List<Person> FOUR_PERSONS = PERSONS.subList(0, 4);
-    public static final List<Person> THREE_PERSONS = PERSONS.subList(4, 7);
-    public static final List<Person> TWO_PERSONS = PERSONS.subList(7, 9);
-    public static final List<Person> ONE_PERSON = PERSONS.subList(0, 1);
+    public static final List<Person> PERSONS_4 = List.of(TypicalPersons.ALICE, TypicalPersons.BENSON,
+            TypicalPersons.CARL, TypicalPersons.DANIEL, TypicalPersons.ELLE);
+    public static final List<Person> PERSONS_3 = List.of(TypicalPersons.BENSON,
+            TypicalPersons.CARL, TypicalPersons.DANIEL, TypicalPersons.ELLE, TypicalPersons.FIONA);
+    public static final List<Person> PERSONS_2 = List.of(TypicalPersons.CARL, TypicalPersons.DANIEL,
+            TypicalPersons.ELLE, TypicalPersons.FIONA, TypicalPersons.GEORGE);
+    public static final List<Person> PERSONS_1 = List.of(TypicalPersons.DANIEL, TypicalPersons.ELLE,
+            TypicalPersons.FIONA, TypicalPersons.GEORGE, TypicalPersons.HOON);
 
 
-    public static final PlayersInMatch FOUR_PLAYERS = new PlayersInMatch(
-            FOUR_PERSONS.stream()
+    public static final PlayersInMatch PLAYERS_4 = new PlayersInMatch(
+            PERSONS_4.stream()
                     .map(person ->
                             new PlayerInMatch(person.getIgn(),
                                     Statistics.createRandom(10, 10, 20),
                             VALID_ENTITY_1))
                     .toList());
-    public static final PlayersInMatch THREE_PLAYERS = new PlayersInMatch(
-            THREE_PERSONS.stream()
+    public static final PlayersInMatch PLAYERS_3 = new PlayersInMatch(
+            PERSONS_3.stream()
                     .map(person ->
                             new PlayerInMatch(person.getIgn(),
                                     Statistics.createRandom(10, 10, 20),
                             VALID_ENTITY_1))
                     .toList()
     );
-    public static final PlayersInMatch TWO_PLAYERS = new PlayersInMatch(
-            TWO_PERSONS.stream()
+    public static final PlayersInMatch PLAYERS_2 = new PlayersInMatch(
+            PERSONS_2.stream()
                     .map(person ->
                             new PlayerInMatch(person.getIgn(),
                                     Statistics.createRandom(10, 10, 20),
                             VALID_ENTITY_1))
                     .toList()
     );
-    public static final PlayersInMatch ONE_PLAYER = new PlayersInMatch(
-            ONE_PERSON.stream()
+    public static final PlayersInMatch PLAYERS_1 = new PlayersInMatch(
+            PERSONS_1.stream()
                     .map(person ->
                             new PlayerInMatch(person.getIgn(),
                                     Statistics.createRandom(10, 10, 20),
@@ -66,18 +70,18 @@ public class TypicalMatches {
     public static final LocalDate DATE_3 = LocalDate.of(2025, 10, 3);
     public static final LocalDate DATE_4 = LocalDate.of(2025, 9, 4);
 
-    public static final Match WINNING_MATCH_4 = new Match(DATE_4, new Result(Result.WinType.WIN), FOUR_PLAYERS);
-    public static final Match WINNING_MATCH_3 = new Match(DATE_3, new Result(Result.WinType.WIN), THREE_PLAYERS);
-    public static final Match WINNING_MATCH_2 = new Match(DATE_2, new Result(Result.WinType.WIN), TWO_PLAYERS);
-    public static final Match WINNING_MATCH_1 = new Match(DATE_1, new Result(Result.WinType.WIN), ONE_PLAYER);
-    public static final Match LOSING_MATCH_4 = new Match(DATE_4, new Result(Result.WinType.LOSE), FOUR_PLAYERS);
-    public static final Match LOSING_MATCH_3 = new Match(DATE_3, new Result(Result.WinType.LOSE), THREE_PLAYERS);
-    public static final Match LOSING_MATCH_2 = new Match(DATE_2, new Result(Result.WinType.LOSE), TWO_PLAYERS);
-    public static final Match LOSING_MATCH_1 = new Match(DATE_1, new Result(Result.WinType.LOSE), ONE_PLAYER);
-    public static final Match DRAWING_MATCH_4 = new Match(DATE_4, new Result(Result.WinType.DRAW), FOUR_PLAYERS);
-    public static final Match DRAWING_MATCH_3 = new Match(DATE_3, new Result(Result.WinType.DRAW), THREE_PLAYERS);
-    public static final Match DRAWING_MATCH_2 = new Match(DATE_2, new Result(Result.WinType.DRAW), TWO_PLAYERS);
-    public static final Match DRAWING_MATCH_1 = new Match(DATE_1, new Result(Result.WinType.DRAW), ONE_PLAYER);
+    public static final Match WINNING_MATCH_4 = new Match(DATE_4, new Result(Result.WinType.WIN), PLAYERS_4);
+    public static final Match WINNING_MATCH_3 = new Match(DATE_3, new Result(Result.WinType.WIN), PLAYERS_3);
+    public static final Match WINNING_MATCH_2 = new Match(DATE_2, new Result(Result.WinType.WIN), PLAYERS_2);
+    public static final Match WINNING_MATCH_1 = new Match(DATE_1, new Result(Result.WinType.WIN), PLAYERS_1);
+    public static final Match LOSING_MATCH_4 = new Match(DATE_4, new Result(Result.WinType.LOSE), PLAYERS_4);
+    public static final Match LOSING_MATCH_3 = new Match(DATE_3, new Result(Result.WinType.LOSE), PLAYERS_3);
+    public static final Match LOSING_MATCH_2 = new Match(DATE_2, new Result(Result.WinType.LOSE), PLAYERS_2);
+    public static final Match LOSING_MATCH_1 = new Match(DATE_1, new Result(Result.WinType.LOSE), PLAYERS_1);
+    public static final Match DRAWING_MATCH_4 = new Match(DATE_4, new Result(Result.WinType.DRAW), PLAYERS_4);
+    public static final Match DRAWING_MATCH_3 = new Match(DATE_3, new Result(Result.WinType.DRAW), PLAYERS_3);
+    public static final Match DRAWING_MATCH_2 = new Match(DATE_2, new Result(Result.WinType.DRAW), PLAYERS_2);
+    public static final Match DRAWING_MATCH_1 = new Match(DATE_1, new Result(Result.WinType.DRAW), PLAYERS_1);
 
     public static List<Match> getTypicalMatches() {
         return List.of(WINNING_MATCH_1, WINNING_MATCH_2, WINNING_MATCH_3, WINNING_MATCH_4,

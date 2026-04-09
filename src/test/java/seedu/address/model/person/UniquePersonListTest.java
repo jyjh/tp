@@ -118,7 +118,7 @@ public class UniquePersonListTest {
 
         UniquePersonList expected = new UniquePersonList();
         TypicalMatches.PERSONS.forEach(expected::add);
-        List<Person> persons = TypicalMatches.TWO_PERSONS;
+        List<Person> persons = TypicalMatches.PERSONS_2;
         List<Person> editedPersons = List.of(
                 persons.get(0).addEntityStatistics(
                     match.getPlayers().get(0).getStatistics(),
@@ -135,23 +135,23 @@ public class UniquePersonListTest {
 
     @Test
     public void addStatistics_onePlayerDoesNotExist_listUnchanged() {
-        TypicalMatches.FOUR_PERSONS.forEach(uniquePersonList::add);
+        TypicalMatches.PERSONS_4.forEach(uniquePersonList::add);
         Match match = TypicalMatches.DRAWING_MATCH_2;
         assertThrows(PersonNotFoundException.class, () -> uniquePersonList.addStatistics(match));
 
         UniquePersonList expected = new UniquePersonList();
-        TypicalMatches.FOUR_PERSONS.forEach(expected::add);
+        TypicalMatches.PERSONS_4.forEach(expected::add);
 
         assertEquals(expected, uniquePersonList);
     }
 
     @Test
     public void addStatistics_nullPlayer_throwsNullPointerException() {
-        TypicalMatches.FOUR_PERSONS.forEach(uniquePersonList::add);
+        TypicalMatches.PERSONS_4.forEach(uniquePersonList::add);
         assertThrows(NullPointerException.class, () -> uniquePersonList.addStatistics(null));
 
         UniquePersonList expected = new UniquePersonList();
-        TypicalMatches.FOUR_PERSONS.forEach(expected::add);
+        TypicalMatches.PERSONS_4.forEach(expected::add);
 
         assertEquals(expected, uniquePersonList);
     }

@@ -85,9 +85,9 @@ public class SampleDataUtil {
                 new InGameName("Roy_Vortex"), Statistics.createRandom(10, 10, 20),
                 new Entity("Annie"));
 
-        PlayersInMatch players1 = new PlayersInMatch(List.of(player1, player2));
-        PlayersInMatch players2 = new PlayersInMatch(List.of(player3, player4, player5));
-        PlayersInMatch players3 = new PlayersInMatch(List.of(player6));
+        PlayersInMatch players1 = new PlayersInMatch(List.of(player1, player2, player3, player4, player5));
+        PlayersInMatch players2 = new PlayersInMatch(List.of(player2, player3, player4, player5, player6));
+        PlayersInMatch players3 = new PlayersInMatch(List.of(player1, player3, player4, player5, player6));
 
         return new Match[] {
             new Match(

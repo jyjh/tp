@@ -120,7 +120,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasMatch_personInMatchRecord_returnsTrue() {
-        TypicalMatches.FOUR_PERSONS.forEach(modelManager::addPerson);
+        TypicalMatches.PERSONS_4.forEach(modelManager::addPerson);
         modelManager.addMatch(TypicalMatches.LOSING_MATCH_4);
         assertTrue(modelManager.hasMatch(TypicalMatches.LOSING_MATCH_4));
     }

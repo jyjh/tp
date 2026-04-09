@@ -16,7 +16,7 @@ import seedu.address.model.person.InGameName;
  */
 public class PlayersInMatch implements Iterable<PlayerInMatch> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Player list must contain no duplicates.";
+    public static final String MESSAGE_CONSTRAINTS = "Player list must contain no duplicates and be of size 5.";
 
     private final List<PlayerInMatch> players;
 
@@ -38,7 +38,7 @@ public class PlayersInMatch implements Iterable<PlayerInMatch> {
      */
     public static boolean isValidPlayerList(List<PlayerInMatch> players) {
         Set<InGameName> uniquePlayers = new HashSet<>(players.stream().map(PlayerInMatch::getInGameName).toList());
-        return uniquePlayers.size() == players.size();
+        return uniquePlayers.size() == players.size() && uniquePlayers.size() == 5;
     }
 
     public PlayerInMatch get(int i) {

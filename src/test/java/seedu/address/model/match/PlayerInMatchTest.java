@@ -14,8 +14,8 @@ public class PlayerInMatchTest {
     public void equals() {
 
         // same values -> returns true
-        PlayerInMatch player1 = TypicalMatches.FOUR_PLAYERS.get(0);
-        PlayerInMatch player2 = TypicalMatches.FOUR_PLAYERS.get(1);
+        PlayerInMatch player1 = TypicalMatches.PLAYERS_4.get(0);
+        PlayerInMatch player2 = TypicalMatches.PLAYERS_4.get(1);
         PlayerInMatch same = new PlayerInMatch(
             player1.getInGameName(), player1.getStatistics(), VALID_ENTITY_1);
         PlayerInMatch differentStatistics = new PlayerInMatch(
@@ -46,7 +46,7 @@ public class PlayerInMatchTest {
 
     @Test
     public void toStringMethod() {
-        PlayerInMatch player = TypicalMatches.FOUR_PLAYERS.get(2);
+        PlayerInMatch player = TypicalMatches.PLAYERS_4.get(2);
         String expected = player.getInGameName() + "{statistics=" + player.getStatistics() + "}";
         assertEquals(expected, player.toString());
     }

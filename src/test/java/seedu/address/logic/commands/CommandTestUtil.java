@@ -57,18 +57,33 @@ public class CommandTestUtil {
     public static final String VALID_ROLE_BOB = "SUPPORT";
     public static final String VALID_IGN_AMY = "AmyBee88";
     public static final String VALID_IGN_BOB = "BobChoo99";
+    public static final String VALID_IGN_CAT = "Cathy11";
+    public static final String VALID_IGN_DOG = "Doggy22";
+    public static final String VALID_IGN_EMA = "EmaCook33";
     public static final String VALID_RANK_AMY = "GOLD I";
     public static final String VALID_RANK_BOB = "SILVER I";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_KILLS_SET_1 = "20";
     public static final String VALID_KILLS_SET_2 = "30";
+    public static final String VALID_KILLS_SET_3 = "10";
+    public static final String VALID_KILLS_SET_4 = "40";
+    public static final String VALID_KILLS_SET_5 = "0";
     public static final String VALID_DEATHS_SET_1 = "10";
     public static final String VALID_DEATHS_SET_2 = "15";
+    public static final String VALID_DEATHS_SET_3 = "20";
+    public static final String VALID_DEATHS_SET_4 = "5";
+    public static final String VALID_DEATHS_SET_5 = "0";
     public static final String VALID_ASSISTS_SET_1 = "5";
     public static final String VALID_ASSISTS_SET_2 = "8";
+    public static final String VALID_ASSISTS_SET_3 = "7";
+    public static final String VALID_ASSISTS_SET_4 = "2";
+    public static final String VALID_ASSISTS_SET_5 = "1";
     public static final Statistics VALID_STATS_SET_1;
     public static final Statistics VALID_STATS_SET_2;
+    public static final Statistics VALID_STATS_SET_3;
+    public static final Statistics VALID_STATS_SET_4;
+    public static final Statistics VALID_STATS_SET_5;
     public static final String VALID_RESULT_WIN = "WIN";
     public static final String VALID_RESULT_LOSE = "LOSE";
     public static final String VALID_RESULT_DRAW = "DRAW";
@@ -77,6 +92,12 @@ public class CommandTestUtil {
     public static final String VALID_ENTITY_NAME_1 = "default1";
     public static final Entity VALID_ENTITY_2;
     public static final String VALID_ENTITY_NAME_2 = "default2";
+    public static final Entity VALID_ENTITY_3;
+    public static final String VALID_ENTITY_NAME_3 = "default3";
+    public static final Entity VALID_ENTITY_4;
+    public static final String VALID_ENTITY_NAME_4 = "default4";
+    public static final Entity VALID_ENTITY_5;
+    public static final String VALID_ENTITY_NAME_5 = "default5";
     public static final EntityReference VALID_ENTITY_REFERENCE;
     public static final EntityStatisticMap VALID_ENTITY_STATISTIC_MAP;
 
@@ -92,22 +113,37 @@ public class CommandTestUtil {
     public static final String ROLE_DESC_BOB = " " + PREFIX_ROLE + VALID_ROLE_BOB;
     public static final String IGN_DESC_AMY = " " + PREFIX_IGN + VALID_IGN_AMY;
     public static final String IGN_DESC_BOB = " " + PREFIX_IGN + VALID_IGN_BOB;
+    public static final String IGN_DESC_CAT = " " + PREFIX_IGN + VALID_IGN_CAT;
+    public static final String IGN_DESC_DOG = " " + PREFIX_IGN + VALID_IGN_DOG;
+    public static final String IGN_DESC_EMA = " " + PREFIX_IGN + VALID_IGN_EMA;
     public static final String RANK_DESC_AMY = " " + PREFIX_RANK + VALID_RANK_AMY;
     public static final String RANK_DESC_BOB = " " + PREFIX_RANK + VALID_RANK_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String KILLS_DESC_SET_1 = " " + PREFIX_KILLS + VALID_KILLS_SET_1;
     public static final String KILLS_DESC_SET_2 = " " + PREFIX_KILLS + VALID_KILLS_SET_2;
+    public static final String KILLS_DESC_SET_3 = " " + PREFIX_KILLS + VALID_KILLS_SET_3;
+    public static final String KILLS_DESC_SET_4 = " " + PREFIX_KILLS + VALID_KILLS_SET_4;
+    public static final String KILLS_DESC_SET_5 = " " + PREFIX_KILLS + VALID_KILLS_SET_5;
     public static final String DEATHS_DESC_SET_1 = " " + PREFIX_DEATHS + VALID_DEATHS_SET_1;
     public static final String DEATHS_DESC_SET_2 = " " + PREFIX_DEATHS + VALID_DEATHS_SET_2;
+    public static final String DEATHS_DESC_SET_3 = " " + PREFIX_DEATHS + VALID_DEATHS_SET_3;
+    public static final String DEATHS_DESC_SET_4 = " " + PREFIX_DEATHS + VALID_DEATHS_SET_4;
+    public static final String DEATHS_DESC_SET_5 = " " + PREFIX_DEATHS + VALID_DEATHS_SET_5;
     public static final String ASSISTS_DESC_SET_1 = " " + PREFIX_ASSISTS + VALID_ASSISTS_SET_1;
     public static final String ASSISTS_DESC_SET_2 = " " + PREFIX_ASSISTS + VALID_ASSISTS_SET_2;
+    public static final String ASSISTS_DESC_SET_3 = " " + PREFIX_ASSISTS + VALID_ASSISTS_SET_3;
+    public static final String ASSISTS_DESC_SET_4 = " " + PREFIX_ASSISTS + VALID_ASSISTS_SET_4;
+    public static final String ASSISTS_DESC_SET_5 = " " + PREFIX_ASSISTS + VALID_ASSISTS_SET_5;
     public static final String RESULT_DESC_WIN = " " + PREFIX_RESULT + VALID_RESULT_WIN;
     public static final String RESULT_DESC_LOSE = " " + PREFIX_RESULT + VALID_RESULT_LOSE;
     public static final String RESULT_DESC_DRAW = " " + PREFIX_RESULT + VALID_RESULT_DRAW;
     public static final String DATE_DESC = " " + PREFIX_DATE + VALID_DATE;
-    public static final String ENTITY_DESC_1 = " " + PREFIX_ENTITY + "default1";
-    public static final String ENTITY_DESC_2 = " " + PREFIX_ENTITY + "default2";
+    public static final String ENTITY_DESC_1 = " " + PREFIX_ENTITY + VALID_ENTITY_NAME_1;
+    public static final String ENTITY_DESC_2 = " " + PREFIX_ENTITY + VALID_ENTITY_NAME_2;
+    public static final String ENTITY_DESC_3 = " " + PREFIX_ENTITY + VALID_ENTITY_NAME_3;
+    public static final String ENTITY_DESC_4 = " " + PREFIX_ENTITY + VALID_ENTITY_NAME_4;
+    public static final String ENTITY_DESC_5 = " " + PREFIX_ENTITY + VALID_ENTITY_NAME_5;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -152,11 +188,32 @@ public class CommandTestUtil {
                 .withDeaths(new Deaths(VALID_DEATHS_SET_2))
                 .withAssists(new Assists(VALID_ASSISTS_SET_2))
                 .build();
+        VALID_STATS_SET_3 = new Statistics.Builder()
+                .withKills(new Kills(VALID_KILLS_SET_3))
+                .withDeaths(new Deaths(VALID_DEATHS_SET_3))
+                .withAssists(new Assists(VALID_ASSISTS_SET_3))
+                .build();
+        VALID_STATS_SET_4 = new Statistics.Builder()
+                .withKills(new Kills(VALID_KILLS_SET_4))
+                .withDeaths(new Deaths(VALID_DEATHS_SET_4))
+                .withAssists(new Assists(VALID_ASSISTS_SET_4))
+                .build();
+        VALID_STATS_SET_5 = new Statistics.Builder()
+                .withKills(new Kills(VALID_KILLS_SET_5))
+                .withDeaths(new Deaths(VALID_DEATHS_SET_5))
+                .withAssists(new Assists(VALID_ASSISTS_SET_5))
+                .build();
         VALID_ENTITY_1 = new Entity(VALID_ENTITY_NAME_1);
         VALID_ENTITY_2 = new Entity(VALID_ENTITY_NAME_2);
+        VALID_ENTITY_3 = new Entity(VALID_ENTITY_NAME_3);
+        VALID_ENTITY_4 = new Entity(VALID_ENTITY_NAME_4);
+        VALID_ENTITY_5 = new Entity(VALID_ENTITY_NAME_5);
         VALID_ENTITY_REFERENCE = new EntityReference(List.of(
             new EntityPathPair(VALID_ENTITY_1, Path.of("images/default1.png")),
-            new EntityPathPair(VALID_ENTITY_2, Path.of("images/default2.png"))
+            new EntityPathPair(VALID_ENTITY_2, Path.of("images/default2.png")),
+            new EntityPathPair(VALID_ENTITY_3, Path.of("images/default3.png")),
+            new EntityPathPair(VALID_ENTITY_4, Path.of("images/default4.png")),
+            new EntityPathPair(VALID_ENTITY_5, Path.of("images/default5.png"))
         ));
         VALID_ENTITY_STATISTIC_MAP = new EntityStatisticMap.Builder()
             .withEntity(VALID_ENTITY_1, VALID_STATS_SET_1)
