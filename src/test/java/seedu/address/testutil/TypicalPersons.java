@@ -22,7 +22,6 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.entity.EntityReference;
-import seedu.address.model.entity.EntityStatisticMap;
 import seedu.address.model.person.Person;
 
 /**
