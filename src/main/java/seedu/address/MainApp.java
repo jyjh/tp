@@ -85,11 +85,41 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getAddressBookFilePath());
 
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        Optional<ReadOnlyMatchRecord> matchRecordOptional;
-        Optional<EntityReference> entityReferenceOptional;
         ReadOnlyAddressBook initialData;
         ReadOnlyMatchRecord initialMatchRecord;
+        EntityReference initialEntityReference;
+
+        // Load entity reference separately so that an error here only resets the entity reference
+        initialEntityReference = initEntityReference(storage);
+
+        try {
+            Optional<ReadOnlyAddressBook> addressBookOptional = storage.readAddressBook();
+            Optional<ReadOnlyMatchRecord> matchRecordOptional = storage.readMatchRecord();
+            if (addressBookOptional.isEmpty()) {
+                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
+                        + " populated with a sample AddressBook.");
+            }
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialMatchRecord = matchRecordOptional.orElseGet(SampleDataUtil::getSampleMatchRecord);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
+                    + " Will be starting with an empty AddressBook and Match Record.");
+            initialData = new AddressBook();
+            initialMatchRecord = new MatchRecord();
+        }
+
+        ModelManager modelManager = new ModelManager(initialData, initialMatchRecord, userPrefs);
+        modelManager.setEntityReference(initialEntityReference);
+        return modelManager;
+    }
+
+    /**
+     * Returns an {@code EntityReference} with data from {@code storage}'s entity file.
+     * If the file is not found, sample entities will be used. If errors occur when reading
+     * the file, sample entities will be used instead.
+     */
+    private EntityReference initEntityReference(Storage storage) {
+        Optional<EntityReference> entityReferenceOptional;
         EntityReference initialEntityReference;
         try {
             entityReferenceOptional = storage.readEntityReference();
@@ -103,31 +133,17 @@ public class MainApp extends Application {
                 initialEntityReference = entityReferenceOptional.get();
             }
             initialEntityReference.reload();
-            addressBookOptional = storage.readAddressBook();
-            matchRecordOptional = storage.readMatchRecord();
-            if (addressBookOptional.isEmpty()) {
-                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
-                        + " populated with a sample AddressBook.");
-            }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            initialMatchRecord = matchRecordOptional.orElseGet(SampleDataUtil::getSampleMatchRecord);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook, Match Record, and Entity Reference.");
-            initialData = new AddressBook();
-            initialMatchRecord = new MatchRecord();
+            logger.warning("Entity data file at " + storage.getEntityFilePath()
+                    + " could not be loaded. Using sample entities."
+                    + " Details: " + StringUtil.getDetails(e));
             initialEntityReference = new EntityReference(SampleEntityUtil.getSampleEntities());
         } catch (IOException e) {
-            logger.warning("Failed to save sample entity reference. Details: "
+            logger.warning("Failed to save sample entity reference. Using sample entities. Details: "
                     + StringUtil.getDetails(e));
-            initialData = new AddressBook();
-            initialMatchRecord = new MatchRecord();
             initialEntityReference = new EntityReference(SampleEntityUtil.getSampleEntities());
         }
-
-        ModelManager modelManager = new ModelManager(initialData, initialMatchRecord, userPrefs);
-        modelManager.setEntityReference(initialEntityReference);
-        return modelManager;
+        return initialEntityReference;
     }
 
     private void initLogging(Config config) {

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entity.EntityPathPair;
 import seedu.address.model.entity.EntityReference;
 
 /**
@@ -44,14 +45,12 @@ class JsonSerializableEntityReference {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public EntityReference toModelType() throws IllegalValueException {
-        return new EntityReference(entities.stream()
-            .map(x -> {
-                try {
-                    return x.toModelType();
-                } catch (IllegalValueException e) {
-                    throw new RuntimeException(e.getMessage());
-                }
-            }).collect(Collectors.toList()));
+        List<JsonAdaptedEntityPathPair> entityList = entities;
+        List<EntityPathPair> result = new ArrayList<>();
+        for (JsonAdaptedEntityPathPair jsonAdaptedEntityPathPair : entityList) {
+            result.add(jsonAdaptedEntityPathPair.toModelType());
+        }
+        return new EntityReference(result);
     }
 
 }
