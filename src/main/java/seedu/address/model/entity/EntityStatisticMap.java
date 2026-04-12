@@ -121,6 +121,9 @@ public class EntityStatisticMap {
         }
 
         EntityStatisticMap otherEntityStatisticMap = (EntityStatisticMap) other;
+        if (entityStats.size() != otherEntityStatisticMap.entityStats.size()) {
+            return false;
+        }
         for (Entity entity : entityStats.keySet()) {
             if (!otherEntityStatisticMap.containsKey(entity)
                     || !this.getStatistics(entity).equals(otherEntityStatisticMap.getStatistics(entity))) {

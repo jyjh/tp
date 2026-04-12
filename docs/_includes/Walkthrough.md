@@ -215,7 +215,7 @@ draft 12 2 3 4 6
 ```
 
 **Expected Output:**
-An error message indicating the team composition is invalid, because you're missing a SUPPORT player (index 6 is Blaire, a TOP laner).
+Validation output indicating the team composition is invalid, because you're missing a SUPPORT player (index 6 is Blaire, a TOP laner).
 
 ---
 

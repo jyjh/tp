@@ -110,7 +110,7 @@ Format: `exit`
 
 ### Player management
 
-#### Adding a person: `add`
+#### Adding a player: `add`
 
 Adds a player to the player list. The player added must be unique.
 
@@ -130,48 +130,48 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com i/JohnD88 r/MID rank/GOLD II`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com i/Betsycrowe r/BOT rank/PLATINUM I p/1234567`
 
-#### Deleting a person : `delete`
+#### Deleting a player : `delete`
 
-Deletes the specified person from the player list.
+Deletes the specified player from the player list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the player at the specified `INDEX`.
 * The index refers to the index number shown beside each player in the list.
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-#### Editing a person : `edit`
+#### Editing a player : `edit`
 
-Edits an existing person in the player list.
+Edits an existing player in the player list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown beside each player in the list.
+* Edits the player at the specified `INDEX`. The index refers to the index number shown beside each player in the list.
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without
+* When editing tags, the existing tags of the player will be removed i.e adding of tags is not cumulative.
+* You can remove all the player's tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 3 r/JUNGLE rank/DIAMOND I` Edits the role and rank of the 3rd person.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st player to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd player to be `Betsy Crower` and clears all existing tags.
+*  `edit 3 r/JUNGLE rank/DIAMOND I` Edits the role and rank of the 3rd player.
 
-#### Listing all persons : `list`
+#### Listing all players : `list`
 
-Shows a list of all persons in the player list.
+Shows a list of all players in the player list.
 
 Format: `list`
 
 ### Search and Discovery
 
-#### Locating persons by name: `find`
+#### Locating players by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds players whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -179,7 +179,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Players matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * Changes which players are displayed, but the index numbers stay the same.
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
@@ -189,16 +189,16 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-#### Filtering persons : `filter`
+#### Filtering players : `filter`
 
-Finds persons whose tags, roles, or entities contain any of the given keywords.
+Finds players whose tags, roles, or entities contain any of the given keywords.
 
 Format: `filter [t/KEYWORD [MORE_KEYWORDS]...] [r/KEYWORD [MORE_KEYWORDS]...] [ent/KEYWORD [MORE_KEYWORDS]...]`
 
 * The search is case-insensitive. e.g `friend` will match `friend`, `Friend`, or `FRIEND`
 * You can filter by tags (`t/`), roles (`r/`), entities (`ent/`), or any combination of these.
-* Within each category (tags, roles, entities), persons matching at least one keyword will be returned (i.e. `OR` search).
-* Multiple categories are combined with `AND` logic - a person must match at least one keyword from each specified category.
+* Within each category (tags, roles, entities), players matching at least one keyword will be returned (i.e. `OR` search).
+* Multiple categories are combined with `AND` logic - a player must match at least one keyword from each specified category.
 * Only full words will be matched e.g. `friend` will not match `friends`
 * Changes which players are displayed, but the index numbers stay the same.
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
@@ -213,7 +213,7 @@ Examples:
 
 #### Comparing players : `compare`
 
-Compares two players identified by their index numbers.
+Compares two players identified by index or IGN.
 
 Format: `compare (INDEX1 | i/IGN1) (INDEX2 | i/IGN2)`
 
@@ -233,17 +233,17 @@ Example:
 
 #### Drafting a team : `draft`
 
-Tests if a specific team composition is valid.
+Validates a 5-player team composition.
 
 Format: `draft (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN)`
 
-* Selects 5 players by their index numbers or in-game names (IGN).
+* Selects exactly 5 distinct players by index number or in-game name (IGN).
 * If an index is used, it refers to the index number shown beside each player in the list.
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
-* A valid team requires exactly 5 players with one player per role (TOP, JUNGLE, MID, BOT, SUPPORT).
 * You can mix indices and IGNs in the same command.
 * The `i/` prefix can optionally be omitted for non-numeric IGNs (e.g., `PlayerA` instead of `i/PlayerA`).
-* All 5 players must be different.
+* A valid team composition has exactly one player per role (TOP, JUNGLE, MID, BOT, SUPPORT).
+* Invalid role compositions are not rejected; instead, DraftDeck displays diagnostic messages (e.g., missing roles, duplicate roles).
 
 Examples:
 * `draft 1 2 3 4 5` Drafts players at indices 1-5.
@@ -260,7 +260,7 @@ Updates the statistics of a player for a specific entity.
 
 Format: `stats (INDEX | i/IGN) ent/ENTITY [k/KILLS] [d/DEATHS] [a/ASSISTS]`
 
-* Updates the person at the specified `INDEX`, or with the specified IGN. The index refers to the index number shown beside each player in the list.
+* Updates the player at the specified `INDEX`, or with the specified IGN. The index refers to the index number shown beside each player in the list.
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `ent/ENTITY` is required and specifies which champion the statistics are for.
@@ -345,7 +345,7 @@ Action | Format, Examples
 **Filter** | `filter [t/KEYWORD [MORE_KEYWORDS]...] [r/KEYWORD [MORE_KEYWORDS]...] [ent/KEYWORD [MORE_KEYWORDS]...]`<br> e.g., `filter t/pro r/bot ent/Jinx`
 **Help** | `help`
 **List** | `list`
-**Result** | `result w/RESULT [date/yyyy-MM-dd] i/IGN ent/ENTITY k/KILLS d/DEATHS a/ASSISTS [(i/IGN ent/ENTITY k/KILLS d/DEATHS a/ASSISTS)]…​`<br> e.g., `result w/WIN i/AlexY42 ent/Ahri s/10-2-8 i/Bern_Storm ent/Leona s/1-1-12 i/Charlie99 ent/Evelynn s/5-6-15 i/DavidLi91 ent/Irelia s/2-19-4 i/IrfanZ ent/Kayn s/6-3-8`
+**Result** | `result w/RESULT [date/yyyy-MM-dd] i/IGN ent/ENTITY s/KILLS-DEATHS-ASSISTS`<br> e.g., `result w/WIN i/AlexY42 ent/Ahri s/10-2-8 i/Bern_Storm ent/Leona s/1-1-12 i/Charlie99 ent/Evelynn s/5-6-15 i/DavidLi91 ent/Irelia s/2-19-4 i/IrfanZ ent/Kayn s/6-3-8`
 **Stats** | `stats INDEX ent/ENTITY [k/KILLS] [d/DEATHS] [a/ASSISTS]`<br> e.g., `stats 1 ent/Ahri k/50 d/10 a/20`
 
 
@@ -559,7 +559,7 @@ draft 12 2 3 4 6
 ```
 
 **Expected Output:**
-An error message indicating the team composition is invalid, because you're missing a SUPPORT player (index 6 is Blaire, a TOP laner).
+Validation output indicating the team composition is invalid, because you're missing a SUPPORT player (index 6 is Blaire, a TOP laner).
 ![DraftInvalid](images/WalkthroughDraftInvalid.png)
 
 ---
@@ -583,7 +583,7 @@ We could use the `stats` command again, but since we are tracking multiple playe
 {:.no_toc}
 
 ```
-result w/WIN date/2026-09-01 i/Dust ent/Gwen k/3 d/0 a/4 i/CraliX ent/Zed k/5 d/1 a/2 i/Raven ent/Anivia k/1 d/6 a/5 i/Ciela ent/Zeri k/2 d/4 a/0 i/Kra ent/Ashe k/1 d/3 a/9
+result w/WIN date/2026-09-01 i/Dust ent/Gwen s/3-0-4 i/CraliX ent/Zed s/5-1-2 i/Raven ent/Anivia s/1-6-5 i/Ciela ent/Zeri s/2-4-0 i/Kra ent/Ashe s/1-3-9
 ```
 
 **Expected Output:**

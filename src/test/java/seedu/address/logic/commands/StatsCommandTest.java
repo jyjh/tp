@@ -106,7 +106,7 @@ public class StatsCommandTest {
         expectedMessage += "\n" + Messages.MESSAGE_GLOBAL_INDEX_COMMAND_CUE;
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
+        expectedModel.setPerson(filledEntityMapPerson, editedPerson);
 
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel);
     }
