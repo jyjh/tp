@@ -51,6 +51,7 @@ StorageManager -up-> "1" EntityStorage
 Storage -left-|> UserPrefsStorage
 Storage -right-|> AddressBookStorage
 Storage -right-|> MatchRecordStorage
+Storage -right-|> EntityStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
