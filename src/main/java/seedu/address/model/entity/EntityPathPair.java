@@ -3,6 +3,7 @@ package seedu.address.model.entity;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Objects;
 
 /**
  * Represents a pair of an {@code Entity} and its corresponding file path.
@@ -51,5 +52,10 @@ public class EntityPathPair {
         EntityPathPair otherEntity = (EntityPathPair) other;
         return otherEntity.getEntity().equals(this.getEntity())
             && otherEntity.getPath().equals(this.getPath());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(entity, path);
     }
 }
