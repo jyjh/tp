@@ -79,10 +79,8 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         String nameText = person.getIgn().toString() + "(" + person.getName().fullName + ")";
         name.setText(nameText);
-        
         Tooltip nameTooltip = new Tooltip(nameText);
         name.setTooltip(nameTooltip);
-        
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
         role.setText("Role: " + person.getRole().toString());

@@ -279,7 +279,6 @@ public class ComparePanel extends UiPart<VBox> {
         nameLabel.setText(displayName);
         Tooltip nameTooltip = new Tooltip(displayName);
         nameLabel.setTooltip(nameTooltip);
-        
         roleLabel.setText(player.getRole().toString());
         rankLabel.setText(player.getRank().toString());
 

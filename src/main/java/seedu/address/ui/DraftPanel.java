@@ -166,7 +166,6 @@ public class DraftPanel extends UiPart<HBox> {
         String fullNameAndIgn = player.getIgn().toString() + " (" + player.getName().fullName + ")";
         Tooltip nameTooltip = new Tooltip(fullNameAndIgn);
         nameLabel.setTooltip(nameTooltip);
-        
         roleLabel.setText(player.getRole().value.toString());
         rankLabel.setText(player.getRank().toString());
         killsLabel.setText(player.getOverallStatistics().getKills().toString());
