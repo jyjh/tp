@@ -1,5 +1,4 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
@@ -9,7 +8,9 @@
     "role" : "TOP",
     "rank" : "GOLD I",
     "tags" : [ "friends" ],
-    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
+    "statistics" : {
+      "entityStatistics" : { }
+    }
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -19,7 +20,9 @@
     "role" : "JUNGLE",
     "rank" : "GOLD II",
     "tags" : [ "owesMoney", "friends" ],
-    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
+    "statistics" : {
+      "entityStatistics" : { }
+    }
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -29,7 +32,9 @@
     "role" : "MID",
     "rank" : "GOLD III",
     "tags" : [ ],
-    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
+    "statistics" : {
+      "entityStatistics" : { }
+    }
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -39,7 +44,9 @@
     "role" : "BOT",
     "rank" : "GOLD IV",
     "tags" : [ "friends" ],
-    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
+    "statistics" : {
+      "entityStatistics" : { }
+    }
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -49,7 +56,9 @@
     "role" : "SUPPORT",
     "rank" : "PLATINUM I",
     "tags" : [ ],
-    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
+    "statistics" : {
+      "entityStatistics" : { }
+    }
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -59,7 +68,9 @@
     "role" : "TOP",
     "rank" : "PLATINUM II",
     "tags" : [ ],
-    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
+    "statistics" : {
+      "entityStatistics" : { }
+    }
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -69,6 +80,8 @@
     "role" : "JUNGLE",
     "rank" : "PLATINUM III",
     "tags" : [ ],
-    "statistics" : { "kills" : "0", "deaths" : "0", "assists" : "0" }
+    "statistics" : {
+      "entityStatistics" : { }
+    }
   } ]
 }

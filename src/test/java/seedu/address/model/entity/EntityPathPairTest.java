@@ -1,5 +1,6 @@
 package seedu.address.model.entity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -50,5 +51,31 @@ public class EntityPathPairTest {
         // different values -> returns false
         assertFalse(entity.equals(new EntityPathPair(new Entity("validentity"), Path.of("/abc/"))));
         assertFalse(entity.equals(new EntityPathPair(new Entity("validentity1"), Path.of("/"))));
+    }
+
+    @Test
+    public void equals_symmetry() {
+        EntityPathPair pair1 = new EntityPathPair(new Entity("symEntity"), Path.of("/sym/path"));
+        EntityPathPair pair2 = new EntityPathPair(new Entity("symEntity"), Path.of("/sym/path"));
+
+        assertTrue(pair1.equals(pair2));
+        assertTrue(pair2.equals(pair1));
+    }
+
+    @Test
+    public void hashCode_equalObjects_sameHashCode() {
+        EntityPathPair pair1 = new EntityPathPair(new Entity("hcEntity"), Path.of("/hc/path"));
+        EntityPathPair pair2 = new EntityPathPair(new Entity("hcEntity"), Path.of("/hc/path"));
+
+        assertTrue(pair1.equals(pair2));
+        assertEquals(pair1.hashCode(), pair2.hashCode());
+    }
+
+    @Test
+    public void hashCode_consistentAcrossMultipleCalls() {
+        EntityPathPair pair = new EntityPathPair(new Entity("hcEntity"), Path.of("/hc/path"));
+        int hash1 = pair.hashCode();
+        int hash2 = pair.hashCode();
+        assertEquals(hash1, hash2);
     }
 }
