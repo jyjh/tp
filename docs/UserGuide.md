@@ -122,7 +122,7 @@ A player can have any number of tags (including 0)
 <div markdown="1" class="alert alert-primary"> **What counts as a unique player?**
 <br>
 * The player's IGN must not match IGNs that are already present in the app.
-* Note that IGNs are case-sensitive.  
+* Note that IGNs are case-sensitive.
 * Players with the same name but different IGNs are considered unique, since different players may have the same name, while the uniqueness of IGNs is enforced by the game.
 </div>
 
