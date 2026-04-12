@@ -222,7 +222,11 @@ Format: `compare (INDEX1 | i/IGN1) (INDEX2 | i/IGN2)`
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
 * Indices **must be positive integers** 1, 2, 3, …​
 * The two players must be different.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Clicking on an entity icon in the comparison screen compares statistics for that specific entity.
 
+Click on the same entity icon again to revert to overall statistics comparison.
+</div>
 Example:
 * `compare 1 2` Compares the 1st and 2nd indexed players in the current list.
 * `compare i/AlexY42 2` Compares the player with the IGN AlexY42 and the 2nd indexed player in the current list.
