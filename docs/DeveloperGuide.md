@@ -379,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User <ins>lists all players (UC10)</ins>.
-2. User requests to edit a specific player by index with one or more fields.
+2. User requests to edit a specific player by index or IGN with one or more fields.
 3. DraftDeck updates the player and shows a success message.
 
    Use case ends.
@@ -676,6 +676,9 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 1`<br>
       Expected: First player is deleted from the list. Details of the deleted player shown in the status message.
 
+   1. Test case: `delete i/PlayerName` (assuming PlayerName exists)<br>
+      Expected: The player with IGN "PlayerName" is deleted from the list.
+
 1. Editing players
 
    1. Prerequisites: List all players using the `list` command.
@@ -685,6 +688,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `edit 2 n/Betsy Crower t/`<br>
       Expected: Second player's name is updated and all tags are cleared.
+
+   1. Test case: `edit i/PlayerName r/BOT` (assuming PlayerName exists)<br>
+      Expected: The player with IGN "PlayerName" has their role updated to BOT.
 
 1. Listing all players
 
@@ -741,6 +747,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `stats 1 ent/Ahri k/10` (adding to existing stats)<br>
       Expected: Player 1's Ahri kills are increased by 10 (cumulative).
+
+   1. Test case: `stats i/PlayerName ent/Ahri k/50 d/10 a/20` (assuming PlayerName exists)<br>
+      Expected: Player with IGN "PlayerName" has their Ahri statistics updated.
 
 1. Adding match results
 

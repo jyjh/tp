@@ -134,20 +134,25 @@ Examples:
 
 Deletes the specified player from the player list.
 
-Format: `delete INDEX`
+Format: `delete (INDEX | i/IGN)`
 
-* Deletes the player at the specified `INDEX`.
+* Deletes the player at the specified `INDEX`, or with the specified `IGN`.
 * The index refers to the index number shown beside each player in the list.
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete 3` Deletes the 3rd player in the list.
+* `delete i/PlayerName` Deletes the player with IGN "PlayerName".
 
 #### Editing a player : `edit`
 
 Edits an existing player in the player list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`
+Format: `edit (INDEX | i/IGN) [n/NAME] [p/PHONE] [e/EMAIL] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`
 
-* Edits the player at the specified `INDEX`. The index refers to the index number shown beside each player in the list.
+* Edits the player at the specified `INDEX`, or with the specified `IGN`.
+* The index refers to the index number shown beside each player in the list.
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -160,6 +165,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st player to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd player to be `Betsy Crower` and clears all existing tags.
 *  `edit 3 r/JUNGLE rank/DIAMOND I` Edits the role and rank of the 3rd player.
+*  `edit i/PlayerName r/BOT` Edits the role of the player with IGN "PlayerName" to BOT.
 
 #### Listing all players : `list`
 
@@ -241,7 +247,6 @@ Format: `draft (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (
 * If an index is used, it refers to the index number shown beside each player in the list.
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
 * You can mix indices and IGNs in the same command.
-* The `i/` prefix can optionally be omitted for non-numeric IGNs (e.g., `PlayerA` instead of `i/PlayerA`).
 * A valid team composition has exactly one player per role (TOP, JUNGLE, MID, BOT, SUPPORT).
 * Invalid role compositions are not rejected; instead, DraftDeck displays diagnostic messages (e.g., missing roles, duplicate roles).
 
@@ -249,7 +254,6 @@ Examples:
 * `draft 1 2 3 4 5` Drafts players at indices 1-5.
 * `draft i/PlayerA i/PlayerB i/PlayerC i/PlayerD i/PlayerE` Drafts players by their IGNs.
 * `draft 1 2 i/CarlK77 4 i/ElleM55` Mixes indices and IGNs.
-* `draft 1 2 CarlK77 4 ElleM55` Alternative syntax with the `i/` prefix omitted for non-numeric IGNs.
 
 Example output:
 ![Sample output for valid composition](images/draftSuccess.png)
@@ -336,17 +340,17 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE e/EMAIL i/IGN r/ROLE rank/RANK [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com i/JamesH88 r/BOT rank/PLATINUM I t/friend t/colleague`
 **Clear** | `clear`
-**Compare** | `compare INDEX1 INDEX2`<br> e.g., `compare 1 2`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Compare** | `compare (INDEX1 \| i/IGN1) (INDEX2 \| i/IGN2)`<br> e.g., `compare 1 2` or `compare i/Alex 2`
+**Delete** | `delete (INDEX \| i/IGN)`<br> e.g., `delete 3` or `delete i/PlayerName`
 **Draft** | `draft (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN)`<br> e.g., `draft 1 2 i/CarlK77 4 i/ElleM55`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee r/JUNGLE rank/GOLD`
+**Edit** | `edit (INDEX \| i/IGN) [n/NAME] [p/PHONE] [e/EMAIL] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee r/JUNGLE rank/GOLD` or `edit i/PlayerName r/BOT`
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter [t/KEYWORD [MORE_KEYWORDS]...] [r/KEYWORD [MORE_KEYWORDS]...] [ent/KEYWORD [MORE_KEYWORDS]...]`<br> e.g., `filter t/pro r/bot ent/Jinx`
 **Help** | `help`
 **List** | `list`
 **Result** | `result w/RESULT [date/yyyy-MM-dd] i/IGN ent/ENTITY s/KILLS-DEATHS-ASSISTS`<br> e.g., `result w/WIN i/AlexY42 ent/Ahri s/10-2-8 i/Bern_Storm ent/Leona s/1-1-12 i/Charlie99 ent/Evelynn s/5-6-15 i/DavidLi91 ent/Irelia s/2-19-4 i/IrfanZ ent/Kayn s/6-3-8`
-**Stats** | `stats INDEX ent/ENTITY [k/KILLS] [d/DEATHS] [a/ASSISTS]`<br> e.g., `stats 1 ent/Ahri k/50 d/10 a/20`
+**Stats** | `stats (INDEX \| i/IGN) ent/ENTITY [k/KILLS] [d/DEATHS] [a/ASSISTS]`<br> e.g., `stats 1 ent/Ahri k/50 d/10 a/20` or `stats i/PlayerName ent/Ahri k/50`
 
 
 ### Glossary
