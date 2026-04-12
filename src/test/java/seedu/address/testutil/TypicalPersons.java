@@ -22,6 +22,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.entity.EntityReference;
+import seedu.address.model.entity.EntityStatisticMap;
 import seedu.address.model.person.Person;
 
 /**
@@ -85,6 +86,13 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(
+                new PersonBuilder(ALICE).withEntityStatistics(new EntityStatisticMap()).build(),
+                new PersonBuilder(BENSON).withEntityStatistics(new EntityStatisticMap()).build(),
+                new PersonBuilder(CARL).withEntityStatistics(new EntityStatisticMap()).build(),
+                new PersonBuilder(DANIEL).withEntityStatistics(new EntityStatisticMap()).build(),
+                new PersonBuilder(ELLE).withEntityStatistics(new EntityStatisticMap()).build(),
+                new PersonBuilder(FIONA).withEntityStatistics(new EntityStatisticMap()).build(),
+                new PersonBuilder(GEORGE).withEntityStatistics(new EntityStatisticMap()).build()));
     }
 }
