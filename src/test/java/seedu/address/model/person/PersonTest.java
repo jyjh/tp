@@ -46,9 +46,9 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withIgn(VALID_IGN_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // ign differs in case, all other attributes same -> returns false
+        // ign differs in case, all other attributes same -> returns true
         Person editedBob = new PersonBuilder(BOB).withIgn(VALID_IGN_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSamePerson(editedBob));
 
         // ign has trailing spaces, all other attributes same -> returns false
         String ignWithTrailingSpaces = VALID_IGN_BOB + " ";
@@ -102,10 +102,9 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone="
-                + ALICE.getPhone() + ", email=" + ALICE.getEmail()
-                + ", role=" + ALICE.getRole() + ", rank=" + ALICE.getRank() + ", tags=" + ALICE.getTags()
-                + ", entityStats=" + ALICE.getOverallEntityStatistics() + "}";
+        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+                + ", email=" + ALICE.getEmail() + ", role=" + ALICE.getRole() + ", rank=" + ALICE.getRank() + ", tags="
+                + ALICE.getTags() + ", entityStats=" + ALICE.getOverallEntityStatistics() + "}";
         assertEquals(expected, ALICE.toString());
     }
 

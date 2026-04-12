@@ -579,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **IGN**: In-Game Name, a player's username in the game
+* **IGN**: In-Game Name, a player's username in the game. Limited to 16 characters and case-insensitive to align with League of Legends' IGN rules.
 * **Entity**: An umbrella term for a character that the player plays in the game. In League of Legends, this refers to a 'Champion'. In other games, this may refer to an 'Agent', 'Operator', 'Hero', or whatever term that particular game uses.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 

@@ -29,7 +29,7 @@ public class CommandUtil {
         } else {
             // It's an IGN
             for (Person person : personList) {
-                if (person.getIgn().value.equals(identifier)) {
+                if (person.getIgn().value.equalsIgnoreCase(identifier)) {
                     return person;
                 }
             }
