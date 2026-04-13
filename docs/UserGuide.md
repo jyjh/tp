@@ -69,7 +69,7 @@ First time using this app? Consider going through the [walkthrough](#walkthrough
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items in round brackets are required, but are in an either|or format.<br>
-  e.g `(INDEX | i/IGN)` can be `1` or `i/Player1`.
+  e.g `(INDEX | i/IGN)` can be `1` or `i/Player1` (where applicable).
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -149,9 +149,9 @@ Examples:
 
 Edits an existing player in the player list.
 
-Format: `edit (INDEX | i/IGN) [n/NAME] [p/PHONE] [e/EMAIL] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`
 
-* Edits the player at the specified `INDEX`, or with the specified `IGN`.
+* Edits the player at the specified `INDEX`.
 * The index refers to the index number shown beside each player in the list.
 * These numbers are global: they are based on the full player list and stay the same after `find`/`filter`.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -165,7 +165,6 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st player to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd player to be `Betsy Crower` and clears all existing tags.
 *  `edit 3 r/JUNGLE rank/DIAMOND I` Edits the role and rank of the 3rd player.
-*  `edit i/PlayerName r/BOT` Edits the role of the player with IGN "PlayerName" to BOT.
 
 #### Listing all players : `list`
 
@@ -340,17 +339,17 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE e/EMAIL i/IGN r/ROLE rank/RANK [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com i/JamesH88 r/BOT rank/PLATINUM I t/friend t/colleague`
 **Clear** | `clear`
-**Compare** | `compare (INDEX1 \| i/IGN1) (INDEX2 \| i/IGN2)`<br> e.g., `compare 1 2` or `compare i/Alex 2`
-**Delete** | `delete (INDEX \| i/IGN)`<br> e.g., `delete 3` or `delete i/PlayerName`
+**Compare** | `compare (INDEX1 | i/IGN1) (INDEX2 | i/IGN2)`<br> e.g., `compare 1 2` or `compare i/Alex 2`
+**Delete** | `delete (INDEX | i/IGN)`<br> e.g., `delete 3` or `delete i/PlayerName`
 **Draft** | `draft (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN) (INDEX | i/IGN)`<br> e.g., `draft 1 2 i/CarlK77 4 i/ElleM55`
-**Edit** | `edit (INDEX \| i/IGN) [n/NAME] [p/PHONE] [e/EMAIL] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee r/JUNGLE rank/GOLD` or `edit i/PlayerName r/BOT`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [i/IGN] [r/ROLE] [rank/RANK] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee r/JUNGLE rank/GOLD`
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter [t/KEYWORD [MORE_KEYWORDS]...] [r/KEYWORD [MORE_KEYWORDS]...] [ent/KEYWORD [MORE_KEYWORDS]...]`<br> e.g., `filter t/pro r/bot ent/Jinx`
 **Help** | `help`
 **List** | `list`
 **Result** | `result w/RESULT [date/yyyy-MM-dd] i/IGN ent/ENTITY s/KILLS-DEATHS-ASSISTS`<br> e.g., `result w/WIN i/AlexY42 ent/Ahri s/10-2-8 i/Bern_Storm ent/Leona s/1-1-12 i/Charlie99 ent/Evelynn s/5-6-15 i/DavidLi91 ent/Irelia s/2-19-4 i/IrfanZ ent/Kayn s/6-3-8`
-**Stats** | `stats (INDEX \| i/IGN) ent/ENTITY [k/KILLS] [d/DEATHS] [a/ASSISTS]`<br> e.g., `stats 1 ent/Ahri k/50 d/10 a/20` or `stats i/PlayerName ent/Ahri k/50`
+**Stats** | `stats (INDEX | i/IGN) ent/ENTITY [k/KILLS] [d/DEATHS] [a/ASSISTS]`<br> e.g., `stats 1 ent/Ahri k/50 d/10 a/20` or `stats i/PlayerName ent/Ahri k/50`
 
 
 ### Glossary

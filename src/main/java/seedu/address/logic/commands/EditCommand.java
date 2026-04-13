@@ -41,10 +41,10 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = "Edits the details of the person identified "
-            + "by the index number or IGN. "
+            + "by the index number. "
             + "Existing values will be overwritten by the input values.";
 
-    public static final String PARAMETERS = "Parameters: (INDEX | i/IGN) "
+    public static final String PARAMETERS = "Parameters: INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -56,9 +56,7 @@ public class EditCommand extends Command {
     public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
-            + PREFIX_RANK + "PLATINUM III \n"
-            + COMMAND_WORD + " 2 "
-            + PREFIX_IGN + "NewPlayerName";
+            + PREFIX_RANK + "PLATINUM III\n";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -71,7 +69,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param targetIdentifier of the person in the filtered person list to edit (can be index or IGN)
+     * @param targetIdentifier the index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(String targetIdentifier, EditPersonDescriptor editPersonDescriptor) {
