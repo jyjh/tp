@@ -848,3 +848,17 @@ testers are expected to do more *exploratory* testing.
 
 - CommandRegistry idea taken from IP, albeit modified to fit the AB3's implementation of separate Parser and Command classes
 - AB3 architecture and project scaffold for implementation of new commands, allowed for easy parsing of complex arguments, reducing setup and boilerplate effort.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Planned Enhancements**
+
+1. **List loaded entities**: Implement a way to list the loaded entities in the app, so that users can easily see which entities (e.g., champions) are available without having to refer to external sources.
+
+2. **Find by IGN**: Extend the `find` command to work for IGNs as well as regular names, allowing users to search for players by their in-game names directly.
+
+3. **Complex tag support**: Improve the tag system to support more complex tags, such as tags that include whitespaces, enabling richer categorisation of players.
+
+4. **Decrement statistics**: Extend the `stats` command to allow for decrements instead of strictly increments, so that users can correct errors in previously entered statistics.
+
+5. **Improved phone field validation**: Improve the phone field validation to better support real-world inputs, such as country extension codes (e.g., `+65`), spaces, and other common phone number formats.
