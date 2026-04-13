@@ -367,7 +367,7 @@ Welcome to DraftDeck! This walkthrough will guide you through a realistic scenar
 
 You've just been hired as the team manager for the Singapore National Esports team, ahead of the upcoming Asian Games. Your first task is to:
 
-1. Build a roster of 6 players (5 starters + 1 substitute)
+1. Build a roster of 5 players
 2. Analyze player statistics and compare recruits
 3. Draft a valid team composition
 4. Record match data from practice games
